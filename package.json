@@ -1,0 +1,46 @@
+{
+  "name": "@cowtech/react-lazily",
+  "version": "0.0.1",
+  "description": "CowTech React components and utilities.",
+  "main": "index.js",
+  "files": [
+    "components",
+    "images",
+    "styling",
+    "utils",
+    "types",
+    "README.md",
+    "CHANGELOG.md"
+  ],
+  "types": "types",
+  "scripts": {
+    "prebuild": "rm -rf index.js *.d.ts components/*.js* styling/*.js* utils/*.js* types/*",
+    "build": "rollup --environment production -c rollup.config.js",
+    "postbuild": "./node_modules/.bin/tslint --project tsconfig.json -t stylish",
+    "postpublish": "git push origin && git push origin -f --tags"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cowtech/react-lazily"
+  },
+  "keywords": [],
+  "author": "Shogun <shogun@cowtech.it>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cowtech/react-lazily/issues"
+  },
+  "homepage": "https://github.com/cowtech/react-lazily",
+  "dependencies": {
+    "@cowtech/glamor": "~2.20",
+    "prop-types": "~15.6",
+    "react": "~16.2"
+  },
+  "devDependencies": {
+    "@cowtech/package-utils": "~0.2",
+    "@cowtech/tslint-config": "~5.9",
+    "@types/react": "~16.0",
+    "tslint": "~5.8",
+    "tslint-react": "~3.2",
+    "typescript": "~2.6"
+  }
+}

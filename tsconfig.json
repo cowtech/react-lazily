@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "target": "es2017",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "jsx": "react",
+    "outDir": ".",
+    "alwaysStrict": false,
+    "allowJs": false,
+    "allowSyntheticDefaultImports": true,
+    "noImplicitAny": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "experimentalDecorators": true,
+    "lib": ["dom", "es2017"],
+    "baseUrl": ".",
+    "declaration": true,
+    "declarationDir": "types/"
+  },
+  "include": ["components/*.tsx", "styling/*.tsx", "utils/*.ts"],
+  "exclude": []
+}
