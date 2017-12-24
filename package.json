@@ -15,9 +15,10 @@
   "types": "types",
   "scripts": {
     "prebuild": "rm -rf index.js *.d.ts components/*.js* styling/*.js* utils/*.js* types/*",
-    "build": "rollup --environment production -c rollup.config.js",
-    "postbuild": "./node_modules/.bin/tslint --project tsconfig.json -t stylish",
-    "postpublish": "git push origin && git push origin -f --tags"
+    "build": "tsc -p .",
+    "postbuild": "./node_modules/.bin/tslint --project tsconfig.json -t stylish && rm -rf node_modules",
+    "postpublish": "git push origin && git push origin -f --tags",
+    "update:normalize": "bash scripts/update-normalize.sh"
   },
   "repository": {
     "type": "git",
@@ -31,14 +32,15 @@
   },
   "homepage": "https://github.com/cowtech/react-lazily",
   "dependencies": {
-    "@cowtech/glamor": "~2.20",
+    "@types/react": "~16.0",
     "prop-types": "~15.6",
-    "react": "~16.2"
+    "react": "~16.2",
+    "typestyle": "~1.5"
   },
   "devDependencies": {
     "@cowtech/package-utils": "~0.2",
     "@cowtech/tslint-config": "~5.9",
-    "@types/react": "~16.0",
+    "normalize.css": "^7.0.0",
     "tslint": "~5.8",
     "tslint-react": "~3.2",
     "typescript": "~2.6"

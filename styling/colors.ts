@@ -1,4 +1,5 @@
 /* Based on Google's Material design color palette: https://material.io/guidelines/style/color.html */
+
 export const colorWhite: string = 'rgb(255, 255, 255)';
 export const colorBlack: string = 'rgb(0, 0, 0)';
 

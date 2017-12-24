@@ -1,5 +1,5 @@
 /// <reference types="react" />
 export interface BrowseHappyProps {
-    message: string;
+    message?: string;
 }
 export declare function BrowseHappy(props: BrowseHappyProps): JSX.Element;

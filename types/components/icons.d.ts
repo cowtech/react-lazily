@@ -5,7 +5,7 @@ export interface IconProps {
     className?: string;
 }
 export declare class Icon extends React.Component<IconProps> {
-    private css;
+    private className;
     render(): JSX.Element;
 }
 export declare class IconsDefinitions extends React.Component {

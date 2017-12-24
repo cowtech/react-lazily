@@ -1,9 +1,9 @@
 {
   "compilerOptions": {
     "target": "es2017",
-    "module": "commonjs",
+    "module": "es6",
     "moduleResolution": "node",
-    "jsx": "react",
+    "jsx": "preserve",
     "outDir": ".",
     "alwaysStrict": false,
     "allowJs": false,

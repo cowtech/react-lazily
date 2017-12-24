@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import {css as glamor, keyframes, StyleAttribute} from '@cowtech/glamor';
+import {style, keyframes} from 'typestyle';
 
 import {colorBlack} from '../styling/colors';
 
@@ -23,30 +23,32 @@ export function Spinner(props: SpinnerProps): JSX.Element{
     '100%': {strokeDashoffset: size * 0.66, transform: 'rotate(1080deg)'}
   });
 
-  const css: StyleAttribute = glamor({
-    label: 'spinner',
+  const className: string = style({
+    $debugName: 'spinner',
     alignSelf: 'center',
     justifySelf: 'center',
-    '& svg': {
-      width: `${size / 10}rem`,
-      height: `${size / 10}rem`
-    },
-    '& circle': {
-      width: `${size / 10}rem`,
-      height: `${size / 10}rem`,
-      fill: 'transparent',
-      stroke: props.color || colorBlack,
-      strokeWidth: stroke,
-      strokeLinecap: 'round',
-      strokeDasharray: size * 3.14,
-      animation: `${animation} 2s linear infinite`,
-      transformOrigin: 'center'
+    $nest: {
+      '& svg': {
+        width: `${size / 10}rem`,
+        height: `${size / 10}rem`
+      },
+      '& circle': {
+        width: `${size / 10}rem`,
+        height: `${size / 10}rem`,
+        fill: 'transparent',
+        stroke: props.color || colorBlack,
+        strokeWidth: stroke,
+        strokeLinecap: 'round',
+        strokeDasharray: [size * 3.14],
+        animation: `${animation} 2s linear infinite`,
+        transformOrigin: 'center'
+      }
     }
   });
   // tslint:ensable no-magic-numbers
 
   return (
-    <main className={css.toString()}>
+    <main className={className}>
       <svg viewBox={`0 0 ${size} ${size}`}>
         <circle fill="none" strokeWidth="6" strokeLinecap="round" cx={size / 2} cy={size / 2} r={(size - stroke) / 2}/>
       </svg>

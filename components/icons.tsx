@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import {css as glamor, StyleAttribute} from '@cowtech/glamor';
+import {style} from 'typestyle';
 
 interface Icons{
   prefix: string;
@@ -16,8 +16,8 @@ export interface IconProps{
 declare const ICONS: Icons;
 
 export class Icon extends React.Component<IconProps>{
-  private css: StyleAttribute = glamor({
-    label: 'icon',
+  private className: string = style({
+    $debugName: 'icon',
     width: '1em',
     height: '1em',
     display: 'inline-block',
@@ -36,14 +36,14 @@ export class Icon extends React.Component<IconProps>{
       return null;
     }
 
-    return <svg className={`${this.css.toString()} Icon-${this.props.name} ${this.props.className || ''}`}><use xlinkHref={`#${icon.toString()}`}/></svg>;
+    return <svg className={`${this.className} Icon-${this.props.name} ${this.props.className || ''}`}><use xlinkHref={`#${icon.toString()}`}/></svg>;
   }
 }
 
 export class IconsDefinitions extends React.Component{
   render(): JSX.Element{
-    const css: StyleAttribute = glamor({
-      label: 'icons-definitions',
+    const className: string = style({
+      $debugName: 'icons-definitions',
       width: 0,
       height: 0,
       display: 'none',
@@ -52,7 +52,7 @@ export class IconsDefinitions extends React.Component{
     });
 
     return (
-      <svg className={css.toString()} version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
+      <svg className={className} version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
         <defs dangerouslySetInnerHTML={{__html: ICONS.definitions}}/>
       </svg>
     );
