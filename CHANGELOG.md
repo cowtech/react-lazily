@@ -1,3 +1,7 @@
+### 2017-12-24 / 0.1.1
+
+* Move prop-types to devDependencies.
+
 ### 2017-12-24 / 0.1.0
 
 * Initial version.

@@ -32,7 +32,6 @@
   },
   "homepage": "https://github.com/cowtech/react-lazily",
   "dependencies": {
-    "prop-types": "~15.6",
     "react": "~16.2",
     "typestyle": "~1.5"
   },
@@ -41,6 +40,7 @@
     "@cowtech/tslint-config": "~5.9",
     "@types/react": "~16.0",
     "normalize.css": "~7.0",
+    "prop-types": "~15.6",
     "tslint": "~5.8",
     "tslint-react": "~3.2",
     "typescript": "~2.6"
