@@ -1,3 +1,7 @@
+### 2017-12-25 / 0.1.3
+
+* Added LocalStorage handling.
+
 ### 2017-12-25 / 0.1.2
 
 * Minor style fix.
