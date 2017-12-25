@@ -1,4 +1,4 @@
-# react-lazily
+# @cowtech/react-lazily
 
 [![Package Version](https://badge.fury.io/js/%40cowtech%2Freact-lazily.svg)](https://badge.fury.io/js/%40cowtech%2Freact-lazily)
 [![Dependency Status](https://gemnasium.com/badges/github.com/cowtech/react-lazily.svg)](https://gemnasium.com/github.com/cowtech/react-lazily)
