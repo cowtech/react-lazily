@@ -59,7 +59,7 @@ export class TopAnchor extends React.Component {
                 '&[data-hidden=true]': { display: 'none' },
                 '&:hover': { opacity: 1, color: this.props.foregroundColor || colorWhite },
                 '&:focus, &:active, &:visited': { color: this.props.foregroundColor || colorWhite },
-                '& svg, & .fa': { fontSize: '3.5em' }
+                '& svg, & .fa': { fontSize: '2.5em' }
             }
         }, media({ maxWidth: maxWidth6xx }, { width: '3em', height: '3em' }), media({ maxWidth: maxWidth45x }, { width: '2em', height: '2em' }), media({ maxHeight: maxHeight6xx }, { width: '2em', height: '2em' }));
     }

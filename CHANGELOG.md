@@ -1,3 +1,7 @@
+### 2017-12-25 / 0.1.2
+
+* Minor style fix.
+
 ### 2017-12-24 / 0.1.1
 
 * Move prop-types to devDependencies.

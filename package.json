@@ -16,7 +16,7 @@
   "scripts": {
     "prebuild": "rm -rf index.js *.d.ts components/*.js* styling/*.js* utils/*.js* types/*",
     "build": "tsc -p .",
-    "postbuild": "./node_modules/.bin/tslint --project tsconfig.json -t stylish && rm -rf node_modules",
+    "postbuild": "./node_modules/.bin/tslint --project tsconfig.json -t stylish",
     "postpublish": "git push origin && git push origin -f --tags",
     "update:normalize": "bash scripts/update-normalize.sh"
   },
