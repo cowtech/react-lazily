@@ -71,6 +71,7 @@ export class TopAnchor extends React.Component {
     componentDidMount() {
         this.scrollHandler = this.handleScroll.bind(this);
         window.addEventListener('scroll', this.handleScroll.bind(this), false);
+        this.handleScroll();
     }
     componentWillUnmount() {
         window.removeEventListener('scroll', this.scrollHandler);
