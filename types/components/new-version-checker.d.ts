@@ -10,8 +10,8 @@ export interface NewVersionCheckerState {
 }
 export declare function checkVersion(currentVersion: string, element?: HTMLDivElement): Promise<boolean>;
 export declare function updateVersion(ev: React.MouseEvent<HTMLElement>): void;
+export declare const newVersionCheckerclassName: string;
 export declare class NewVersionChecker extends React.Component<NewVersionCheckerProps, NewVersionCheckerState> {
-    private className;
     state: {
         newVersionAvailable: boolean;
     };

@@ -39,32 +39,32 @@ export function updateVersion(ev: React.MouseEvent<HTMLElement>): void{
   location.reload(true);
 }
 
-export class NewVersionChecker extends React.Component<NewVersionCheckerProps, NewVersionCheckerState>{
-  private className: string = style(
-    {
-      $debugName: 'new-version-checker',
-      width: '100%',
-      position: 'fixed',
-      top: 0,
-      left: 0,
-      zIndex: 100,
-      backgroundColor: colorGreen900,
-      color: colorWhite,
-      padding: '1rem',
-      textAlign: 'center',
-      $nest: {
-        '&[data-hidden=true]': {display: 'none'},
-        '& a': {
-          color: colorAmber500,
-          fontWeight: 'bold',
-          $nest: {
-            '&:hover, &:focus, &:active': {color: colorAmber200}
-          }
+export const newVersionCheckerclassName: string = style(
+  {
+    $debugName: 'new-version-checker',
+    width: '100%',
+    position: 'fixed',
+    top: 0,
+    left: 0,
+    zIndex: 100,
+    backgroundColor: colorGreen900,
+    color: colorWhite,
+    padding: '1rem',
+    textAlign: 'center',
+    $nest: {
+      '&[data-hidden=true]': {display: 'none'},
+      '& a': {
+        color: colorAmber500,
+        fontWeight: 'bold',
+        $nest: {
+          '&:hover, &:focus, &:active': {color: colorAmber200}
         }
       }
     }
-  );
+  }
+);
 
+export class NewVersionChecker extends React.Component<NewVersionCheckerProps, NewVersionCheckerState>{
   state = {newVersionAvailable: false};
 
   render(): JSX.Element{
@@ -76,7 +76,7 @@ export class NewVersionChecker extends React.Component<NewVersionCheckerProps, N
 
     return (
       <div
-        id="newVersionChecker" className={this.className}
+        id="newVersionChecker" className={newVersionCheckerclassName}
         data-current-version={this.props.currentVersion} data-hidden={typeof window === 'undefined' || !this.state.newVersionAvailable}
       >
         <span>{message}&nbsp;</span>
