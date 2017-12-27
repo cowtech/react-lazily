@@ -1,16 +1,17 @@
+import {percent, rem, px} from 'csx';
 import {NestedCSSProperties} from 'typestyle/lib/types';
 
 import {colorWhite, colorGrey300, colorGrey500} from './colors';
 
 export const centeredContents: NestedCSSProperties = {
-  width: '95%',
-  maxWidth: '120rem',
+  width: percent(95),
+  maxWidth: rem(120),
   margin: '0 auto'
 };
 
 export const card: NestedCSSProperties = {
   backgroundColor: colorWhite,
-  borderRadius: '0.25rem',
-  border: `1px solid ${colorGrey300}`,
-  boxShadow: `0 0.1rem 0.2rem ${colorGrey500}`
+  borderRadius: rem(0.25),
+  border: `${px(1)} solid ${colorGrey300}`,
+  boxShadow: `0 ${rem(0.1)} ${rem(0.2)} ${colorGrey500}`
 };

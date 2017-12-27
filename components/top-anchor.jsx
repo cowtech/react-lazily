@@ -1,16 +1,17 @@
 import * as React from 'react';
+import { em, rem } from 'csx';
 import { style, media } from 'typestyle';
 import { maxWidth45x, maxWidth6xx, maxHeight6xx } from '../styling/breakpoints';
 import { colorWhite, colorGrey600 } from '../styling/colors';
 import { Icon } from './icons';
 export function animationProgress(startTime, duration) {
     if (!duration)
-        duration = 350; // tslint:disable-line no-magic-numbers
+        duration = 350;
     return Math.min((new Date().getTime() - startTime) / duration, 1);
 }
 // This is easeInOutQuad taken here: https://gist.github.com/gre/1650294
 export function ease(x) {
-    return x < 0.5 ? Math.pow(x, 2) * 2 : (4 - x * 2) * x - 1; // tslint:disable-line no-magic-numbers
+    return x < 0.5 ? Math.pow(x, 2) * 2 : (4 - x * 2) * x - 1;
 }
 export function handleScroll(element) {
     if (!element)
@@ -41,10 +42,10 @@ export class TopAnchor extends React.Component {
         super(...arguments);
         this.className = style({
             $debugName: 'top-anchor',
-            width: '4em',
-            height: '4em',
-            bottom: '2rem',
-            right: '2rem',
+            width: em(4),
+            height: em(4),
+            bottom: rem(2),
+            right: rem(2),
             position: 'fixed',
             zIndex: 101,
             display: 'flex',
@@ -52,16 +53,16 @@ export class TopAnchor extends React.Component {
             justifyContent: 'center',
             backgroundColor: this.props.backgroundColor || colorGrey600,
             color: this.props.foregroundColor || colorWhite,
-            borderRadius: '0.5rem',
+            borderRadius: rem(0.5),
             opacity: 0.5,
             transition: 'opacity 0.2s ease',
             $nest: {
                 '&[data-hidden=true]': { display: 'none' },
                 '&:hover': { opacity: 1, color: this.props.foregroundColor || colorWhite },
                 '&:focus, &:active, &:visited': { color: this.props.foregroundColor || colorWhite },
-                '& svg, & .fa': { fontSize: '2.5em' }
+                '& svg, & .fa': { fontSize: em(2.5) }
             }
-        }, media({ maxWidth: maxWidth6xx }, { width: '3em', height: '3em' }), media({ maxWidth: maxWidth45x }, { width: '2em', height: '2em' }), media({ maxHeight: maxHeight6xx }, { width: '2em', height: '2em' }));
+        }, media({ maxWidth: maxWidth6xx }, { width: em(3), height: em(3) }), media({ maxWidth: maxWidth45x }, { width: em(2), height: em(2) }), media({ maxHeight: maxHeight6xx }, { width: em(2), height: em(2) }));
     }
     render() {
         return (<a id="topAnchor" ref={(el) => this.element = el} className={this.className} onClick={this.handleScrollToTop.bind(this)} href="#top" title="Top">

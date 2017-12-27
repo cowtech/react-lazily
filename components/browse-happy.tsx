@@ -1,5 +1,6 @@
 import * as React from 'react';
 
+import {percent, rem} from 'csx';
 import {style} from 'typestyle';
 
 import {colorWhite, colorRed700, colorAmber200, colorAmber500} from '../styling/colors';
@@ -11,14 +12,14 @@ export interface BrowseHappyProps{
 export const browseHappyClassName: string = style(
   {
     $debugName: 'browse-happy',
-    width: '100%',
+    width: percent(100),
     position: 'fixed',
     bottom: 0,
     left: 0,
     zIndex: 100,
     backgroundColor: colorRed700,
     color: colorWhite,
-    padding: '1rem',
+    padding: rem(1),
     textAlign: 'center',
     $nest: {
       '& a': {
@@ -38,7 +39,7 @@ export function BrowseHappy(props: BrowseHappyProps): JSX.Element{
   return (
     <div id="browseHappy" className={browseHappyClassName}>
       <span>{message}&nbsp;</span>
-      <a href="https://browsehappy.com/" className="BrowseHappy__link" target="_blank" rel="noopener">BrowseHappy</a>.
+      <a href="https://browsehappy.com/" target="_blank" rel="noopener">BrowseHappy</a>.
     </div>
   );
 }

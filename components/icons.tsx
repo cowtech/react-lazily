@@ -1,6 +1,7 @@
 import * as React from 'react';
 
-import {style} from 'typestyle';
+import {em} from 'csx';
+import {style, classes} from 'typestyle';
 
 interface Icons{
   prefix: string;
@@ -17,8 +18,8 @@ declare const ICONS: Icons;
 
 export const iconClassName: string = style({
   $debugName: 'icon',
-  width: '1em',
-  height: '1em',
+  width: em(1),
+  height: em(1),
   display: 'inline-block',
   verticalAlign: 'middle',
   strokeWidth: 0,
@@ -44,7 +45,7 @@ export function Icon(props: IconProps): JSX.Element{
     return null;
   }
 
-  return <svg className={`${iconClassName} Icon-${props.name} ${props.className || ''}`}><use xlinkHref={`#${icon.toString()}`}/></svg>;
+  return <svg className={classes(iconClassName, `Icon-${props.name}`, props.className)}><use xlinkHref={`#${icon.toString()}`}/></svg>;
 }
 
 export function IconsDefinitions(): JSX.Element{

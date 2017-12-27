@@ -1,3 +1,6 @@
 {
-  "extends": ["@cowtech/tslint-config"]
+  "extends": ["@cowtech/tslint-config"],
+  "rules": {
+    "no-magic-numbers": false
+  }
 }

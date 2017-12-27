@@ -1,3 +1,7 @@
+### 2017-12-27 / 0.2.0
+
+* Use utility classes, csx is now a dependency.
+
 ### 2017-12-26 / 0.1.5
 
 * Correctly render TopAnchor.

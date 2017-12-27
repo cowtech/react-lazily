@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { percent, em } from 'csx';
 import { style } from 'typestyle';
 import { colorBlack, colorWhite } from '../styling/colors';
 import { Ribbon } from './ribbon';
@@ -7,13 +8,13 @@ export const madeInItalyClassName = style({
     $nest: {
         '& a': {
             display: 'inline-block',
-            width: '60%',
+            width: percent(60),
             fontWeight: 'bold',
-            fontSize: '0.85em',
+            fontSize: em(0.85),
             lineHeight: 1,
             color: colorBlack,
             textShadow: `0 0 0.5rem ${colorWhite}`,
-            padding: '0.5em'
+            padding: em(0.5)
         }
     }
 });

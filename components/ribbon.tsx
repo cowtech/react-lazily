@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import {style, media} from 'typestyle';
+import {style, media, classes} from 'typestyle';
 
 import {maxWidth6xx} from '../styling/breakpoints';
 import {colorGrey500, colorGrey800} from '../styling/colors';
@@ -45,6 +45,6 @@ export class Ribbon extends React.PureComponent<RibbonProps>{
       media({maxWidth: maxWidth6xx}, {display: 'none'})
     );
 
-    return <div className={`${className} ${this.props.className}`}>{this.props.children}</div>;
+    return <div className={classes(className, this.props.className)}>{this.props.children}</div>;
   }
 }
