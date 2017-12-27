@@ -1,4 +1,4 @@
-import {percent, px, em, rem} from 'csx';
+import {px, em, rem} from 'csx';
 import {cssRule as global, cssRaw} from 'typestyle';
 
 export function reset(): void{

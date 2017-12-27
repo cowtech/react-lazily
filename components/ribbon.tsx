@@ -1,5 +1,6 @@
 import * as React from 'react';
 
+import {rem, px, percent} from 'csx';
 import {style, media, classes} from 'typestyle';
 
 import {maxWidth6xx} from '../styling/breakpoints';
@@ -14,19 +15,31 @@ export class Ribbon extends React.PureComponent<RibbonProps>{
   render(): JSX.Element{
     let positionCss: any = null;
 
-    // 29.28% = 100% - (100% / sqrt(2))
+    // ${percent(29.28)} = ${percent(100)} - (${percent(100)} / sqrt(2))
     switch(this.props.position){
       case 'top-left':
-        positionCss = {top: 0, left: 0, bottom: 'auto', right: 'auto', transform: 'translate(-29.28%, -100%) rotate(-45deg)', transformOrigin: 'bottom right'};
+        positionCss = {
+          top: 0, left: 0, bottom: 'auto', right: 'auto',
+          transform: `translate(${percent(-29.28)}, ${percent(-100)}) rotate(-45deg)`, transformOrigin: 'bottom right'
+        };
         break;
       case 'bottom-left':
-        positionCss = {top: 'auto', left: 0, bottom: 0, right: 'auto', transform: 'translate(-29.28%, 100%) rotate(45deg)', transformOrigin: 'top right'};
+        positionCss = {
+          top: 'auto', left: 0, bottom: 0, right: 'auto',
+          transform: `translate(${percent(-29.28)}, ${percent(100)}) rotate(45deg)`, transformOrigin: 'top right'
+        };
         break;
       case 'bottom-right':
-        positionCss = {top: 'auto', left: 'auto', bottom: 0, right: 0, transform: 'translate(29.28%, 100%) rotate(-45deg)', transformOrigin: 'top left'};
+        positionCss = {
+          top: 'auto', left: 'auto', bottom: 0, right: 0,
+          transform: `translate(${percent(29.28)}, ${percent(100)}) rotate(-45deg)`, transformOrigin: 'top left'
+        };
         break;
       default: // top-right by default
-        positionCss = {top: 0, left: 'auto', bottom: 'auto', right: 0, transform: 'translate(29.28%, -100%) rotate(45deg)', transformOrigin: 'bottom left'};
+        positionCss = {
+          top: 0, left: 'auto', bottom: 'auto', right: 0,
+          transform: `translate(${percent(29.28)}, ${percent(-100)}) rotate(45deg)`, transformOrigin: 'bottom left'
+        };
         break;
     }
 
@@ -36,9 +49,9 @@ export class Ribbon extends React.PureComponent<RibbonProps>{
         position: 'fixed',
         backfaceVisibility: 'hidden',
         zIndex: 99,
-        border: `1px solid ${colorGrey800}`,
-        boxShadow: `0 0 0.5rem ${colorGrey500}`,
-        padding: '0 2%',
+        border: `${px(1)} solid ${colorGrey800}`,
+        boxShadow: `0 0 ${rem(0.5)} ${colorGrey500}`,
+        padding: `0 ${percent(2)}`,
         textAlign: 'center'
       },
       positionCss,
