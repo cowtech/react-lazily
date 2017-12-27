@@ -32,7 +32,7 @@
   },
   "homepage": "https://github.com/cowtech/react-lazily",
   "dependencies": {
-    "csx": "^8.5.0",
+    "csx": "~8.5",
     "react": "~16.2",
     "typestyle": "~1.5"
   },

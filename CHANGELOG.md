@@ -1,3 +1,7 @@
+### 2017-12-27 / 0.2.1
+
+* Fixed dependency specification.
+
 ### 2017-12-27 / 0.2.0
 
 * Use utility classes, csx is now a dependency.
