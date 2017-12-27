@@ -1,3 +1,7 @@
+### 2017-12-27 / 0.2.2
+
+* Bugfix.
+
 ### 2017-12-27 / 0.2.1
 
 * Fixed dependency specification.

@@ -2,37 +2,37 @@ import {px} from 'csx';
 
 //  Desktop
 export const maxWidth11xx: number = 1100;
-export const queryMaxWidth11xx: string = `\1: ${px(maxWidth11xx)})`;
+export const queryMaxWidth11xx: string = `(max-width: ${px(maxWidth11xx)})`;
 
 //  iPhone 6 Plus (Landscape)
 export const maxWidth8xx: number = 800;
-export const queryMaxWidth8xx: string = `\1: ${px(maxWidth8xx)})`;
+export const queryMaxWidth8xx: string = `(max-width: ${px(maxWidth8xx)})`;
 
 //  iPad Pro (Portrait 1/2, Portrait 2/3), iPad Air (Landscape 2/3), iPad Mini (Landscape 2/3)
 // iPhone >4 (Landscape)
 export const maxWidth7xx: number = 700;
-export const queryMaxWidth7xx: string = `\1: ${px(maxWidth7xx)})`;
+export const queryMaxWidth7xx: string = `(max-width: ${px(maxWidth7xx)})`;
 
 // iPad Air (Landscape 1/2), iPad Mini (Landscape 1/2)
 // iPhone <5 (Landscape)
 export const maxWidth6xx: number = 600;
-export const queryMaxWidth6xx: string = `\1: ${px(maxWidth6xx)})`;
+export const queryMaxWidth6xx: string = `(max-width: ${px(maxWidth6xx)})`;
 
 // iPad Pro (Portrait or Landscape 1/3), iPad Air (Portrait 2/3, Landscape 1/3), iPad Mini (Portrait 2/3, Landscape 1/3)
 // iPhone 6 Plus (Portrait)
 export const maxWidth45x: number = 450;
-export const queryMaxWidth45x: string = `\1: ${px(maxWidth45x)})`;
+export const queryMaxWidth45x: string = `(max-width: ${px(maxWidth45x)})`;
 
 // iPad Air (Portrait or Landscape 1/3), iPad Mini (Portrait or Landscape 1/3)
 // iPhone 6 (Portrait)
 // iPhone <6 (Portrait)
 export const maxWidth38x: number = 380;
-export const queryMaxWidth38x: string = `\1: ${px(maxWidth38x)})`;
+export const queryMaxWidth38x: string = `(max-width: ${px(maxWidth38x)})`;
 
 // Large screens
 export const maxHeight8xx: number = 800;
-export const queryMaxHeight8xx: string = `\1: ${px(maxHeight8xx)})`;
+export const queryMaxHeight8xx: string = `(max-height: ${px(maxHeight8xx)})`;
 
 // iPhone <5 (Landscape), iPhone 6 (Landscape), iPhone 6 Plus (Landscape)
 export const maxHeight6xx: number = 600;
-export const queryMaxHeight6xx: string = `\1: ${px(maxHeight6xx)})`;
+export const queryMaxHeight6xx: string = `(max-height: ${px(maxHeight6xx)})`;
