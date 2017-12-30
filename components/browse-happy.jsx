@@ -30,3 +30,9 @@ export function BrowseHappy(props) {
       <a href="https://browsehappy.com/" target="_blank" rel="noopener">BrowseHappy</a>.
     </div>);
 }
+export const BrowseHappySSR = `
+  document.addEventListener('DOMContentLoaded', function(){
+    if(navigator.userAgent.indexOf('MSIE') !== -1 || typeof CSS.supports !== 'function' || !CSS.supports('display', 'grid') || !CSS.supports('display', 'flex'))
+      document.getElementById('browseHappy').remove();
+  });
+`;

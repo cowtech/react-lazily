@@ -43,3 +43,10 @@ export function BrowseHappy(props: BrowseHappyProps): JSX.Element{
     </div>
   );
 }
+
+export const BrowseHappySSR: string = `
+  document.addEventListener('DOMContentLoaded', function(){
+    if(navigator.userAgent.indexOf('MSIE') !== -1 || typeof CSS.supports !== 'function' || !CSS.supports('display', 'grid') || !CSS.supports('display', 'flex'))
+      document.getElementById('browseHappy').remove();
+  });
+`;
