@@ -1,3 +1,7 @@
+### 2017-12-30 / 0.2.5
+
+* Minor improvement.
+
 ### 2017-12-30 / 0.2.4
 
 * Added SSR support to BrowseHappy.

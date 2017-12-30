@@ -14,6 +14,7 @@ export const browseHappyClassName = style({
     padding: rem(1),
     textAlign: 'center',
     $nest: {
+        '&[data-hidden=true]': { display: 'none' },
         '& a': {
             color: colorAmber500,
             fontWeight: 'bold',
@@ -32,7 +33,11 @@ export function BrowseHappy(props) {
 }
 export const BrowseHappySSR = `
   document.addEventListener('DOMContentLoaded', function(){
+    const element = document.getElementById('browseHappy');
+
     if(navigator.userAgent.indexOf('MSIE') !== -1 || typeof CSS.supports !== 'function' || !CSS.supports('display', 'grid') || !CSS.supports('display', 'flex'))
-      document.getElementById('browseHappy').remove();
+      element.remove();
+    else
+      element.removeAttribute('data-hidden');
   });
 `;
