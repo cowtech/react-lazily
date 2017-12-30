@@ -26,7 +26,7 @@ export const browseHappyClassName = style({
 });
 export function BrowseHappy(props) {
     const message = props.message || 'Your browser is obsolete. For the best browsing experience, update it for free by visiting';
-    return (<div id="browseHappy" className={browseHappyClassName}>
+    return (<div id="browseHappy" className={browseHappyClassName} data-hidden={typeof window === 'undefined'}>
       <span>{message}&nbsp;</span>
       <a href="https://browsehappy.com/" target="_blank" rel="noopener">BrowseHappy</a>.
     </div>);
@@ -36,8 +36,8 @@ export const BrowseHappySSR = `
     const element = document.getElementById('browseHappy');
 
     if(navigator.userAgent.indexOf('MSIE') !== -1 || typeof CSS.supports !== 'function' || !CSS.supports('display', 'grid') || !CSS.supports('display', 'flex'))
-      element.remove();
-    else
       element.removeAttribute('data-hidden');
+    else
+      element.remove();
   });
 `;
