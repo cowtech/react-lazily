@@ -18,7 +18,7 @@ export function animationProgress(startTime: number, duration: number): number{
   if(!duration)
     duration = 350;
 
-  return Math.min((new Date().getTime() - startTime) / duration, 1);
+  return Math.min((Date.now() - startTime) / duration, 1);
 }
 
 // This is easeInOutQuad taken here: https://gist.github.com/gre/1650294
@@ -36,7 +36,7 @@ export function handleScroll(element: HTMLAnchorElement): void{
 export function handleScrollToTop(ev: React.MouseEvent<HTMLElement>, duration: number): void{
   ev.preventDefault();
 
-  const startTime: number = new Date().getTime();
+  const startTime: number = Date.now();
   const base: number = document.body.scrollTop;
 
   // Step function for the the animation

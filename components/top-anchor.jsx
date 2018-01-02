@@ -7,7 +7,7 @@ import { Icon } from './icons';
 export function animationProgress(startTime, duration) {
     if (!duration)
         duration = 350;
-    return Math.min((new Date().getTime() - startTime) / duration, 1);
+    return Math.min((Date.now() - startTime) / duration, 1);
 }
 // This is easeInOutQuad taken here: https://gist.github.com/gre/1650294
 export function ease(x) {
@@ -20,7 +20,7 @@ export function handleScroll(element) {
 }
 export function handleScrollToTop(ev, duration) {
     ev.preventDefault();
-    const startTime = new Date().getTime();
+    const startTime = Date.now();
     const base = document.body.scrollTop;
     // Step function for the the animation
     const animate = function () {
