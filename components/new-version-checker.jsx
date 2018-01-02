@@ -72,10 +72,8 @@ export class NewVersionChecker extends React.Component {
 }
 export const NewVersionCheckerSSR = `
   document.addEventListener('DOMContentLoaded', function(){
-    ${updateVersion}
-
     const element = document.getElementById('newVersionChecker');
-    element.querySelector('a').addEventListener('click', updateVersion, false);
+    element.querySelector('a').addEventListener('click', (${updateVersion}), false);
 
     (${checkVersion})(element.getAttribute('data-current-version'), element);
   });
