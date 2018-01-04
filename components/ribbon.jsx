@@ -3,6 +3,7 @@ import { rem, px, percent } from 'csx';
 import { style, media, classes } from 'typestyle';
 import { maxWidth6xx } from '../styling/breakpoints';
 import { colorGrey500, colorGrey800 } from '../styling/colors';
+import { debugName } from '../styling/mixins';
 export class Ribbon extends React.PureComponent {
     render() {
         let positionCss = null;
@@ -33,8 +34,7 @@ export class Ribbon extends React.PureComponent {
                 };
                 break;
         }
-        const className = style({
-            $debugName: 'ribbon',
+        const className = style(debugName('ribbon'), {
             position: 'fixed',
             backfaceVisibility: 'hidden',
             zIndex: 99,

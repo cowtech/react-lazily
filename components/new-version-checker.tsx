@@ -4,6 +4,7 @@ import {percent, rem} from 'csx';
 import {style} from 'typestyle';
 
 import {colorWhite, colorGreen900, colorAmber200, colorAmber500} from '../styling/colors';
+import {debugName} from '../styling/mixins';
 
 export interface NewVersionCheckerProps{
   currentVersion: string;
@@ -41,8 +42,8 @@ export function updateVersion(ev: React.MouseEvent<HTMLElement>): void{
 }
 
 export const newVersionCheckerclassName: string = style(
+  debugName('new-version-checker'),
   {
-    $debugName: 'new-version-checker',
     width: percent(100),
     position: 'fixed',
     top: 0,

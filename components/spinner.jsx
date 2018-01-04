@@ -2,6 +2,7 @@ import * as React from 'react';
 import { percent, rem } from 'csx';
 import { style, keyframes } from 'typestyle';
 import { colorBlack } from '../styling/colors';
+import { debugName } from '../styling/mixins';
 export function Spinner(props) {
     const size = props.size || 66;
     const stroke = props.stroke || 6;
@@ -11,8 +12,7 @@ export function Spinner(props) {
         [percent(50)]: { strokeDashoffset: size * 3.14, transform: 'rotate(720deg)' },
         [percent(100)]: { strokeDashoffset: size * 0.66, transform: 'rotate(1080deg)' }
     });
-    const className = style({
-        $debugName: 'spinner',
+    const className = style(debugName('spinner'), {
         alignSelf: 'center',
         justifySelf: 'center',
         $nest: {

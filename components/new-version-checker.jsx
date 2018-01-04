@@ -2,6 +2,7 @@ import * as React from 'react';
 import { percent, rem } from 'csx';
 import { style } from 'typestyle';
 import { colorWhite, colorGreen900, colorAmber200, colorAmber500 } from '../styling/colors';
+import { debugName } from '../styling/mixins';
 export async function checkVersion(currentVersion, element) {
     try {
         // No new workers or SW available, use the manifest
@@ -24,8 +25,7 @@ export function updateVersion(ev) {
     ev.preventDefault();
     location.reload(true);
 }
-export const newVersionCheckerclassName = style({
-    $debugName: 'new-version-checker',
+export const newVersionCheckerclassName = style(debugName('new-version-checker'), {
     width: percent(100),
     position: 'fixed',
     top: 0,

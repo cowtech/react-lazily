@@ -4,6 +4,7 @@ import {percent, rem} from 'csx';
 import {style, keyframes} from 'typestyle';
 
 import {colorBlack} from '../styling/colors';
+import {debugName} from '../styling/mixins';
 
 export interface SpinnerProps{
   size?: number;
@@ -23,28 +24,30 @@ export function Spinner(props: SpinnerProps): JSX.Element{
     [percent(100)]: {strokeDashoffset: size * 0.66, transform: 'rotate(1080deg)'}
   });
 
-  const className: string = style({
-    $debugName: 'spinner',
-    alignSelf: 'center',
-    justifySelf: 'center',
-    $nest: {
-      '& svg': {
-        width: rem(size / 10),
-        height: rem(size / 10)
-      },
-      '& circle': {
-        width: rem(size / 10),
-        height: rem(size / 10),
-        fill: 'transparent',
-        stroke: props.color || colorBlack,
-        strokeWidth: stroke,
-        strokeLinecap: 'round',
-        strokeDasharray: [size * 3.14],
-        animation: `${animation} 2s linear infinite`,
-        transformOrigin: 'center'
+  const className: string = style(
+    debugName('spinner'),
+    {
+      alignSelf: 'center',
+      justifySelf: 'center',
+      $nest: {
+        '& svg': {
+          width: rem(size / 10),
+          height: rem(size / 10)
+        },
+        '& circle': {
+          width: rem(size / 10),
+          height: rem(size / 10),
+          fill: 'transparent',
+          stroke: props.color || colorBlack,
+          strokeWidth: stroke,
+          strokeLinecap: 'round',
+          strokeDasharray: [size * 3.14],
+          animation: `${animation} 2s linear infinite`,
+          transformOrigin: 'center'
+        }
       }
     }
-  });
+  );
 
   return (
     <main className={className}>

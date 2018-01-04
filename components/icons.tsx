@@ -3,6 +3,8 @@ import * as React from 'react';
 import {em} from 'csx';
 import {style, classes} from 'typestyle';
 
+import {debugName} from '../styling/mixins';
+
 interface Icons{
   prefix: string;
   tags: {[key: string]: string};
@@ -16,25 +18,29 @@ export interface IconProps{
 
 declare const ICONS: Icons;
 
-export const iconClassName: string = style({
-  $debugName: 'icon',
-  width: em(1),
-  height: em(1),
-  display: 'inline-block',
-  verticalAlign: 'middle',
-  strokeWidth: 0,
-  stroke: 'currentColor',
-  fill: 'currentColor'
-});
+export const iconClassName: string = style(
+  debugName('icon'),
+  {
+    width: em(1),
+    height: em(1),
+    display: 'inline-block',
+    verticalAlign: 'middle',
+    strokeWidth: 0,
+    stroke: 'currentColor',
+    fill: 'currentColor'
+  }
+);
 
-export const iconsDefinitionsClassName: string = style({
-  $debugName: 'icons-definitions',
-  width: 0,
-  height: 0,
-  display: 'none',
-  position: 'absolute',
-  overflow: 'hidden'
-});
+export const iconsDefinitionsClassName: string = style(
+  debugName('icons-definitions'),
+  {
+    width: 0,
+    height: 0,
+    display: 'none',
+    position: 'absolute',
+    overflow: 'hidden'
+  }
+);
 
 export function Icon(props: IconProps): JSX.Element{
   const icon: string = ICONS.tags[props.name];

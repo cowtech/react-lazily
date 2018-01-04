@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { em } from 'csx';
 import { style, classes } from 'typestyle';
-export const iconClassName = style({
-    $debugName: 'icon',
+import { debugName } from '../styling/mixins';
+export const iconClassName = style(debugName('icon'), {
     width: em(1),
     height: em(1),
     display: 'inline-block',
@@ -11,8 +11,7 @@ export const iconClassName = style({
     stroke: 'currentColor',
     fill: 'currentColor'
 });
-export const iconsDefinitionsClassName = style({
-    $debugName: 'icons-definitions',
+export const iconsDefinitionsClassName = style(debugName('icons-definitions'), {
     width: 0,
     height: 0,
     display: 'none',

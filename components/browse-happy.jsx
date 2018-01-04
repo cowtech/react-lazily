@@ -2,8 +2,8 @@ import * as React from 'react';
 import { percent, rem } from 'csx';
 import { style } from 'typestyle';
 import { colorWhite, colorRed700, colorAmber200, colorAmber500 } from '../styling/colors';
-export const browseHappyClassName = style({
-    $debugName: 'browse-happy',
+import { debugName } from '../styling/mixins';
+export const browseHappyClassName = style(debugName('browse-happy'), {
     width: percent(100),
     position: 'fixed',
     bottom: 0,

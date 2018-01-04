@@ -3,6 +3,7 @@ import { em, rem } from 'csx';
 import { style, media } from 'typestyle';
 import { maxWidth45x, maxWidth6xx, maxHeight6xx } from '../styling/breakpoints';
 import { colorWhite, colorGrey600 } from '../styling/colors';
+import { debugName } from '../styling/mixins';
 import { Icon } from './icons';
 export function animationProgress(startTime, duration) {
     if (!duration)
@@ -40,8 +41,7 @@ export function handleScrollToTop(ev, duration) {
 export class TopAnchor extends React.Component {
     constructor() {
         super(...arguments);
-        this.className = style({
-            $debugName: 'top-anchor',
+        this.className = style(debugName('top-anchor'), {
             width: em(4),
             height: em(4),
             bottom: rem(2),

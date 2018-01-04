@@ -1,3 +1,7 @@
+### 2018-01-04 / 0.2.10
+
+* Added debugName management function.
+
 ### 2018-01-02 / 0.2.9
 
 * Improve code.

@@ -5,6 +5,7 @@ import {style, media} from 'typestyle';
 
 import {maxWidth45x, maxWidth6xx, maxHeight6xx} from '../styling/breakpoints';
 import {colorWhite, colorGrey600} from '../styling/colors';
+import {debugName} from '../styling/mixins';
 import {BoundHandler} from '../utils/dom-utils';
 import {Icon} from './icons';
 
@@ -62,8 +63,8 @@ export class TopAnchor extends React.Component<TopAnchorProps>{
   private element: HTMLAnchorElement;
   private scrollHandler: BoundHandler;
   private className: string = style(
+    debugName('top-anchor'),
     {
-      $debugName: 'top-anchor',
       width: em(4),
       height: em(4),
       bottom: rem(2),

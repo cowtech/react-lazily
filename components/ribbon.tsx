@@ -5,6 +5,7 @@ import {style, media, classes} from 'typestyle';
 
 import {maxWidth6xx} from '../styling/breakpoints';
 import {colorGrey500, colorGrey800} from '../styling/colors';
+import {debugName} from '../styling/mixins';
 
 export interface RibbonProps{
   position?: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
@@ -44,8 +45,8 @@ export class Ribbon extends React.PureComponent<RibbonProps>{
     }
 
     const className: string = style(
+      debugName('ribbon'),
       {
-        $debugName: 'ribbon',
         position: 'fixed',
         backfaceVisibility: 'hidden',
         zIndex: 99,

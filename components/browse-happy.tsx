@@ -4,14 +4,15 @@ import {percent, rem} from 'csx';
 import {style} from 'typestyle';
 
 import {colorWhite, colorRed700, colorAmber200, colorAmber500} from '../styling/colors';
+import {debugName} from '../styling/mixins';
 
 export interface BrowseHappyProps{
   message?: string;
 }
 
 export const browseHappyClassName: string = style(
+  debugName('browse-happy'),
   {
-    $debugName: 'browse-happy',
     width: percent(100),
     position: 'fixed',
     bottom: 0,
