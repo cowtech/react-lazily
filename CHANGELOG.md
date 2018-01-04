@@ -1,3 +1,7 @@
+### 2018-01-04 / 0.2.11
+
+* Updated dependencies.
+
 ### 2018-01-04 / 0.2.10
 
 * Added debugName management function.
