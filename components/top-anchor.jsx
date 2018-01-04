@@ -14,12 +14,12 @@ export function animationProgress(startTime, duration) {
 export function ease(x) {
     return x < 0.5 ? Math.pow(x, 2) * 2 : (4 - x * 2) * x - 1;
 }
-export function handleScroll(element) {
+export function updateTopAnchorStatus(element) {
     if (!element)
         return;
     element.setAttribute('data-hidden', (window.pageYOffset === 0).toString());
 }
-export function handleScrollToTop(ev, duration) {
+export function scrollToTop(ev, duration) {
     ev.preventDefault();
     const startTime = Date.now();
     const base = document.body.scrollTop;
@@ -81,23 +81,23 @@ export class TopAnchor extends React.Component {
         return false;
     }
     handleScroll() {
-        handleScroll(this.element);
+        updateTopAnchorStatus(this.element);
     }
     handleScrollToTop(ev) {
-        handleScrollToTop(ev, this.props.duration);
+        scrollToTop(ev, this.props.duration);
     }
 }
 export const TopAnchorSSR = `
   document.addEventListener('DOMContentLoaded', function(){
     ${ease}
     ${animationProgress}
-    ${handleScroll}
-    ${handleScrollToTop}
+    ${updateTopAnchorStatus}
+    ${scrollToTop}
 
     const element = document.getElementById('topAnchor');
 
-    element.addEventListener('click', handleScrollToTop, false);
-    window.addEventListener('scroll', function(){ handleScroll(element); }, false);
-    handleScroll(element);
+    element.addEventListener('click', scrollToTop, false);
+    window.addEventListener('scroll', function(){ updateTopAnchorStatus(element); }, false);
+    updateTopAnchorStatus(element);
   });
 `;

@@ -1,3 +1,7 @@
+### 2018-01-04 / 0.2.14
+
+* Rebuild JS version.
+
 ### 2018-01-04 / 0.2.13
 
 * Fixed TopAnchor SSR handling.
