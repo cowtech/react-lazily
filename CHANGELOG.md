@@ -1,3 +1,7 @@
+### 2018-01-04 / 0.2.12
+
+* Added missing files.
+
 ### 2018-01-04 / 0.2.11
 
 * Updated dependencies.
