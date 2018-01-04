@@ -27,14 +27,14 @@ export function ease(x: number): number{
   return x < 0.5 ? Math.pow(x, 2) * 2 : (4 - x * 2) * x - 1;
 }
 
-export function handleScroll(element: HTMLAnchorElement): void{
+export function updateTopAnchorStatus(element: HTMLAnchorElement): void{
   if(!element)
     return;
 
   element.setAttribute('data-hidden', (window.pageYOffset === 0).toString());
 }
 
-export function handleScrollToTop(ev: React.MouseEvent<HTMLElement>, duration: number): void{
+export function scrollToTop(ev: React.MouseEvent<HTMLElement>, duration: number): void{
   ev.preventDefault();
 
   const startTime: number = Date.now();
@@ -115,11 +115,11 @@ export class TopAnchor extends React.Component<TopAnchorProps>{
   }
 
   handleScroll(): void{
-    handleScroll(this.element);
+    updateTopAnchorStatus(this.element);
   }
 
   handleScrollToTop(ev: React.MouseEvent<HTMLElement>): void{
-    handleScrollToTop(ev, this.props.duration);
+    scrollToTop(ev, this.props.duration);
   }
 }
 
@@ -127,13 +127,13 @@ export const TopAnchorSSR: string = `
   document.addEventListener('DOMContentLoaded', function(){
     ${ease}
     ${animationProgress}
-    ${handleScroll}
-    ${handleScrollToTop}
+    ${updateTopAnchorStatus}
+    ${scrollToTop}
 
     const element = document.getElementById('topAnchor');
 
-    element.addEventListener('click', handleScrollToTop, false);
-    window.addEventListener('scroll', function(){ handleScroll(element); }, false);
-    handleScroll(element);
+    element.addEventListener('click', scrollToTop, false);
+    window.addEventListener('scroll', function(){ updateTopAnchorStatus(element); }, false);
+    updateTopAnchorStatus(element);
   });
 `;
