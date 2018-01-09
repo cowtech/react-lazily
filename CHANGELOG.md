@@ -1,3 +1,7 @@
+### 2018-01-09 / 0.2.15
+
+* Added loadScript DOM util.
+
 ### 2018-01-04 / 0.2.14
 
 * Rebuild JS version.
