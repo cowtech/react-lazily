@@ -3,6 +3,14 @@ import { percent, rem } from 'csx';
 import { style } from 'typestyle';
 import { colorWhite, colorRed700, colorAmber200, colorAmber500 } from '../styling/colors';
 import { debugName } from '../styling/mixins';
+export function isModernBrowser() {
+    try {
+        return Array.from(new Map([[1, 2]]).entries()).join(',') === '1,2' && CSS.supports('display', 'grid') && !CSS.supports('display', 'flex');
+    }
+    catch (e) {
+        return false;
+    }
+}
 export const browseHappyClassName = style(debugName('browse-happy'), {
     width: percent(100),
     position: 'fixed',
@@ -33,11 +41,13 @@ export function BrowseHappy(props) {
 }
 export const BrowseHappySSR = `
   document.addEventListener('DOMContentLoaded', function(){
+    ${isModernBrowser}
+
     const element = document.getElementById('browseHappy');
 
-    if(navigator.userAgent.indexOf('MSIE') !== -1 || typeof CSS.supports !== 'function' || !CSS.supports('display', 'grid') || !CSS.supports('display', 'flex'))
-      element.removeAttribute('data-hidden');
-    else
+    if(isModernBrowser())
       element.remove();
+    else
+      element.removeAttribute('data-hidden');
   });
 `;

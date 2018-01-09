@@ -10,6 +10,14 @@ export interface BrowseHappyProps{
   message?: string;
 }
 
+export function isModernBrowser(): boolean{
+  try{
+    return Array.from(new Map([[1, 2]]).entries()).join(',') === '1,2' && CSS.supports('display', 'grid') && !CSS.supports('display', 'flex');
+  }catch(e){ // Some of these are not supported. Assume legacy browser.
+    return false;
+  }
+}
+
 export const browseHappyClassName: string = style(
   debugName('browse-happy'),
   {
@@ -48,11 +56,13 @@ export function BrowseHappy(props: BrowseHappyProps): JSX.Element{
 
 export const BrowseHappySSR: string = `
   document.addEventListener('DOMContentLoaded', function(){
+    ${isModernBrowser}
+
     const element = document.getElementById('browseHappy');
 
-    if(navigator.userAgent.indexOf('MSIE') !== -1 || typeof CSS.supports !== 'function' || !CSS.supports('display', 'grid') || !CSS.supports('display', 'flex'))
-      element.removeAttribute('data-hidden');
-    else
+    if(isModernBrowser())
       element.remove();
+    else
+      element.removeAttribute('data-hidden');
   });
 `;

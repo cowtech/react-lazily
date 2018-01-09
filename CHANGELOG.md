@@ -1,3 +1,7 @@
+### 2018-01-09 / 0.2.16
+
+* Improved BrowseHappy detection.
+
 ### 2018-01-09 / 0.2.15
 
 * Added loadScript DOM util.
