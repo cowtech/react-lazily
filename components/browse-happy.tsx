@@ -12,7 +12,7 @@ export interface BrowseHappyProps{
 
 export function isModernBrowser(): boolean{
   try{
-    return Array.from(new Map([[1, 2]]).entries()).join(',') === '1,2' && CSS.supports('display', 'grid') && !CSS.supports('display', 'flex');
+    return Array.from(new Map([[1, 2]]).entries()).join(',') === '1,2' && CSS.supports('display', 'grid') && CSS.supports('display', 'flex');
   }catch(e){ // Some of these are not supported. Assume legacy browser.
     return false;
   }

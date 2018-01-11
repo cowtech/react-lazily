@@ -5,7 +5,7 @@ import { colorWhite, colorRed700, colorAmber200, colorAmber500 } from '../stylin
 import { debugName } from '../styling/mixins';
 export function isModernBrowser() {
     try {
-        return Array.from(new Map([[1, 2]]).entries()).join(',') === '1,2' && CSS.supports('display', 'grid') && !CSS.supports('display', 'flex');
+        return Array.from(new Map([[1, 2]]).entries()).join(',') === '1,2' && CSS.supports('display', 'grid') && CSS.supports('display', 'flex');
     }
     catch (e) {
         return false;

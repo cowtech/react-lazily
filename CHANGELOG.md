@@ -1,3 +1,7 @@
+### 2018-01-11 / 0.2.17
+
+* Bugfix.
+
 ### 2018-01-09 / 0.2.16
 
 * Improved BrowseHappy detection.
