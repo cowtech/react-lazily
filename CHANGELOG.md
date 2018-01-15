@@ -1,3 +1,7 @@
+### 2018-01-15 / 0.2.18
+
+* Added regexQuote method.
+
 ### 2018-01-11 / 0.2.17
 
 * Bugfix.
