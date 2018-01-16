@@ -53,7 +53,7 @@ export function Icon(props: IconProps): JSX.Element{
   }
 
   return (
-    <svg className={classes(iconClassName, `Icon-${props.name}`, props.className)} onClick={this.props.onClick}>
+    <svg className={classes(iconClassName, `Icon-${props.name}`, props.className)} onClick={props.onClick}>
       <use xlinkHref={`#${icon.toString()}`}/>
     </svg>
   );

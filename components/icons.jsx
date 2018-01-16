@@ -24,7 +24,7 @@ export function Icon(props) {
         console.error(`Missing icon ${props.name}.`);
         return null;
     }
-    return (<svg className={classes(iconClassName, `Icon-${props.name}`, props.className)} onClick={this.props.onClick}>
+    return (<svg className={classes(iconClassName, `Icon-${props.name}`, props.className)} onClick={props.onClick}>
       <use xlinkHref={`#${icon.toString()}`}/>
     </svg>);
 }

@@ -1,3 +1,7 @@
+### 2018-01-16 / 0.2.20
+
+* Bugfix.
+
 ### 2018-01-16 / 0.2.19
 
 * Add onClick handler to Icon.
