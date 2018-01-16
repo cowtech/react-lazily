@@ -24,7 +24,9 @@ export function Icon(props) {
         console.error(`Missing icon ${props.name}.`);
         return null;
     }
-    return <svg className={classes(iconClassName, `Icon-${props.name}`, props.className)}><use xlinkHref={`#${icon.toString()}`}/></svg>;
+    return (<svg className={classes(iconClassName, `Icon-${props.name}`, props.className)} onClick={this.props.onClick}>
+      <use xlinkHref={`#${icon.toString()}`}/>
+    </svg>);
 }
 export function IconsDefinitions() {
     return (<svg className={iconsDefinitionsClassName} version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">

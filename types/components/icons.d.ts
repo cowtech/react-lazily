@@ -2,6 +2,7 @@
 export interface IconProps {
     name: string;
     className?: string;
+    onClick?(): void;
 }
 export declare const iconClassName: string;
 export declare const iconsDefinitionsClassName: string;

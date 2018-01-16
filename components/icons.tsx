@@ -14,6 +14,7 @@ interface Icons{
 export interface IconProps{
   name: string;
   className?: string;
+  onClick?(): void;
 }
 
 declare const ICONS: Icons;
@@ -51,7 +52,11 @@ export function Icon(props: IconProps): JSX.Element{
     return null;
   }
 
-  return <svg className={classes(iconClassName, `Icon-${props.name}`, props.className)}><use xlinkHref={`#${icon.toString()}`}/></svg>;
+  return (
+    <svg className={classes(iconClassName, `Icon-${props.name}`, props.className)} onClick={this.props.onClick}>
+      <use xlinkHref={`#${icon.toString()}`}/>
+    </svg>
+  );
 }
 
 export function IconsDefinitions(): JSX.Element{
