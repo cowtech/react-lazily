@@ -1,0 +1,16 @@
+export declare const maxWidth11xx: number;
+export declare const queryMaxWidth11xx: string;
+export declare const maxWidth8xx: number;
+export declare const queryMaxWidth8xx: string;
+export declare const maxWidth7xx: number;
+export declare const queryMaxWidth7xx: string;
+export declare const maxWidth6xx: number;
+export declare const queryMaxWidth6xx: string;
+export declare const maxWidth45x: number;
+export declare const queryMaxWidth45x: string;
+export declare const maxWidth38x: number;
+export declare const queryMaxWidth38x: string;
+export declare const maxHeight8xx: number;
+export declare const queryMaxHeight8xx: string;
+export declare const maxHeight6xx: number;
+export declare const queryMaxHeight6xx: string;
