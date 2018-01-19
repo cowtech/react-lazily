@@ -1,3 +1,7 @@
+### 2018-01-19 / 0.3.2
+
+* Rebuild JS version.
+
 ### 2018-01-19 / 0.3.1
 
 * Rename confusing methods.
