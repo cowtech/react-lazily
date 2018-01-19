@@ -1,6 +1,6 @@
 {
   "name": "@cowtech/react-lazily",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "CowTech React components and utilities.",
   "main": "./lib/index.js",
   "typings": "./lib/index",
