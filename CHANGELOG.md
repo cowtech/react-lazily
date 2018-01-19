@@ -1,3 +1,7 @@
+### 2018-01-19 / 0.3.0
+
+* Only ship JS version with TS declarations.
+
 ### 2018-01-16 / 0.2.20
 
 * Bugfix.

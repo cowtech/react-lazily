@@ -2,21 +2,18 @@
   "name": "@cowtech/react-lazily",
   "version": "0.2.20",
   "description": "CowTech React components and utilities.",
-  "main": "index.js",
+  "main": "./lib/index.js",
+  "typings": "./lib/index",
+  "types": "./lib/index",
   "files": [
-    "components",
     "images",
-    "styling",
-    "utils",
-    "types",
+    "lib",
     "README.md",
     "CHANGELOG.md"
   ],
-  "types": "types",
   "scripts": {
-    "prebuild": "rm -rf index.js *.d.ts components/*.js* styling/*.js* utils/*.js* types/*",
+    "prebuild": "rm -rf lib/* && ./node_modules/.bin/tslint --project tsconfig.json -t stylish",
     "build": "tsc -p .",
-    "postbuild": "./node_modules/.bin/tslint --project tsconfig.json -t stylish",
     "postpublish": "git push origin && git push origin -f --tags",
     "update:normalize": "bash scripts/update-normalize.sh"
   },

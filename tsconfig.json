@@ -3,8 +3,8 @@
     "target": "es2017",
     "module": "es6",
     "moduleResolution": "node",
-    "jsx": "preserve",
-    "outDir": ".",
+    "jsx": "react",
+    "outDir": "lib",
     "alwaysStrict": false,
     "allowJs": false,
     "allowSyntheticDefaultImports": true,
@@ -14,9 +14,8 @@
     "experimentalDecorators": true,
     "lib": ["dom", "es2017"],
     "baseUrl": ".",
-    "declaration": true,
-    "declarationDir": "types/"
+    "declaration": true
   },
-  "include": ["components/*.tsx", "styling/*.tsx", "utils/*.ts"],
+  "include": ["src/**/*.tsx", "src/**/*.ts"],
   "exclude": []
 }
