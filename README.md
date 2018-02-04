@@ -1,7 +1,7 @@
 # @cowtech/react-lazily
 
-[![Package Version](https://badge.fury.io/js/%40cowtech%2Freact-lazily.svg)](https://badge.fury.io/js/%40cowtech%2Freact-lazily)
-[![Dependency Status](https://gemnasium.com/badges/github.com/cowtech/react-lazily.svg)](https://gemnasium.com/github.com/cowtech/react-lazily)
+[![Package Version](https://img.shields.io/npm/v/@cowtech/react-lazily.svg)](https://npmjs.com/package/@cowtech/react-lazily)
+[![Dependency Status](https://img.shields.io/gemnasium/github.com/cowtech/react-lazily.svg)](https://gemnasium.com/github.com/cowtech/react-lazily)
 
 CowTech React components and utilities.
 
@@ -20,4 +20,4 @@ https://github.com/cowtech/react-lazily
 
 Copyright (C) 2017 and above Shogun <shogun@cowtech.it>.
 
-Licensed under the MIT license, which can be found at http://opensource.org/licenses/MIT.
+Licensed under the MIT license, which can be found at https://choosealicense.com/licenses/mit.
