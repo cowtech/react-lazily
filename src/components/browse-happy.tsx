@@ -18,7 +18,7 @@ export function isModernBrowser(): boolean{
   }
 }
 
-export const browseHappyClassName: string = style(
+export const browseHappyClassName = style(
   debugClassName('browse-happy'),
   {
     width: percent(100),
@@ -44,7 +44,7 @@ export const browseHappyClassName: string = style(
 );
 
 export function BrowseHappy(props: BrowseHappyProps): JSX.Element{
-  const message: string = props.message || 'Your browser is obsolete. For the best browsing experience, update it for free by visiting';
+  const message = props.message || 'Your browser is obsolete. For the best browsing experience, update it for free by visiting';
 
   return (
     <div id="browseHappy" className={browseHappyClassName} data-hidden={typeof window === 'undefined'}>
@@ -54,7 +54,7 @@ export function BrowseHappy(props: BrowseHappyProps): JSX.Element{
   );
 }
 
-export const BrowseHappySSR: string = `
+export const BrowseHappySSR = `
   document.addEventListener('DOMContentLoaded', function(){
     ${isModernBrowser}
 

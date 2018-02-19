@@ -1,3 +1,7 @@
+### 2018-02-19 / 0.3.3
+
+* Simplified code.
+
 ### 2018-01-19 / 0.3.2
 
 * Rebuild JS version.

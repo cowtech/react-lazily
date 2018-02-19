@@ -14,17 +14,17 @@ export interface SpinnerProps{
 }
 
 export function Spinner(props: SpinnerProps): JSX.Element{
-  const size: number = props.size || 66;
-  const stroke: number = props.stroke || 6;
+  const size = props.size || 66;
+  const stroke = props.stroke || 6;
 
   /* Adapted from here: https://tech.scrunch.com/blog/creating-an-animated-svg-spinner/ */
-  const animation: string = keyframes({
+  const animation = keyframes({
     [percent(0)]: {strokeDashoffset: size * 0.66, transform: 'rotate(0deg)'},
     [percent(50)]: {strokeDashoffset: size * 3.14, transform: 'rotate(720deg)'},
     [percent(100)]: {strokeDashoffset: size * 0.66, transform: 'rotate(1080deg)'}
   });
 
-  const className: string = style(
+  const className = style(
     debugClassName('spinner'),
     {
       alignSelf: 'center',

@@ -20,7 +20,7 @@ export async function checkVersion(currentVersion: string, element?: HTMLDivElem
   try{
     // No new workers or SW available, use the manifest
     const manifest: {version: string} = await (await fetch('/manifest.json', {cache: 'no-store', headers: [['Cache-Control', 'no-cache']]})).json();
-    const newVersionAvailable: boolean = currentVersion !== manifest.version;
+    const newVersionAvailable = currentVersion !== manifest.version;
 
     if(element){
       if(newVersionAvailable)
@@ -41,7 +41,7 @@ export function updateVersion(ev: React.MouseEvent<HTMLElement>): void{
   location.reload(true);
 }
 
-export const newVersionCheckerclassName: string = style(
+export const newVersionCheckerclassName = style(
   debugClassName('new-version-checker'),
   {
     width: percent(100),
@@ -73,8 +73,8 @@ export class NewVersionChecker extends React.Component<NewVersionCheckerProps, N
     if(typeof window !== 'undefined' && !this.state.newVersionAvailable) // The check on window is for SSR
       return null;
 
-    const message: string = this.props.message || 'There is a shiny new version.';
-    const action: string = this.props.action || 'Update now!';
+    const message = this.props.message || 'There is a shiny new version.';
+    const action = this.props.action || 'Update now!';
 
     return (
       <div
@@ -88,7 +88,7 @@ export class NewVersionChecker extends React.Component<NewVersionCheckerProps, N
   }
 
   async componentDidMount(): Promise<void>{
-    const newVersionAvailable: boolean = await checkVersion(this.props.currentVersion);
+    const newVersionAvailable = await checkVersion(this.props.currentVersion);
     this.setState(() => ({newVersionAvailable}));
   }
 
@@ -98,7 +98,7 @@ export class NewVersionChecker extends React.Component<NewVersionCheckerProps, N
   }
 }
 
-export const NewVersionCheckerSSR: string = `
+export const NewVersionCheckerSSR = `
   document.addEventListener('DOMContentLoaded', function(){
     ${checkVersion}
     ${updateVersion}

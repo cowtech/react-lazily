@@ -19,7 +19,7 @@ export interface IconProps{
 
 declare const ICONS: Icons;
 
-export const iconClassName: string = style(
+export const iconClassName = style(
   debugClassName('icon'),
   {
     width: em(1),
@@ -32,7 +32,7 @@ export const iconClassName: string = style(
   }
 );
 
-export const iconsDefinitionsClassName: string = style(
+export const iconsDefinitionsClassName = style(
   debugClassName('icons-definitions'),
   {
     width: 0,
@@ -44,7 +44,7 @@ export const iconsDefinitionsClassName: string = style(
 );
 
 export function Icon(props: IconProps): JSX.Element{
-  const icon: string = ICONS.tags[props.name];
+  const icon = ICONS.tags[props.name];
 
   if(!icon){
     console.error(`Missing icon ${props.name}.`);

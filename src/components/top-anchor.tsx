@@ -37,16 +37,16 @@ export function updateTopAnchorStatus(element: HTMLAnchorElement): void{
 export function scrollToTop(ev: React.MouseEvent<HTMLElement>, duration: number): void{
   ev.preventDefault();
 
-  const startTime: number = Date.now();
-  const base: number = document.body.scrollTop;
+  const startTime = Date.now();
+  const base = document.body.scrollTop;
 
   // Step function for the the animation
   const animate = function(): void{
     // Compute the progress
-    const progress: number = animationProgress(startTime, duration);
+    const progress = animationProgress(startTime, duration);
 
     // Perform scrolling
-    const delta: number = base * ease(progress);
+    const delta = base * ease(progress);
     document.body.scrollTop = Math.max(base - delta, 0);
 
     // Next step or fail stop
@@ -62,7 +62,7 @@ export function scrollToTop(ev: React.MouseEvent<HTMLElement>, duration: number)
 export class TopAnchor extends React.Component<TopAnchorProps>{
   private element: HTMLAnchorElement;
   private scrollHandler: BoundHandler;
-  private className: string = style(
+  private className = style(
     debugClassName('top-anchor'),
     {
       width: em(4),
@@ -93,7 +93,7 @@ export class TopAnchor extends React.Component<TopAnchorProps>{
 
   render(): JSX.Element{
     return (
-      <a id="topAnchor" ref={(el: HTMLAnchorElement) => this.element = el}
+      <a id="topAnchor" ref={el => this.element = el}
         className={this.className} onClick={this.handleScrollToTop.bind(this)} href="#top" title="Top">
         <Icon name="arrow-up"/>
       </a>
@@ -123,7 +123,7 @@ export class TopAnchor extends React.Component<TopAnchorProps>{
   }
 }
 
-export const TopAnchorSSR: string = `
+export const TopAnchorSSR = `
   document.addEventListener('DOMContentLoaded', function(){
     ${ease}
     ${animationProgress}

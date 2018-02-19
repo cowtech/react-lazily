@@ -7,7 +7,7 @@ import {colorBlack, colorWhite} from '../styling/colors';
 import {debugClassName} from '../styling/mixins';
 import {Ribbon, RibbonProps} from './ribbon';
 
-export const madeInItalyClassName: string = style(
+export const madeInItalyClassName = style(
   debugClassName('made-in-italy'),
   {
     background: 'linear-gradient(90deg, #009246, #009246 30%, #f1f2f1 30%, #f1f2f1 70%, #ce2b37 70%)',

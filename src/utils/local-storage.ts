@@ -1,6 +1,6 @@
 export function loadFromLocalStorage<T>(key: string, def: T = null): T{
   try{
-    const serialized: string = localStorage.getItem(key);
+    const serialized = localStorage.getItem(key);
 
     return serialized && serialized !== 'undefined' ? JSON.parse(serialized) : def;
   }catch(e){
@@ -13,7 +13,7 @@ export function saveToLocalStorage(key: string, value: any): void{
 }
 
 export function removeFromLocalStorage<T = any>(key: string, def: T = null): T{
-  const value: any = loadFromLocalStorage<T>(key, def);
+  const value = loadFromLocalStorage<T>(key, def);
   localStorage.removeItem(key);
 
   return value;

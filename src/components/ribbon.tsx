@@ -14,7 +14,7 @@ export interface RibbonProps{
 
 export class Ribbon extends React.PureComponent<RibbonProps>{
   render(): JSX.Element{
-    let positionCss: any = null;
+    let positionCss = null;
 
     // ${percent(29.28)} = ${percent(100)} - (${percent(100)} / sqrt(2))
     switch(this.props.position){
@@ -44,7 +44,7 @@ export class Ribbon extends React.PureComponent<RibbonProps>{
         break;
     }
 
-    const className: string = style(
+    const className = style(
       debugClassName('ribbon'),
       {
         position: 'fixed',
