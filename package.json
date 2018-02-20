@@ -31,16 +31,16 @@
   "dependencies": {
     "csx": "~8.5",
     "react": "~16.2",
-    "typestyle": "~1.6"
+    "typestyle": "~1.7"
   },
   "devDependencies": {
     "@cowtech/package-utils": "~0.2",
     "@cowtech/tslint-config": "~5.9",
     "@types/react": "~16.0",
-    "normalize.css": "~7.0",
+    "normalize.css": "~8.0",
     "prop-types": "~15.6",
-    "tslint": "~5.8",
-    "tslint-react": "~3.3",
-    "typescript": "~2.6"
+    "tslint": "~5.9",
+    "tslint-react": "~3.5",
+    "typescript": "~2.7"
   }
 }
