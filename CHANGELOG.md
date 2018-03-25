@@ -1,3 +1,7 @@
+### 2018-03-25 / 0.4.0
+
+* Adjusted media queries.
+
 ### 2018-02-20 / 0.3.4
 
 * Updated dependencies.

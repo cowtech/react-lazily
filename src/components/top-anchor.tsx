@@ -86,7 +86,7 @@ export class TopAnchor extends React.Component<TopAnchorProps>{
         '& svg, & .fa': {fontSize: em(2.5)}
       }
     },
-    media({maxWidth: maxWidth6xx}, {width: em(3), height: em(3)}),
+    media({minWidth: maxWidth45x + 1, maxWidth: maxWidth6xx}, {width: em(3), height: em(3)}),
     media({maxWidth: maxWidth45x}, {width: em(2), height: em(2)}),
     media({maxHeight: maxHeight6xx}, {width: em(2), height: em(2)})
   );
