@@ -37,7 +37,7 @@ export function scrollToTop(ev: React.MouseEvent<HTMLElement>, duration: number)
   const base = document.body.scrollTop
 
   // Step function for the the animation
-  const animate = function(): void {
+  function animate(): void {
     // Compute the progress
     const progress = animationProgress(startTime, duration)
 
