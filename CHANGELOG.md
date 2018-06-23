@@ -1,3 +1,7 @@
+### 2018-06-23 / 0.5.1
+
+* fix: Removed debug line.
+
 ### 2018-06-23 / 0.5.0
 
 * chore: Add prettier to dev dependencies.
