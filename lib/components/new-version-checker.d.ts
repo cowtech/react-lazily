@@ -1,4 +1,3 @@
-/// <reference types="react" />
 import * as React from 'react';
 export interface NewVersionCheckerProps {
     currentVersion: string;
@@ -10,12 +9,12 @@ export interface NewVersionCheckerState {
 }
 export declare function checkVersion(currentVersion: string, element?: HTMLDivElement): Promise<boolean>;
 export declare function updateVersion(ev: React.MouseEvent<HTMLElement>): void;
-export declare const newVersionCheckerclassName: string;
+export declare const newVersionCheckerClassName: string;
 export declare class NewVersionChecker extends React.Component<NewVersionCheckerProps, NewVersionCheckerState> {
     state: {
         newVersionAvailable: boolean;
     };
-    render(): JSX.Element;
+    render(): JSX.Element | null;
     componentDidMount(): Promise<void>;
     handleClick(ev: React.MouseEvent<HTMLElement>): Promise<void>;
 }

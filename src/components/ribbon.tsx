@@ -1,47 +1,62 @@
-import * as React from 'react';
+import { percent, px, rem } from 'csx'
+import * as React from 'react'
+import { classes, media, style } from 'typestyle'
+import { maxWidth6xx } from '../styling/breakpoints'
+import { colorGrey500, colorGrey800 } from '../styling/colors'
+import { debugClassName } from '../styling/mixins'
 
-import {rem, px, percent} from 'csx';
-import {style, media, classes} from 'typestyle';
-
-import {maxWidth6xx} from '../styling/breakpoints';
-import {colorGrey500, colorGrey800} from '../styling/colors';
-import {debugClassName} from '../styling/mixins';
-
-export interface RibbonProps{
-  position?: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
-  className?: string;
+export interface RibbonProps {
+  position?: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right'
+  className?: string
 }
 
-export class Ribbon extends React.PureComponent<RibbonProps>{
-  render(): JSX.Element{
-    let positionCss = null;
+export class Ribbon extends React.PureComponent<RibbonProps> {
+  render(): JSX.Element {
+    let positionCss = null
 
     // ${percent(29.28)} = ${percent(100)} - (${percent(100)} / sqrt(2))
-    switch(this.props.position){
+    switch (this.props.position) {
       case 'top-left':
         positionCss = {
-          top: 0, left: 0, bottom: 'auto', right: 'auto',
-          transform: `translate(${percent(-29.28)}, ${percent(-100)}) rotate(-45deg)`, transformOrigin: 'bottom right'
-        };
-        break;
+          top: 0,
+          left: 0,
+          bottom: 'auto',
+          right: 'auto',
+          transform: `translate(${percent(-29.28)}, ${percent(-100)}) rotate(-45deg)`,
+          transformOrigin: 'bottom right'
+        }
+        break
       case 'bottom-left':
         positionCss = {
-          top: 'auto', left: 0, bottom: 0, right: 'auto',
-          transform: `translate(${percent(-29.28)}, ${percent(100)}) rotate(45deg)`, transformOrigin: 'top right'
-        };
-        break;
+          top: 'auto',
+          left: 0,
+          bottom: 0,
+          right: 'auto',
+          transform: `translate(${percent(-29.28)}, ${percent(100)}) rotate(45deg)`,
+          transformOrigin: 'top right'
+        }
+        break
       case 'bottom-right':
         positionCss = {
-          top: 'auto', left: 'auto', bottom: 0, right: 0,
-          transform: `translate(${percent(29.28)}, ${percent(100)}) rotate(-45deg)`, transformOrigin: 'top left'
-        };
-        break;
-      default: // top-right by default
+          top: 'auto',
+          left: 'auto',
+          bottom: 0,
+          right: 0,
+          transform: `translate(${percent(29.28)}, ${percent(100)}) rotate(-45deg)`,
+          transformOrigin: 'top left'
+        }
+        break
+      default:
+        // top-right by default
         positionCss = {
-          top: 0, left: 'auto', bottom: 'auto', right: 0,
-          transform: `translate(${percent(29.28)}, ${percent(-100)}) rotate(45deg)`, transformOrigin: 'bottom left'
-        };
-        break;
+          top: 0,
+          left: 'auto',
+          bottom: 'auto',
+          right: 0,
+          transform: `translate(${percent(29.28)}, ${percent(-100)}) rotate(45deg)`,
+          transformOrigin: 'bottom left'
+        }
+        break
     }
 
     const className = style(
@@ -56,9 +71,9 @@ export class Ribbon extends React.PureComponent<RibbonProps>{
         textAlign: 'center'
       },
       positionCss,
-      media({maxWidth: maxWidth6xx}, {display: 'none'})
-    );
+      media({ maxWidth: maxWidth6xx }, { display: 'none' })
+    )
 
-    return <div className={classes(className, this.props.className)}>{this.props.children}</div>;
+    return <div className={classes(className, this.props.className)}>{this.props.children}</div>
   }
 }

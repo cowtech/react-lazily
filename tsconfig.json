@@ -12,6 +12,7 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "experimentalDecorators": true,
+    "strictNullChecks": true,
     "lib": ["dom", "es2017"],
     "baseUrl": ".",
     "declaration": true

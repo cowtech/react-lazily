@@ -6,5 +6,5 @@ export interface IconProps {
 }
 export declare const iconClassName: string;
 export declare const iconsDefinitionsClassName: string;
-export declare function Icon(props: IconProps): JSX.Element;
+export declare function Icon(props: IconProps): JSX.Element | null;
 export declare function IconsDefinitions(): JSX.Element;
