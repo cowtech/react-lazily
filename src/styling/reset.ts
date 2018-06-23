@@ -44,6 +44,4 @@ export function resetStyles(): void {
   global('dt', { fontWeight: 'bold' })
   global('dt:nth-child(n + 1)', { marginTop: rem(1) })
   global('dl', { margin: '0' })
-
-  global('body', { color: 'red' })
 }
