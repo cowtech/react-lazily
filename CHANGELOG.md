@@ -1,3 +1,8 @@
+### 2018-06-23 / 0.5.0
+
+* chore: Add prettier to dev dependencies.
+* feat: Updated dependency.
+
 ### 2018-03-25 / 0.4.0
 
 * Adjusted media queries.
