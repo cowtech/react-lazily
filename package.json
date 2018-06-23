@@ -37,6 +37,7 @@
     "@cowtech/tslint-config": "^5.10.4",
     "@types/react": "^16.4.1",
     "normalize.css": "^8.0.0",
+    "prettier": "^1.13.5",
     "prop-types": "^15.6.2",
     "tslint": "^5.10.0",
     "typescript": "^2.9.2"
