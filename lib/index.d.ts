@@ -12,5 +12,4 @@ export * from './styling/mixins';
 export * from './styling/reset';
 export * from './utils/array-utils';
 export * from './utils/dom-utils';
-export * from './utils/local-storage';
 export * from './utils/string-utils';
