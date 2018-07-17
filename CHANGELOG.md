@@ -1,3 +1,8 @@
+### 2018-07-17 / 0.6.0
+
+* feat: Removed local-storage module in favor of using localforage.
+* chore: Code style.
+
 ### 2018-06-23 / 0.5.1
 
 * fix: Removed debug line.
