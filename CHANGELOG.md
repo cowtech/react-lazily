@@ -1,3 +1,7 @@
+### 2018-09-07 / 0.7.0
+
+* feat: Added emptyBoundHandler.
+
 ### 2018-07-17 / 0.6.0
 
 * feat: Removed local-storage module in favor of using localforage.
