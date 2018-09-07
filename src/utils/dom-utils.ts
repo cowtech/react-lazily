@@ -20,3 +20,7 @@ export function loadScript(url: string, tag: string): Promise<void> {
     document.head.appendChild(script)
   })
 }
+
+export function emptyBoundHandler(): void {
+  // Empty implementation
+}
