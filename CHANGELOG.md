@@ -1,3 +1,7 @@
+### 2018-12-08 / 0.8.1
+
+* fix: Added missing rel attribute.
+
 ### 2018-12-08 / 0.8.0
 
 * feat: Added Apple splash screen util.
