@@ -48,7 +48,6 @@ export const newVersionCheckerClassName = style(debugClassName('new-version-chec
   color: colorWhite,
   padding: rem(1),
   paddingTop: `max(${rem(1)}, env(safe-area-inset-top))`,
-  paddingBottom: `max(${rem(1)}, env(safe-area-inset-bottom))`,
   paddingLeft: `max(${rem(1)}, env(safe-area-inset-left))`,
   paddingRight: `max(${rem(1)}, env(safe-area-inset-right))`,
   textAlign: 'center',
