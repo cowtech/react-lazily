@@ -1,3 +1,7 @@
+### 2018-12-08 / 0.8.3
+
+* fix: New version checker iPhone X support.
+
 ### 2018-12-08 / 0.8.2
 
 * fix: Support non-rectangular screens.
