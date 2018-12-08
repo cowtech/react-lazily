@@ -33,10 +33,11 @@ export function generateAppleSplashTags(url: string, whitelist: Array<string> = 
   return sizes.map(({ label, width, height, ratio }) => {
     return (
       <link
-        data-splash-id={env === 'development' ? label : null}
         key={[width, ratio, height].join('-')}
+        rel="apple-touch-startup-image"
         media={`(device-width: ${width}px) and (device-height: ${height}px) and (-webkit-device-pixel-ratio: ${ratio})`}
         href={url.replace('SUFFIX', `${width * ratio}x${height * ratio}`)}
+        data-splash-id={env === 'development' ? label : null}
       />
     )
   })
