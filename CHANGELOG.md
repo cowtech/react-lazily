@@ -1,3 +1,7 @@
+### 2018-12-08 / 0.8.0
+
+* feat: Added Apple splash screen util.
+
 ### 2018-09-07 / 0.7.0
 
 * feat: Added emptyBoundHandler.
