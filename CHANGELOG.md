@@ -1,3 +1,7 @@
+### 2018-12-08 / 0.8.2
+
+* fix: Support non-rectangular screens.
+
 ### 2018-12-08 / 0.8.1
 
 * fix: Added missing rel attribute.
