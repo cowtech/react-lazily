@@ -1,8 +1,7 @@
 import { percent, px, rem } from 'csx'
 import { NestedCSSProperties } from 'typestyle/lib/types'
 import { colorGrey300, colorGrey500, colorWhite } from './colors'
-
-declare const process: { env?: { NODE_ENV?: string } }
+import { env } from './environment'
 
 export const centeredContentsStyle: NestedCSSProperties = {
   width: percent(95),
@@ -19,7 +18,6 @@ export const cardStyle: NestedCSSProperties = {
 
 export function debugClassName($debugName: string, force?: boolean): NestedCSSProperties {
   try {
-    const env = process.env ? process.env.NODE_ENV : ''
     return (typeof force !== 'undefined' && !force) || env === 'production' ? {} : { $debugName }
   } catch (e) {
     return { $debugName }
