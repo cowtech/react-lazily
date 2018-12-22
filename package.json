@@ -28,18 +28,21 @@
     "url": "https://github.com/cowtech/react-lazily/issues"
   },
   "homepage": "https://github.com/cowtech/react-lazily",
-  "dependencies": {
+  "peerDependencies": {
     "csx": "^9.0.0",
     "react": "^16.4.1",
     "typestyle": "^2.0.1"
   },
   "devDependencies": {
-    "@cowtech/tslint-config": "^5.10.4",
-    "@types/react": "^16.4.1",
-    "normalize.css": "^8.0.0",
-    "prettier": "^1.13.5",
+    "@cowtech/tslint-config": "^5.11.1",
+    "@types/react": "^16.7.18",
+    "csx": "^9.0.0",
+    "normalize.css": "^8.0.1",
+    "prettier": "^1.15.3",
     "prop-types": "^15.6.2",
-    "tslint": "^5.10.0",
-    "typescript": "^2.9.2"
+    "react": "^16.4.1",
+    "tslint": "^5.12.0",
+    "typescript": "^3.2.2",
+    "typestyle": "^2.0.1"
   }
 }

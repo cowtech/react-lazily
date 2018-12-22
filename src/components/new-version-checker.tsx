@@ -35,7 +35,7 @@ export function checkVersion(currentVersion: string, element?: HTMLDivElement): 
 
 export function updateVersion(ev: React.MouseEvent<HTMLElement>): void {
   ev.preventDefault()
-  location.reload(true)
+  location.reload(true) // tslint:disable-line deprecation
 }
 
 export const newVersionCheckerClassName = style(debugClassName('new-version-checker'), {
@@ -95,7 +95,7 @@ export class NewVersionChecker extends React.Component<NewVersionCheckerProps, N
 
   async handleClick(ev: React.MouseEvent<HTMLElement>): Promise<void> {
     ev.preventDefault()
-    location.reload(true)
+    location.reload(true) // tslint:disable-line deprecation
   }
 }
 
