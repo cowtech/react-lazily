@@ -1,3 +1,7 @@
+### 2018-12-22 / 0.9.0
+
+* feat: Specify react as peerDependency.
+
 ### 2018-12-08 / 0.8.3
 
 * fix: New version checker iPhone X support.
