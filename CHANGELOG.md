@@ -1,3 +1,7 @@
+### 2018-12-23 / 0.9.1
+
+* chore: Updated dependencies.
+
 ### 2018-12-22 / 0.9.0
 
 * feat: Specify react as peerDependency.
