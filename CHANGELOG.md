@@ -1,3 +1,7 @@
+### 2018-12-24 / 0.10.0
+
+* feat: Added IndexedDB storage utils.
+
 ### 2018-12-23 / 0.9.1
 
 * chore: Updated dependencies.
