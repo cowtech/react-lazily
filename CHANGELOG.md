@@ -1,3 +1,7 @@
+### 2018-12-24 / 0.10.1
+
+* fix: Support SSR.
+
 ### 2018-12-24 / 0.10.0
 
 * feat: Added IndexedDB storage utils.
