@@ -1,6 +1,6 @@
 import { del, get, set, Store } from 'idb-keyval'
 
-export let idbStore = new Store()
+export let idbStore: Store
 
 export function setupStorage(database: string, store: string): Store {
   idbStore = new Store(database, store)
