@@ -30,7 +30,7 @@ export function updateTopAnchorStatus(element: HTMLAnchorElement): void {
   element.setAttribute('data-hidden', (window.pageYOffset === 0).toString())
 }
 
-export function scrollToTop(ev: React.MouseEvent<HTMLElement>, duration: number): void {
+export function scrollToTop(ev: React.MouseEvent, duration: number): void {
   ev.preventDefault()
 
   const startTime = Date.now()
@@ -120,7 +120,7 @@ export class TopAnchor extends React.Component<TopAnchorProps> {
     updateTopAnchorStatus(this.element.current!)
   }
 
-  handleScrollToTop(ev: React.MouseEvent<HTMLElement>): void {
+  handleScrollToTop(ev: React.MouseEvent): void {
     scrollToTop(ev, this.props.duration!)
   }
 }
@@ -132,10 +132,10 @@ export const TopAnchorSSR = `
     ${updateTopAnchorStatus}
     ${scrollToTop}
 
-    const element = document.getElementById('topAnchor');
+    const element = document.getElementById('topAnchor')
 
-    element.addEventListener('click', scrollToTop, false);
-    window.addEventListener('scroll', function(){ updateTopAnchorStatus(element); }, false);
-    updateTopAnchorStatus(element);
+    element.addEventListener('click', scrollToTop, false)
+    window.addEventListener('scroll', function(){ updateTopAnchorStatus(element); }, false)
+    updateTopAnchorStatus(element)
   });
 `

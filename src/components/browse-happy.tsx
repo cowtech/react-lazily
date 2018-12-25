@@ -56,7 +56,8 @@ export function BrowseHappy(props: BrowseHappyProps): JSX.Element | null {
       <span>{message}&nbsp;</span>
       <a href="https://browsehappy.com/" target="_blank" rel="noopener">
         BrowseHappy
-      </a>.
+      </a>
+      .
     </div>
   )
 }
@@ -65,11 +66,8 @@ export const BrowseHappySSR = `
   document.addEventListener('DOMContentLoaded', function(){
     ${isModernBrowser}
 
-    const element = document.getElementById('browseHappy');
-
-    if(isModernBrowser())
-      element.remove();
-    else
-      element.removeAttribute('data-hidden');
+    const element = document.getElementById('browseHappy')
+    if(isModernBrowser()) element.remove()
+    else element.removeAttribute('data-hidden')
   });
 `

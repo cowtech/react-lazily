@@ -14,28 +14,16 @@ export interface NewVersionCheckerState {
   newVersionAvailable: boolean
 }
 
-export function checkVersion(currentVersion: string, element?: HTMLDivElement): Promise<boolean> {
-  return fetch('/manifest.json', {
-    cache: 'no-store',
-    headers: [['Cache-Control', 'no-cache']]
+export function listenForUpdates(currentVersion: string, callback: (newVersion: string) => void) {
+  navigator.serviceWorker.addEventListener('message', event => {
+    const { type, payload } = event.data
+    if (type === 'new-version-available' && payload.version !== currentVersion) callback(payload.version)
   })
-    .then(response => response.json())
-    .then((manifest: { version: string }) => {
-      const newVersionAvailable = currentVersion !== manifest.version
-
-      if (element) {
-        if (newVersionAvailable) element.removeAttribute('data-hidden')
-        else element.remove()
-      }
-
-      return currentVersion !== manifest.version
-    })
-    .catch(() => false) // No error checking required. Just assume there is no version
 }
 
-export function updateVersion(ev: React.MouseEvent<HTMLElement>): void {
+export function updateVersion(ev: React.MouseEvent): void {
   ev.preventDefault()
-  location.reload(true) // tslint:disable-line deprecation
+  location.reload()
 }
 
 export const newVersionCheckerClassName = style(debugClassName('new-version-checker'), {
@@ -88,12 +76,11 @@ export class NewVersionChecker extends React.Component<NewVersionCheckerProps, N
     )
   }
 
-  async componentDidMount(): Promise<void> {
-    const newVersionAvailable = await checkVersion(this.props.currentVersion)
-    this.setState(() => ({ newVersionAvailable }))
+  componentDidMount(): void {
+    listenForUpdates(this.props.currentVersion, () => this.setState({ newVersionAvailable: true }))
   }
 
-  async handleClick(ev: React.MouseEvent<HTMLElement>): Promise<void> {
+  async handleClick(ev: React.MouseEvent): Promise<void> {
     ev.preventDefault()
     location.reload(true) // tslint:disable-line deprecation
   }
@@ -101,12 +88,12 @@ export class NewVersionChecker extends React.Component<NewVersionCheckerProps, N
 
 export const NewVersionCheckerSSR = `
   document.addEventListener('DOMContentLoaded', function(){
-    ${checkVersion}
+    ${listenForUpdates}
     ${updateVersion}
 
-    const element = document.getElementById('newVersionChecker');
-    element.querySelector('a').addEventListener('click', updateVersion, false);
+    const element = document.getElementById('newVersionChecker')
 
-    checkVersion(element.getAttribute('data-current-version'), element);
+    element.querySelector('a').addEventListener('click', updateVersion, false)
+    listenForUpdates(element.getAttribute('data-current-version'), () => element.removeAttribute('data-hidden'))
   });
 `

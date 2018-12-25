@@ -7,15 +7,15 @@ export interface NewVersionCheckerProps {
 export interface NewVersionCheckerState {
     newVersionAvailable: boolean;
 }
-export declare function checkVersion(currentVersion: string, element?: HTMLDivElement): Promise<boolean>;
-export declare function updateVersion(ev: React.MouseEvent<HTMLElement>): void;
+export declare function listenForUpdates(currentVersion: string, callback: (newVersion: string) => void): void;
+export declare function updateVersion(ev: React.MouseEvent): void;
 export declare const newVersionCheckerClassName: string;
 export declare class NewVersionChecker extends React.Component<NewVersionCheckerProps, NewVersionCheckerState> {
     state: {
         newVersionAvailable: boolean;
     };
     render(): JSX.Element | null;
-    componentDidMount(): Promise<void>;
-    handleClick(ev: React.MouseEvent<HTMLElement>): Promise<void>;
+    componentDidMount(): void;
+    handleClick(ev: React.MouseEvent): Promise<void>;
 }
 export declare const NewVersionCheckerSSR: string;
