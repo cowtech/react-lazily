@@ -1,3 +1,7 @@
+### 2018-12-25 / 0.11.0
+
+* feat: Improve NewVersionChecker reloading.
+
 ### 2018-12-24 / 0.10.1
 
 * fix: Support SSR.
