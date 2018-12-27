@@ -1,3 +1,8 @@
+### 2018-12-27 / 0.12.3
+
+* chore: Use React.PureComponent when possible.
+* chore: Lint fix.
+
 ### 2018-12-27 / 0.12.2
 
 * fix: Improved binding.
