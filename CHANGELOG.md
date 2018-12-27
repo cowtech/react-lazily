@@ -1,3 +1,7 @@
+### 2018-12-27 / 0.12.0
+
+* feat: Use React.memo everywhere.
+
 ### 2018-12-25 / 0.11.0
 
 * feat: Improve NewVersionChecker reloading.
