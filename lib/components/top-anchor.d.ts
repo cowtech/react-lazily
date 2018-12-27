@@ -16,7 +16,6 @@ export declare class TopAnchor extends React.PureComponent<TopAnchorProps> {
     render(): JSX.Element;
     componentDidMount(): void;
     componentWillUnmount(): void;
-    shouldComponentUpdate(): boolean;
     handleScroll(): void;
     handleScrollToTop(ev: React.MouseEvent): void;
 }

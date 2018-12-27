@@ -112,10 +112,6 @@ export class TopAnchor extends React.PureComponent<TopAnchorProps> {
     window.removeEventListener('scroll', this.boundHandleScroll)
   }
 
-  shouldComponentUpdate(): boolean {
-    return false
-  }
-
   handleScroll(): void {
     updateTopAnchorStatus(this.element.current!)
   }
