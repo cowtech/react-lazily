@@ -1,3 +1,7 @@
+### 2018-12-27 / 0.12.4
+
+* fix: Remove unneeded method.
+
 ### 2018-12-27 / 0.12.3
 
 * chore: Use React.PureComponent when possible.
