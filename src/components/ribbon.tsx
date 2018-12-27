@@ -8,7 +8,7 @@ import { debugClassName } from '../styling/mixins'
 export interface RibbonProps {
   position?: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right'
   className?: string
-  children: React.ReactNode
+  children?: React.ReactNode
 }
 
 export const Ribbon = React.memo(function({ position, className, children }: RibbonProps): JSX.Element {
