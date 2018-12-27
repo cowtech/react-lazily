@@ -1,5 +1,6 @@
 import { percent, rem } from 'csx'
 import * as React from 'react'
+import { BoundHandler } from 'src/utils/dom-utils'
 import { style } from 'typestyle'
 import { colorAmber200, colorAmber500, colorGreen900, colorWhite } from '../styling/colors'
 import { debugClassName } from '../styling/mixins'
@@ -52,6 +53,8 @@ export const newVersionCheckerClassName = style(debugClassName('new-version-chec
 })
 
 export class NewVersionChecker extends React.Component<NewVersionCheckerProps, NewVersionCheckerState> {
+  private boundHandleClick: BoundHandler = this.handleClick.bind(this)
+
   state = { newVersionAvailable: false }
 
   render(): JSX.Element | null {
@@ -69,7 +72,7 @@ export class NewVersionChecker extends React.Component<NewVersionCheckerProps, N
         data-hidden={typeof window === 'undefined' || !this.state.newVersionAvailable} // tslint:disable-line strict-type-predicates
       >
         <span>{message}&nbsp;</span>
-        <a href="#" onClick={this.handleClick.bind(this)}>
+        <a href="#" onClick={this.boundHandleClick}>
           {action}
         </a>
       </div>

@@ -10,7 +10,8 @@ export declare function updateTopAnchorStatus(element: HTMLAnchorElement): void;
 export declare function scrollToTop(ev: React.MouseEvent, duration: number): void;
 export declare class TopAnchor extends React.Component<TopAnchorProps> {
     private element;
-    private scrollHandler;
+    private boundHandleScroll;
+    private boundHandleScrollToTop;
     private className;
     render(): JSX.Element;
     componentDidMount(): void;

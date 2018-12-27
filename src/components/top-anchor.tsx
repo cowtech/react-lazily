@@ -55,7 +55,9 @@ export function scrollToTop(ev: React.MouseEvent, duration: number): void {
 
 export class TopAnchor extends React.Component<TopAnchorProps> {
   private element: React.RefObject<HTMLAnchorElement>
-  private scrollHandler: BoundHandler
+  private boundHandleScroll: BoundHandler = this.handleScroll.bind(this)
+  private boundHandleScrollToTop: BoundHandler = this.handleScrollToTop.bind(this)
+
   private className = style(
     debugClassName('top-anchor'),
     {
@@ -93,7 +95,7 @@ export class TopAnchor extends React.Component<TopAnchorProps> {
         id="topAnchor"
         ref={this.element}
         className={this.className}
-        onClick={this.handleScrollToTop.bind(this)}
+        onClick={this.boundHandleScrollToTop}
         href="#top"
         title="Top"
       >
@@ -103,13 +105,12 @@ export class TopAnchor extends React.Component<TopAnchorProps> {
   }
 
   componentDidMount(): void {
-    this.scrollHandler = this.handleScroll.bind(this)
-    window.addEventListener('scroll', this.handleScroll.bind(this), false)
+    window.addEventListener('scroll', this.boundHandleScroll, false)
     this.handleScroll()
   }
 
   componentWillUnmount(): void {
-    window.removeEventListener('scroll', this.scrollHandler)
+    window.removeEventListener('scroll', this.boundHandleScroll)
   }
 
   shouldComponentUpdate(): boolean {
