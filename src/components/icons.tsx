@@ -35,23 +35,23 @@ export const iconsDefinitionsClassName = style(debugClassName('icons-definitions
   overflow: 'hidden'
 })
 
-export function Icon(props: IconProps): JSX.Element | null {
-  const icon = ICONS.tags[props.name]
+export const Icon = React.memo(function({ name, className, onClick }: IconProps): JSX.Element | null {
+  const icon = ICONS.tags[name]
 
   if (!icon) {
-    console.error(`Missing icon ${props.name}.`)
+    console.error(`Missing icon ${name}.`)
 
     return null
   }
 
   return (
-    <svg className={classes(iconClassName, `Icon-${props.name}`, props.className)} onClick={props.onClick}>
+    <svg className={classes(iconClassName, `Icon-${name}`, className)} onClick={onClick}>
       <use xlinkHref={`#${icon.toString()}`} />
     </svg>
   )
-}
+})
 
-export function IconsDefinitions(): JSX.Element {
+export const IconsDefinitions = React.memo(function(): JSX.Element {
   return (
     <svg
       className={iconsDefinitionsClassName}
@@ -62,4 +62,4 @@ export function IconsDefinitions(): JSX.Element {
       <defs dangerouslySetInnerHTML={{ __html: ICONS.definitions }} />
     </svg>
   )
-}
+})

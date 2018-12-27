@@ -43,7 +43,7 @@ export const browseHappyClassName = style(debugClassName('browse-happy'), {
   }
 })
 
-export function BrowseHappy(props: BrowseHappyProps): JSX.Element | null {
+export const BrowseHappy = React.memo(function(props: BrowseHappyProps): JSX.Element | null {
   const message =
     props.message || 'Your browser is obsolete. For the best browsing experience, update it for free by visiting'
 
@@ -60,7 +60,7 @@ export function BrowseHappy(props: BrowseHappyProps): JSX.Element | null {
       .
     </div>
   )
-}
+})
 
 export const BrowseHappySSR = `
   document.addEventListener('DOMContentLoaded', function(){

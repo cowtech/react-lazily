@@ -21,14 +21,12 @@ export const madeInItalyClassName = style(debugClassName('made-in-italy'), {
   }
 })
 
-export class MadeInItaly extends React.PureComponent<RibbonProps> {
-  render(): JSX.Element {
-    return (
-      <Ribbon className={madeInItalyClassName} position={this.props.position}>
-        <a href="http://www.italia.it" target="_blank" rel="noopener noreferrer">
-          Made by a proud Italian!
-        </a>
-      </Ribbon>
-    )
-  }
-}
+export const MadeInItaly = React.memo(function({ position }: RibbonProps): JSX.Element {
+  return (
+    <Ribbon className={madeInItalyClassName} position={position}>
+      <a href="http://www.italia.it" target="_blank" rel="noopener noreferrer">
+        Made by a proud Italian!
+      </a>
+    </Ribbon>
+  )
+})

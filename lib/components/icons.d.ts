@@ -1,4 +1,4 @@
-/// <reference types="react" />
+import * as React from 'react';
 export interface IconProps {
     name: string;
     className?: string;
@@ -6,5 +6,5 @@ export interface IconProps {
 }
 export declare const iconClassName: string;
 export declare const iconsDefinitionsClassName: string;
-export declare function Icon(props: IconProps): JSX.Element | null;
-export declare function IconsDefinitions(): JSX.Element;
+export declare const Icon: React.NamedExoticComponent<IconProps>;
+export declare const IconsDefinitions: React.NamedExoticComponent<{}>;

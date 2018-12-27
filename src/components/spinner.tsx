@@ -11,7 +11,7 @@ export interface SpinnerProps {
   text?: string
 }
 
-export function Spinner(props: SpinnerProps): JSX.Element {
+export const Spinner = React.memo(function(props: SpinnerProps): JSX.Element {
   const size = props.size || 66
   const stroke = props.stroke || 6
 
@@ -52,4 +52,4 @@ export function Spinner(props: SpinnerProps): JSX.Element {
       {props.text && <h3>{props.text}</h3>}
     </main>
   )
-}
+})
