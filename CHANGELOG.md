@@ -1,3 +1,7 @@
+### 2018-12-27 / 0.12.2
+
+* fix: Improved binding.
+
 ### 2018-12-27 / 0.12.1
 
 * fix: Make property optional.
