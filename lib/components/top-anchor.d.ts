@@ -8,11 +8,11 @@ export declare function animationProgress(startTime: number, duration: number): 
 export declare function ease(x: number): number;
 export declare function updateTopAnchorStatus(element: HTMLAnchorElement): void;
 export declare function scrollToTop(ev: React.MouseEvent, duration: number): void;
-export declare class TopAnchor extends React.Component<TopAnchorProps> {
+export declare class TopAnchor extends React.PureComponent<TopAnchorProps> {
     private element;
+    private className;
     private boundHandleScroll;
     private boundHandleScrollToTop;
-    private className;
     render(): JSX.Element;
     componentDidMount(): void;
     componentWillUnmount(): void;

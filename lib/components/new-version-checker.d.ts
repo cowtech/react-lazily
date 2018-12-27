@@ -10,7 +10,7 @@ export interface NewVersionCheckerState {
 export declare function listenForUpdates(currentVersion: string, callback: (newVersion: string) => void): void;
 export declare function updateVersion(ev: React.MouseEvent): void;
 export declare const newVersionCheckerClassName: string;
-export declare class NewVersionChecker extends React.Component<NewVersionCheckerProps, NewVersionCheckerState> {
+export declare class NewVersionChecker extends React.PureComponent<NewVersionCheckerProps, NewVersionCheckerState> {
     private boundHandleClick;
     state: {
         newVersionAvailable: boolean;

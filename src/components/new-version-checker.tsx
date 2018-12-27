@@ -52,7 +52,7 @@ export const newVersionCheckerClassName = style(debugClassName('new-version-chec
   }
 })
 
-export class NewVersionChecker extends React.Component<NewVersionCheckerProps, NewVersionCheckerState> {
+export class NewVersionChecker extends React.PureComponent<NewVersionCheckerProps, NewVersionCheckerState> {
   private boundHandleClick: BoundHandler = this.handleClick.bind(this)
 
   state = { newVersionAvailable: false }
