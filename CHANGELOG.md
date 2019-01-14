@@ -1,3 +1,7 @@
+### 2019-01-14 / 0.12.5
+
+* fix: Improve type definitions.
+
 ### 2018-12-27 / 0.12.4
 
 * fix: Remove unneeded method.
