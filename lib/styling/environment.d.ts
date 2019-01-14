@@ -1,1 +1,1 @@
-export declare const env: string | undefined;
+export declare const env: string;

@@ -21,7 +21,7 @@ export function isModernBrowser(): boolean {
   }
 }
 
-export const browseHappyClassName = style(debugClassName('browse-happy'), {
+export const browseHappyClassName: string = style(debugClassName('browse-happy'), {
   width: percent(100),
   position: 'fixed',
   bottom: 0,
@@ -43,7 +43,9 @@ export const browseHappyClassName = style(debugClassName('browse-happy'), {
   }
 })
 
-export const BrowseHappy = React.memo(function(props: BrowseHappyProps): JSX.Element | null {
+export const BrowseHappy: React.NamedExoticComponent<BrowseHappyProps> = React.memo(function(
+  props: BrowseHappyProps
+): JSX.Element | null {
   const message =
     props.message || 'Your browser is obsolete. For the best browsing experience, update it for free by visiting'
 
@@ -62,7 +64,7 @@ export const BrowseHappy = React.memo(function(props: BrowseHappyProps): JSX.Ele
   )
 })
 
-export const BrowseHappySSR = `
+export const BrowseHappySSR: string = `
   document.addEventListener('DOMContentLoaded', function(){
     ${isModernBrowser}
 

@@ -12,9 +12,7 @@ export declare function updateVersion(ev: React.MouseEvent): void;
 export declare const newVersionCheckerClassName: string;
 export declare class NewVersionChecker extends React.PureComponent<NewVersionCheckerProps, NewVersionCheckerState> {
     private boundHandleClick;
-    state: {
-        newVersionAvailable: boolean;
-    };
+    state: NewVersionCheckerState;
     render(): JSX.Element | null;
     componentDidMount(): void;
     handleClick(ev: React.MouseEvent): Promise<void>;

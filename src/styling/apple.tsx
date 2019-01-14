@@ -28,9 +28,11 @@ const appleScreenSizes: Array<ScreenSize> = [
 ]
 
 export function generateAppleSplashTags(url: string, whitelist: Array<string> = []): Array<JSX.Element> {
-  const sizes = whitelist.length ? appleScreenSizes.filter(s => whitelist.includes(s.id)) : appleScreenSizes
+  const sizes = whitelist.length
+    ? appleScreenSizes.filter((s: ScreenSize) => whitelist.includes(s.id))
+    : appleScreenSizes
 
-  return sizes.map(({ label, width, height, ratio }) => {
+  return sizes.map(({ label, width, height, ratio }: ScreenSize) => {
     return (
       <link
         key={[width, ratio, height].join('-')}

@@ -15,8 +15,8 @@ export interface NewVersionCheckerState {
   newVersionAvailable: boolean
 }
 
-export function listenForUpdates(currentVersion: string, callback: (newVersion: string) => void) {
-  navigator.serviceWorker.addEventListener('message', event => {
+export function listenForUpdates(currentVersion: string, callback: (newVersion: string) => void): void {
+  navigator.serviceWorker.addEventListener('message', (event: ServiceWorkerMessageEvent) => {
     const { type, payload } = event.data
     if (type === 'new-version-available' && payload.version !== currentVersion) callback(payload.version)
   })
@@ -27,7 +27,7 @@ export function updateVersion(ev: React.MouseEvent): void {
   location.reload()
 }
 
-export const newVersionCheckerClassName = style(debugClassName('new-version-checker'), {
+export const newVersionCheckerClassName: string = style(debugClassName('new-version-checker'), {
   width: percent(100),
   position: 'fixed',
   top: 0,
@@ -55,7 +55,7 @@ export const newVersionCheckerClassName = style(debugClassName('new-version-chec
 export class NewVersionChecker extends React.PureComponent<NewVersionCheckerProps, NewVersionCheckerState> {
   private boundHandleClick: BoundHandler = this.handleClick.bind(this)
 
-  state = { newVersionAvailable: false }
+  state: NewVersionCheckerState = { newVersionAvailable: false }
 
   render(): JSX.Element | null {
     // The check on window is for SSR
@@ -89,7 +89,7 @@ export class NewVersionChecker extends React.PureComponent<NewVersionCheckerProp
   }
 }
 
-export const NewVersionCheckerSSR = `
+export const NewVersionCheckerSSR: string = `
   document.addEventListener('DOMContentLoaded', function(){
     ${listenForUpdates}
     ${updateVersion}

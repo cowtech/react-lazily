@@ -17,7 +17,7 @@ export interface IconProps {
 
 declare const ICONS: Icons
 
-export const iconClassName = style(debugClassName('icon'), {
+export const iconClassName: string = style(debugClassName('icon'), {
   width: em(1),
   height: em(1),
   display: 'inline-block',
@@ -27,7 +27,7 @@ export const iconClassName = style(debugClassName('icon'), {
   fill: 'currentColor'
 })
 
-export const iconsDefinitionsClassName = style(debugClassName('icons-definitions'), {
+export const iconsDefinitionsClassName: string = style(debugClassName('icons-definitions'), {
   width: 0,
   height: 0,
   display: 'none',
@@ -35,7 +35,11 @@ export const iconsDefinitionsClassName = style(debugClassName('icons-definitions
   overflow: 'hidden'
 })
 
-export const Icon = React.memo(function({ name, className, onClick }: IconProps): JSX.Element | null {
+export const Icon: React.NamedExoticComponent<IconProps> = React.memo(function({
+  name,
+  className,
+  onClick
+}: IconProps): JSX.Element | null {
   const icon = ICONS.tags[name]
 
   if (!icon) {
@@ -51,7 +55,7 @@ export const Icon = React.memo(function({ name, className, onClick }: IconProps)
   )
 })
 
-export const IconsDefinitions = React.memo(function(): JSX.Element {
+export const IconsDefinitions: React.NamedExoticComponent<{}> = React.memo(function(): JSX.Element {
   return (
     <svg
       className={iconsDefinitionsClassName}

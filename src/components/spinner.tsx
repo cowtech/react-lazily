@@ -11,7 +11,7 @@ export interface SpinnerProps {
   text?: string
 }
 
-export const Spinner = React.memo(function(props: SpinnerProps): JSX.Element {
+export const Spinner: React.NamedExoticComponent<SpinnerProps> = React.memo(function(props: SpinnerProps): JSX.Element {
   const size = props.size || 66
   const stroke = props.stroke || 6
 

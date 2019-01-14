@@ -11,7 +11,11 @@ export interface RibbonProps {
   children?: React.ReactNode
 }
 
-export const Ribbon = React.memo(function({ position, className, children }: RibbonProps): JSX.Element {
+export const Ribbon: React.NamedExoticComponent<RibbonProps> = React.memo(function({
+  position,
+  className,
+  children
+}: RibbonProps): JSX.Element {
   let positionCss = null
 
   // ${percent(29.28)} = ${percent(100)} - (${percent(100)} / sqrt(2))

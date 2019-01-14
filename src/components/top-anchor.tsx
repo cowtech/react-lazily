@@ -55,7 +55,7 @@ export function scrollToTop(ev: React.MouseEvent, duration: number): void {
 
 export class TopAnchor extends React.PureComponent<TopAnchorProps> {
   private element: React.RefObject<HTMLAnchorElement>
-  private className = style(
+  private className: string = style(
     debugClassName('top-anchor'),
     {
       width: em(4),
@@ -121,7 +121,7 @@ export class TopAnchor extends React.PureComponent<TopAnchorProps> {
   }
 }
 
-export const TopAnchorSSR = `
+export const TopAnchorSSR: string = `
   document.addEventListener('DOMContentLoaded', function(){
     ${ease}
     ${animationProgress}
