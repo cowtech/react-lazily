@@ -1,3 +1,7 @@
+### 2019-01-17 / 0.12.6
+
+* chore: Lint fix.
+
 ### 2019-01-14 / 0.12.5
 
 * fix: Improve type definitions.
