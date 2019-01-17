@@ -9,7 +9,7 @@ export interface ScreenSize {
   ratio: number
 }
 
-const appleScreenSizes: Array<ScreenSize> = [
+export const appleScreenSizes: Array<ScreenSize> = [
   { id: 'iphone-x', label: 'iPhone X, XS (1125px x 2436px)', width: 375, height: 812, ratio: 3 },
   { id: 'iphone-x-max', label: 'iPhone X, XS Max (1125px x 2436px)', width: 375, height: 812, ratio: 3 },
   { id: 'iphone-xr', label: 'iPhone XR (828px x 1792px)', width: 414, height: 896, ratio: 2 },
