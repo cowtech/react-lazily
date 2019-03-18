@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 export interface TopAnchorProps {
     duration?: number;
     backgroundColor?: string;
@@ -8,15 +8,5 @@ export declare function animationProgress(startTime: number, duration: number): 
 export declare function ease(x: number): number;
 export declare function updateTopAnchorStatus(element: HTMLAnchorElement): void;
 export declare function scrollToTop(ev: React.MouseEvent, duration: number): void;
-export declare class TopAnchor extends React.PureComponent<TopAnchorProps> {
-    private element;
-    private className;
-    private boundHandleScroll;
-    private boundHandleScrollToTop;
-    render(): JSX.Element;
-    componentDidMount(): void;
-    componentWillUnmount(): void;
-    handleScroll(): void;
-    handleScrollToTop(ev: React.MouseEvent): void;
-}
+export declare const TopAnchor: React.NamedExoticComponent<TopAnchorProps>;
 export declare const TopAnchorSSR: string;

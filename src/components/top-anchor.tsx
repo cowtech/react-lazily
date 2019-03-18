@@ -1,5 +1,5 @@
 import { em, rem } from 'csx'
-import * as React from 'react'
+import React from 'react'
 import { media, style } from 'typestyle'
 import { maxHeight6xx, maxWidth45x, maxWidth6xx } from '../styling/breakpoints'
 import { colorGrey600, colorWhite } from '../styling/colors'
@@ -14,7 +14,9 @@ export interface TopAnchorProps {
 }
 
 export function animationProgress(startTime: number, duration: number): number {
-  if (!duration) duration = 350
+  if (!duration) {
+    duration = 350
+  }
 
   return Math.min((Date.now() - startTime) / duration, 1)
 }
@@ -25,7 +27,9 @@ export function ease(x: number): number {
 }
 
 export function updateTopAnchorStatus(element: HTMLAnchorElement): void {
-  if (!element) return
+  if (!element) {
+    return
+  }
 
   element.setAttribute('data-hidden', (window.pageYOffset === 0).toString())
 }
@@ -46,16 +50,22 @@ export function scrollToTop(ev: React.MouseEvent, duration: number): void {
     document.body.scrollTop = Math.max(base - delta, 0)
 
     // Next step or fail stop
-    if (progress < 1) requestAnimationFrame(animate)
-    else document.body.scrollTop = 0
+    if (progress < 1) {
+      requestAnimationFrame(animate)
+    } else {
+      document.body.scrollTop = 0
+    }
   }
 
   animate()
 }
 
-export class TopAnchor extends React.PureComponent<TopAnchorProps> {
-  private element: React.RefObject<HTMLAnchorElement>
-  private className: string = style(
+export const TopAnchor: React.NamedExoticComponent<TopAnchorProps> = React.memo(function({
+  duration,
+  backgroundColor,
+  foregroundColor
+}: TopAnchorProps): JSX.Element {
+  const className: string = style(
     debugClassName('top-anchor'),
     {
       width: em(4),
@@ -67,15 +77,15 @@ export class TopAnchor extends React.PureComponent<TopAnchorProps> {
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-      backgroundColor: this.props.backgroundColor || colorGrey600,
-      color: this.props.foregroundColor || colorWhite,
+      backgroundColor: backgroundColor || colorGrey600,
+      color: foregroundColor || colorWhite,
       borderRadius: rem(0.5),
       opacity: 0.5,
       transition: 'opacity 0.2s ease',
       $nest: {
         '&[data-hidden=true]': { display: 'none' },
-        '&:hover': { opacity: 1, color: this.props.foregroundColor || colorWhite },
-        '&:focus, &:active, &:visited': { color: this.props.foregroundColor || colorWhite },
+        '&:hover': { opacity: 1, color: foregroundColor || colorWhite },
+        '&:focus, &:active, &:visited': { color: foregroundColor || colorWhite },
         '& svg, & .fa': { fontSize: em(2.5) }
       }
     },
@@ -83,43 +93,32 @@ export class TopAnchor extends React.PureComponent<TopAnchorProps> {
     media({ maxWidth: maxWidth45x }, { width: em(2), height: em(2) }),
     media({ maxHeight: maxHeight6xx }, { width: em(2), height: em(2) })
   )
-  private boundHandleScroll: BoundHandler = this.handleScroll.bind(this)
-  private boundHandleScrollToTop: BoundHandler = this.handleScrollToTop.bind(this)
 
-  render(): JSX.Element {
-    this.element = React.createRef()
+  const element = React.useRef<HTMLAnchorElement>(null)
+  const handleScrollToTop = (ev: React.MouseEvent): void => scrollToTop(ev, duration!)
 
-    return (
-      <a
-        id="topAnchor"
-        ref={this.element}
-        className={this.className}
-        onClick={this.boundHandleScrollToTop}
-        href="#top"
-        title="Top"
-      >
-        <Icon name="arrow-up" />
-      </a>
-    )
-  }
+  // Handle events
+  React.useEffect(() => {
+    const handleScroll: BoundHandler = updateTopAnchorStatus.bind(null, element.current!)
 
-  componentDidMount(): void {
-    window.addEventListener('scroll', this.boundHandleScroll, false)
-    this.handleScroll()
-  }
+    // Register the scroll event
+    window.addEventListener('scroll', handleScroll, false)
 
-  componentWillUnmount(): void {
-    window.removeEventListener('scroll', this.boundHandleScroll)
-  }
+    // Perform the first update
+    handleScroll()
 
-  handleScroll(): void {
-    updateTopAnchorStatus(this.element.current!)
-  }
+    // Remove event binding upon exist
+    return function(): void {
+      window.removeEventListener('scroll', handleScroll, false)
+    }
+  }, [])
 
-  handleScrollToTop(ev: React.MouseEvent): void {
-    scrollToTop(ev, this.props.duration!)
-  }
-}
+  return (
+    <a id="topAnchor" ref={element} className={className} onClick={handleScrollToTop} href="#top" title="Top">
+      <Icon name="arrow-up" />
+    </a>
+  )
+})
 
 export const TopAnchorSSR: string = `
   document.addEventListener('DOMContentLoaded', function(){

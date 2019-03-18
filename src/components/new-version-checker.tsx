@@ -1,6 +1,5 @@
 import { percent, rem } from 'csx'
-import * as React from 'react'
-import { BoundHandler } from 'src/utils/dom-utils'
+import React from 'react'
 import { style } from 'typestyle'
 import { colorAmber200, colorAmber500, colorGreen900, colorWhite } from '../styling/colors'
 import { debugClassName } from '../styling/mixins'
@@ -18,13 +17,15 @@ export interface NewVersionCheckerState {
 export function listenForUpdates(currentVersion: string, callback: (newVersion: string) => void): void {
   navigator.serviceWorker.addEventListener('message', (event: ServiceWorkerMessageEvent) => {
     const { type, payload } = event.data
-    if (type === 'new-version-available' && payload.version !== currentVersion) callback(payload.version)
+    if (type === 'new-version-available' && payload.version !== currentVersion) {
+      callback(payload.version)
+    }
   })
 }
 
 export function updateVersion(ev: React.MouseEvent): void {
   ev.preventDefault()
-  location.reload()
+  location.reload(true) // tslint:disable-line deprecation
 }
 
 export const newVersionCheckerClassName: string = style(debugClassName('new-version-checker'), {
@@ -52,42 +53,40 @@ export const newVersionCheckerClassName: string = style(debugClassName('new-vers
   }
 })
 
-export class NewVersionChecker extends React.PureComponent<NewVersionCheckerProps, NewVersionCheckerState> {
-  private boundHandleClick: BoundHandler = this.handleClick.bind(this)
+export const NewVersionChecker: React.NamedExoticComponent<NewVersionCheckerProps> = React.memo(function({
+  currentVersion,
+  message,
+  action
+}: NewVersionCheckerProps): JSX.Element | null {
+  const [newVersionAvailable, setNewVersionAvailable] = React.useState(false)
 
-  state: NewVersionCheckerState = { newVersionAvailable: false }
+  React.useEffect(() => {
+    listenForUpdates(currentVersion, () => setNewVersionAvailable(true))
+  }, [])
 
-  render(): JSX.Element | null {
-    // The check on window is for SSR
-    if (typeof window !== 'undefined' && !this.state.newVersionAvailable) return null // tslint:disable-line strict-type-predicates
-
-    const message = this.props.message || 'There is a shiny new version.'
-    const action = this.props.action || 'Update now!'
-
-    return (
-      <div
-        id="newVersionChecker"
-        className={newVersionCheckerClassName}
-        data-current-version={this.props.currentVersion}
-        data-hidden={typeof window === 'undefined' || !this.state.newVersionAvailable} // tslint:disable-line strict-type-predicates
-      >
-        <span>{message}&nbsp;</span>
-        <a href="#" onClick={this.boundHandleClick}>
-          {action}
-        </a>
-      </div>
-    )
+  // The check on window is for SSR
+  // tslint:disable-next-line strict-type-predicates
+  if (typeof window !== 'undefined' && !newVersionAvailable) {
+    return null
   }
 
-  componentDidMount(): void {
-    listenForUpdates(this.props.currentVersion, () => this.setState({ newVersionAvailable: true }))
-  }
+  message = message || 'There is a shiny new version.'
+  action = action || 'Update now!'
 
-  async handleClick(ev: React.MouseEvent): Promise<void> {
-    ev.preventDefault()
-    location.reload(true) // tslint:disable-line deprecation
-  }
-}
+  return (
+    <div
+      id="newVersionChecker"
+      className={newVersionCheckerClassName}
+      data-current-version={currentVersion}
+      data-hidden={typeof window === 'undefined' || !newVersionAvailable} // tslint:disable-line strict-type-predicates
+    >
+      <span>{message}&nbsp;</span>
+      <a href="#" onClick={updateVersion}>
+        {action}
+      </a>
+    </div>
+  )
+})
 
 export const NewVersionCheckerSSR: string = `
   document.addEventListener('DOMContentLoaded', function(){

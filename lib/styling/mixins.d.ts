@@ -1,4 +1,4 @@
-import { NestedCSSProperties } from 'typestyle/lib/types';
-export declare const centeredContentsStyle: NestedCSSProperties;
-export declare const cardStyle: NestedCSSProperties;
-export declare function debugClassName($debugName: string, force?: boolean): NestedCSSProperties;
+import { types } from 'typestyle';
+export declare const centeredContentsStyle: types.NestedCSSProperties;
+export declare const cardStyle: types.NestedCSSProperties;
+export declare function debugClassName($debugName: string, force?: boolean): types.NestedCSSProperties;

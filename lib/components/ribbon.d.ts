@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 export interface RibbonProps {
     position?: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
     className?: string;

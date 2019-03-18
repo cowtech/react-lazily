@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 export interface NewVersionCheckerProps {
     currentVersion: string;
     message?: string;
@@ -10,11 +10,5 @@ export interface NewVersionCheckerState {
 export declare function listenForUpdates(currentVersion: string, callback: (newVersion: string) => void): void;
 export declare function updateVersion(ev: React.MouseEvent): void;
 export declare const newVersionCheckerClassName: string;
-export declare class NewVersionChecker extends React.PureComponent<NewVersionCheckerProps, NewVersionCheckerState> {
-    private boundHandleClick;
-    state: NewVersionCheckerState;
-    render(): JSX.Element | null;
-    componentDidMount(): void;
-    handleClick(ev: React.MouseEvent): Promise<void>;
-}
+export declare const NewVersionChecker: React.NamedExoticComponent<NewVersionCheckerProps>;
 export declare const NewVersionCheckerSSR: string;

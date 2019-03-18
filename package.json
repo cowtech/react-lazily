@@ -15,7 +15,7 @@
     "prebuild": "rm -rf lib/* && ./node_modules/.bin/tslint --project tsconfig.json -t stylish",
     "build": "tsc -p .",
     "postpublish": "git push origin && git push origin -f --tags",
-    "update:normalize": "bash scripts/update-normalize.sh"
+    "update:normalize": "node scripts/update-normalize.js"
   },
   "repository": {
     "type": "git",
@@ -35,16 +35,17 @@
     "typestyle": "^2.0.1"
   },
   "devDependencies": {
-    "@cowtech/tslint-config": "^5.12.1",
-    "@types/react": "^16.7.18",
+    "@cowtech/tslint-config": "^5.13.0",
+    "@types/react": "^16.8.8",
     "csx": "^9.0.0",
+    "got": "^9.6.0",
     "idb-keyval": "^3.1.0",
     "normalize.css": "^8.0.1",
-    "prettier": "^1.15.3",
-    "prop-types": "^15.6.2",
-    "react": "^16.7.0",
-    "tslint": "^5.12.1",
-    "typescript": "^3.2.2",
+    "prettier": "^1.16.4",
+    "prop-types": "^15.7.2",
+    "react": "^16.8.4",
+    "tslint": "^5.14.0",
+    "typescript": "^3.3.3333",
     "typestyle": "^2.0.1"
   }
 }

@@ -1,5 +1,5 @@
 import { em, percent } from 'csx'
-import * as React from 'react'
+import React from 'react'
 import { style } from 'typestyle'
 import { colorBlack, colorWhite } from '../styling/colors'
 import { debugClassName } from '../styling/mixins'
