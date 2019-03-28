@@ -120,6 +120,8 @@ export const TopAnchor: React.NamedExoticComponent<TopAnchorProps> = React.memo(
   )
 })
 
+TopAnchor.displayName = 'TopAnchor'
+
 export const TopAnchorSSR: string = `
   document.addEventListener('DOMContentLoaded', function(){
     ${ease}

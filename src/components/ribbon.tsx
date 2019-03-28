@@ -80,3 +80,5 @@ export const Ribbon: React.NamedExoticComponent<RibbonProps> = React.memo(functi
 
   return <div className={classes(baseClassName, className)}>{children}</div>
 })
+
+Ribbon.displayName = 'Ribbon'

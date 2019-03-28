@@ -32,3 +32,5 @@ export const MadeInItaly: React.NamedExoticComponent<RibbonProps> = React.memo(f
     </Ribbon>
   )
 })
+
+MadeInItaly.displayName = 'MadeInItaly'

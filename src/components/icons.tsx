@@ -55,6 +55,8 @@ export const Icon: React.NamedExoticComponent<IconProps> = React.memo(function({
   )
 })
 
+Icon.displayName = 'Icon'
+
 export const IconsDefinitions: React.NamedExoticComponent<{}> = React.memo(function(): JSX.Element {
   return (
     <svg
@@ -67,3 +69,5 @@ export const IconsDefinitions: React.NamedExoticComponent<{}> = React.memo(funct
     </svg>
   )
 })
+
+IconsDefinitions.displayName = 'IconsDefinitions'

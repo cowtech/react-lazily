@@ -53,3 +53,5 @@ export const Spinner: React.NamedExoticComponent<SpinnerProps> = React.memo(func
     </main>
   )
 })
+
+Spinner.displayName = 'Spinner'

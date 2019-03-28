@@ -88,6 +88,8 @@ export const NewVersionChecker: React.NamedExoticComponent<NewVersionCheckerProp
   )
 })
 
+NewVersionChecker.displayName = 'NewVersionChecker'
+
 export const NewVersionCheckerSSR: string = `
   document.addEventListener('DOMContentLoaded', function(){
     ${listenForUpdates}

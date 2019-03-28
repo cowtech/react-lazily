@@ -64,6 +64,8 @@ export const BrowseHappy: React.NamedExoticComponent<BrowseHappyProps> = React.m
   )
 })
 
+BrowseHappy.displayName = 'BrowseHappy'
+
 export const BrowseHappySSR: string = `
   document.addEventListener('DOMContentLoaded', function(){
     ${isModernBrowser}
