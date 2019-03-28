@@ -1,3 +1,7 @@
+### 2019-03-28 / 1.0.1
+
+* chore: Add memoized components names.
+
 ### 2019-03-18 / 1.0.0
 
 - feat: Switched to React hooks where appropriate.
