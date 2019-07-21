@@ -37,9 +37,10 @@ export const newVersionCheckerClassName: string = style(debugClassName('new-vers
   backgroundColor: colorGreen900,
   color: colorWhite,
   padding: rem(1),
-  paddingTop: `max(${rem(1)}, env(safe-area-inset-top))`,
-  paddingLeft: `max(${rem(1)}, env(safe-area-inset-left))`,
-  paddingRight: `max(${rem(1)}, env(safe-area-inset-right))`,
+  paddingTop: `calc(${rem(1)} + env(safe-area-inset-top))`,
+  paddingBottom: `calc(${rem(1)} + env(safe-area-inset-bottom))`,
+  paddingLeft: `calc(${rem(1)} + env(safe-area-inset-left))`,
+  paddingRight: `calc(${rem(1)} + env(safe-area-inset-right))`,
   textAlign: 'center',
   $nest: {
     '&[data-hidden=true]': { display: 'none' },
