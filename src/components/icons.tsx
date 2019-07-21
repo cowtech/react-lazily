@@ -2,6 +2,7 @@ import { em } from 'csx'
 import React from 'react'
 import { classes, style } from 'typestyle'
 import { debugClassName } from '../styling/mixins'
+import { createMemoizedComponent } from '../utils/dom-utils'
 
 interface Icons {
   prefix: string
@@ -35,7 +36,7 @@ export const iconsDefinitionsClassName: string = style(debugClassName('icons-def
   overflow: 'hidden'
 })
 
-export const Icon: React.NamedExoticComponent<IconProps> = React.memo(function({
+export const Icon = createMemoizedComponent('Icon', function({
   name,
   className,
   onClick
@@ -55,9 +56,7 @@ export const Icon: React.NamedExoticComponent<IconProps> = React.memo(function({
   )
 })
 
-Icon.displayName = 'Icon'
-
-export const IconsDefinitions: React.NamedExoticComponent<{}> = React.memo(function(): JSX.Element {
+export const IconsDefinitions = createMemoizedComponent('IconsDefinitions', function(): JSX.Element {
   return (
     <svg
       className={iconsDefinitionsClassName}
@@ -69,5 +68,3 @@ export const IconsDefinitions: React.NamedExoticComponent<{}> = React.memo(funct
     </svg>
   )
 })
-
-IconsDefinitions.displayName = 'IconsDefinitions'

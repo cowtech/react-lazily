@@ -3,6 +3,7 @@ import React from 'react'
 import { keyframes, style } from 'typestyle'
 import { colorBlack } from '../styling/colors'
 import { debugClassName } from '../styling/mixins'
+import { createMemoizedComponent } from '../utils/dom-utils'
 
 export interface SpinnerProps {
   size?: number
@@ -11,7 +12,7 @@ export interface SpinnerProps {
   text?: string
 }
 
-export const Spinner: React.NamedExoticComponent<SpinnerProps> = React.memo(function(props: SpinnerProps): JSX.Element {
+export const Spinner = createMemoizedComponent('Spinner', function(props: SpinnerProps): JSX.Element {
   const size = props.size || 66
   const stroke = props.stroke || 6
 
@@ -53,5 +54,3 @@ export const Spinner: React.NamedExoticComponent<SpinnerProps> = React.memo(func
     </main>
   )
 })
-
-Spinner.displayName = 'Spinner'

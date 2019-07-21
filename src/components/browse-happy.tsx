@@ -3,6 +3,7 @@ import React from 'react'
 import { style } from 'typestyle'
 import { colorAmber200, colorAmber500, colorRed700, colorWhite } from '../styling/colors'
 import { debugClassName } from '../styling/mixins'
+import { createMemoizedComponent } from '../utils/dom-utils'
 
 export interface BrowseHappyProps {
   message?: string
@@ -43,7 +44,7 @@ export const browseHappyClassName: string = style(debugClassName('browse-happy')
   }
 })
 
-export const BrowseHappy: React.NamedExoticComponent<BrowseHappyProps> = React.memo(function(
+export const BrowseHappy = createMemoizedComponent('BrowseHappy', function(
   props: BrowseHappyProps
 ): JSX.Element | null {
   const message =
@@ -63,8 +64,6 @@ export const BrowseHappy: React.NamedExoticComponent<BrowseHappyProps> = React.m
     </div>
   )
 })
-
-BrowseHappy.displayName = 'BrowseHappy'
 
 export const BrowseHappySSR: string = `
   document.addEventListener('DOMContentLoaded', function(){

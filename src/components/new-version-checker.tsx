@@ -3,6 +3,7 @@ import React from 'react'
 import { style } from 'typestyle'
 import { colorAmber200, colorAmber500, colorGreen900, colorWhite } from '../styling/colors'
 import { debugClassName } from '../styling/mixins'
+import { createMemoizedComponent } from '../utils/dom-utils'
 
 export interface NewVersionCheckerProps {
   currentVersion: string
@@ -54,7 +55,7 @@ export const newVersionCheckerClassName: string = style(debugClassName('new-vers
   }
 })
 
-export const NewVersionChecker: React.NamedExoticComponent<NewVersionCheckerProps> = React.memo(function({
+export const NewVersionChecker = createMemoizedComponent('NewVersionChecker', function({
   currentVersion,
   message,
   action
@@ -88,8 +89,6 @@ export const NewVersionChecker: React.NamedExoticComponent<NewVersionCheckerProp
     </div>
   )
 })
-
-NewVersionChecker.displayName = 'NewVersionChecker'
 
 export const NewVersionCheckerSSR: string = `
   document.addEventListener('DOMContentLoaded', function(){

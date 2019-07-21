@@ -7,4 +7,4 @@ export interface IconProps {
 export declare const iconClassName: string;
 export declare const iconsDefinitionsClassName: string;
 export declare const Icon: React.NamedExoticComponent<IconProps>;
-export declare const IconsDefinitions: React.NamedExoticComponent<{}>;
+export declare const IconsDefinitions: React.NamedExoticComponent<object>;

@@ -4,7 +4,7 @@ import { media, style } from 'typestyle'
 import { maxHeight6xx, maxWidth45x, maxWidth6xx } from '../styling/breakpoints'
 import { colorGrey600, colorWhite } from '../styling/colors'
 import { debugClassName } from '../styling/mixins'
-import { BoundHandler } from '../utils/dom-utils'
+import { BoundHandler, createMemoizedComponent } from '../utils/dom-utils'
 import { Icon } from './icons'
 
 export interface TopAnchorProps {
@@ -60,7 +60,7 @@ export function scrollToTop(ev: React.MouseEvent, duration: number): void {
   animate()
 }
 
-export const TopAnchor: React.NamedExoticComponent<TopAnchorProps> = React.memo(function({
+export const TopAnchor = createMemoizedComponent('TopAnchor', function({
   duration,
   backgroundColor,
   foregroundColor
@@ -119,8 +119,6 @@ export const TopAnchor: React.NamedExoticComponent<TopAnchorProps> = React.memo(
     </a>
   )
 })
-
-TopAnchor.displayName = 'TopAnchor'
 
 export const TopAnchorSSR: string = `
   document.addEventListener('DOMContentLoaded', function(){

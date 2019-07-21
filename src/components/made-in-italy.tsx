@@ -3,6 +3,7 @@ import React from 'react'
 import { style } from 'typestyle'
 import { colorBlack, colorWhite } from '../styling/colors'
 import { debugClassName } from '../styling/mixins'
+import { createMemoizedComponent } from '../utils/dom-utils'
 import { Ribbon, RibbonProps } from './ribbon'
 
 export const madeInItalyClassName: string = style(debugClassName('made-in-italy'), {
@@ -21,9 +22,7 @@ export const madeInItalyClassName: string = style(debugClassName('made-in-italy'
   }
 })
 
-export const MadeInItaly: React.NamedExoticComponent<RibbonProps> = React.memo(function({
-  position
-}: RibbonProps): JSX.Element {
+export const MadeInItaly = createMemoizedComponent('MadeInItaly', function({ position }: RibbonProps): JSX.Element {
   return (
     <Ribbon className={madeInItalyClassName} position={position}>
       <a href="http://www.italia.it" target="_blank" rel="noopener noreferrer">
@@ -32,5 +31,3 @@ export const MadeInItaly: React.NamedExoticComponent<RibbonProps> = React.memo(f
     </Ribbon>
   )
 })
-
-MadeInItaly.displayName = 'MadeInItaly'

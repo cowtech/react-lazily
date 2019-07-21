@@ -4,6 +4,7 @@ import { classes, media, style } from 'typestyle'
 import { maxWidth6xx } from '../styling/breakpoints'
 import { colorGrey500, colorGrey800 } from '../styling/colors'
 import { debugClassName } from '../styling/mixins'
+import { createMemoizedComponent } from '../utils/dom-utils'
 
 export interface RibbonProps {
   position?: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right'
@@ -11,7 +12,7 @@ export interface RibbonProps {
   children?: React.ReactNode
 }
 
-export const Ribbon: React.NamedExoticComponent<RibbonProps> = React.memo(function({
+export const Ribbon = createMemoizedComponent('Ribbon', function({
   position,
   className,
   children
@@ -80,5 +81,3 @@ export const Ribbon: React.NamedExoticComponent<RibbonProps> = React.memo(functi
 
   return <div className={classes(baseClassName, className)}>{children}</div>
 })
-
-Ribbon.displayName = 'Ribbon'
