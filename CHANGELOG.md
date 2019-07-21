@@ -1,3 +1,7 @@
+### 2019-07-21 / 1.1.1
+
+* chore: Use createMemoizedComponent everywhere.
+
 ### 2019-07-21 / 1.1.0
 
 * feat: Added createMemoizedComponent.
