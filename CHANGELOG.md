@@ -1,3 +1,7 @@
+### 2019-07-21 / 1.1.0
+
+* feat: Added createMemoizedComponent.
+
 ### 2019-03-28 / 1.0.1
 
 * chore: Add memoized components names.
