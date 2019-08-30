@@ -1,3 +1,7 @@
+### 2019-08-30 / 1.2.0
+
+* feat: Have multiple favicons.
+
 ### 2019-07-21 / 1.1.1
 
 * chore: Use createMemoizedComponent everywhere.
