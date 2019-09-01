@@ -1,3 +1,7 @@
+### 2019-09-01 / 1.3.1
+
+* chore(deps): Fixed peer dependencies.
+
 ### 2019-09-01 / 1.3.0
 
 * feat: Updated dependencies and images.
