@@ -1,3 +1,7 @@
+### 2019-09-01 / 1.3.0
+
+* feat: Updated dependencies and images.
+
 ### 2019-08-30 / 1.2.0
 
 * feat: Have multiple favicons.
