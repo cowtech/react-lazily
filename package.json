@@ -29,9 +29,9 @@
   },
   "homepage": "https://github.com/cowtech/react-lazily",
   "peerDependencies": {
-    "csx": "^9.1.0",
+    "csx": "^10.0.0",
     "idb-keyval": "^3.2.0",
-    "react": "^16.8.6",
+    "react": "^16.9.0",
     "typestyle": "^2.0.4"
   },
   "devDependencies": {
