@@ -40,6 +40,14 @@ export function scrollToTop(ev: React.MouseEvent, duration: number): void {
   const startTime = Date.now()
   const base = document.body.scrollTop
 
+  function scroll(y: number): void {
+    if (window.scrollTo) {
+      window.scrollTo(0, y)
+    } else {
+      document.body.scrollTop = y
+    }
+  }
+
   // Step function for the the animation
   function animate(): void {
     // Compute the progress
@@ -47,12 +55,13 @@ export function scrollToTop(ev: React.MouseEvent, duration: number): void {
 
     // Perform scrolling
     const delta = base * ease(progress)
-    document.body.scrollTop = Math.max(base - delta, 0)
+    scroll(Math.max(base - delta, 0))
 
     // Next step or fail stop
     if (progress < 1) {
       requestAnimationFrame(animate)
     } else {
+      scrollTo(0)
       document.body.scrollTop = 0
     }
   }
