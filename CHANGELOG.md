@@ -1,3 +1,8 @@
+### 2019-09-04 / 1.4.0
+
+* chore: Include missing files.
+* feat: Added sitemap typings.
+
 ### 2019-09-01 / 1.3.1
 
 * chore(deps): Fixed peer dependencies.
