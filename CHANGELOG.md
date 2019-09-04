@@ -1,3 +1,7 @@
+### 2019-09-04 / 1.4.2
+
+* fix: Fixed top anchor animation.
+
 ### 2019-09-04 / 1.4.1
 
 * fix: Minor fix.
