@@ -1,3 +1,8 @@
+### 2019-09-04 / 1.4.1
+
+* fix: Minor fix.
+* fix: Fixed top anchor handling.
+
 ### 2019-09-04 / 1.4.0
 
 * chore: Include missing files.
