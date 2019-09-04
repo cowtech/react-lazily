@@ -15,3 +15,5 @@ export * from './utils/array-utils'
 export * from './utils/dom-utils'
 export * from './utils/storage-utils'
 export * from './utils/string-utils'
+
+import './utils/sitemap'
