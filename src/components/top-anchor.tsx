@@ -38,7 +38,7 @@ export function scrollToTop(ev: React.MouseEvent, duration: number): void {
   ev.preventDefault()
 
   const startTime = Date.now()
-  const base = document.body.scrollTop
+  const base = window.scrollY
 
   function scroll(y: number): void {
     if (window.scrollTo) {
