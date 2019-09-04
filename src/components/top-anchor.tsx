@@ -61,7 +61,7 @@ export function scrollToTop(ev: React.MouseEvent, duration: number): void {
     if (progress < 1) {
       requestAnimationFrame(animate)
     } else {
-      scrollTo(0)
+      scroll(0)
       document.body.scrollTop = 0
     }
   }
