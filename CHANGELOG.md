@@ -1,3 +1,7 @@
+### 2019-09-11 / 1.5.0
+
+* feat: Added dictionary support for Apple Splash tags.
+
 ### 2019-09-04 / 1.4.2
 
 * fix: Fixed top anchor animation.
