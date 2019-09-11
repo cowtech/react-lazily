@@ -1,6 +1,8 @@
 import React from 'react'
 import { env } from './environment'
 
+export type SplashDictionary = { [key: string]: string }
+
 export interface ScreenSize {
   id: string
   label?: string
@@ -27,18 +29,26 @@ export const appleScreenSizes: Array<ScreenSize> = [
   { id: 'ipad-pro-12', label: 'iPad Pro 12.9" (2048px x 2732px)', width: 1024, height: 1366, ratio: 2 }
 ]
 
-export function generateAppleSplashTags(url: string, whitelist: Array<string> = []): Array<JSX.Element> {
+export function generateAppleSplashTags(
+  url: string | SplashDictionary,
+  whitelist: Array<string> = []
+): Array<JSX.Element> {
+  const isTemplateUrl = typeof url === 'string'
+
   const sizes = whitelist.length
     ? appleScreenSizes.filter((s: ScreenSize) => whitelist.includes(s.id))
     : appleScreenSizes
 
   return sizes.map(({ label, width, height, ratio }: ScreenSize) => {
+    const spec = `${width * ratio}x${height * ratio}`
+    const href = isTemplateUrl ? (url as string).replace('SUFFIX', spec) : (url as SplashDictionary)[spec]
+
     return (
       <link
         key={[width, ratio, height].join('-')}
         rel="apple-touch-startup-image"
         media={`(device-width: ${width}px) and (device-height: ${height}px) and (-webkit-device-pixel-ratio: ${ratio})`}
-        href={url.replace('SUFFIX', `${width * ratio}x${height * ratio}`)}
+        href={href}
         data-splash-id={env === 'development' ? label : null}
       />
     )

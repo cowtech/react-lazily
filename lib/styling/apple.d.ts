@@ -1,4 +1,7 @@
 /// <reference types="react" />
+export declare type SplashDictionary = {
+    [key: string]: string;
+};
 export interface ScreenSize {
     id: string;
     label?: string;
@@ -7,4 +10,4 @@ export interface ScreenSize {
     ratio: number;
 }
 export declare const appleScreenSizes: Array<ScreenSize>;
-export declare function generateAppleSplashTags(url: string, whitelist?: Array<string>): Array<JSX.Element>;
+export declare function generateAppleSplashTags(url: string | SplashDictionary, whitelist?: Array<string>): Array<JSX.Element>;
