@@ -1,3 +1,7 @@
+### 2020-05-03 / 1.5.1
+
+- chore: Update Apple devices.
+
 ### 2019-09-11 / 1.5.0
 
 - feat: Added dictionary support for Apple Splash tags.
