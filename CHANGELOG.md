@@ -1,3 +1,7 @@
+### 2020-05-09 / 1.5.2
+
+- fix: Remove normalize sourcemap information.
+
 ### 2020-05-03 / 1.5.1
 
 - chore: Update Apple devices.
