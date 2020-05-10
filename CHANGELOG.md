@@ -1,3 +1,7 @@
+### 2020-05-10 / 1.6.2
+
+- chore: Minor style fix.
+
 ### 2020-05-10 / 1.6.1
 
 - fix: Fixed Sitemap issue.
