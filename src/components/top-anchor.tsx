@@ -99,8 +99,8 @@ export const TopAnchor = createMemoizedComponent('TopAnchor', function ({
       }
     },
     media({ minWidth: maxWidth45x + 1, maxWidth: maxWidth6xx }, { width: em(3), height: em(3), fontSize: em(1.5) }),
-    media({ maxWidth: maxWidth45x }, { width: em(2), height: em(2), fontSize: em(1) }),
-    media({ maxHeight: maxHeight6xx }, { width: em(2), height: em(2), fontSize: em(1) })
+    media({ maxWidth: maxWidth45x }, { width: em(2), height: em(2), fontSize: em(1), padding: rem(0.5) }),
+    media({ maxHeight: maxHeight6xx }, { width: em(2), height: em(2), fontSize: em(1), padding: rem(0.5) })
   )
 
   const element = useRef<HTMLAnchorElement>(null)
