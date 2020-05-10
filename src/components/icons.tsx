@@ -36,7 +36,7 @@ export const iconsDefinitionsClassName: string = style(debugClassName('icons-def
   overflow: 'hidden'
 })
 
-export const Icon = createMemoizedComponent('Icon', function({
+export const Icon = createMemoizedComponent('Icon', function ({
   name,
   className,
   onClick
@@ -56,7 +56,7 @@ export const Icon = createMemoizedComponent('Icon', function({
   )
 })
 
-export const IconsDefinitions = createMemoizedComponent('IconsDefinitions', function(): JSX.Element {
+export const IconsDefinitions = createMemoizedComponent('IconsDefinitions', function (): JSX.Element {
   return (
     <svg
       className={iconsDefinitionsClassName}

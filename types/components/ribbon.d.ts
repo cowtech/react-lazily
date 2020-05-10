@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 export interface RibbonProps {
     position?: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
     className?: string;
-    children?: React.ReactNode;
+    children?: ReactNode;
 }
 export declare const Ribbon: React.NamedExoticComponent<RibbonProps>;

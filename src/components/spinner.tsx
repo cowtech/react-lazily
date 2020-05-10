@@ -12,9 +12,9 @@ export interface SpinnerProps {
   text?: string
 }
 
-export const Spinner = createMemoizedComponent('Spinner', function(props: SpinnerProps): JSX.Element {
-  const size = props.size || 66
-  const stroke = props.stroke || 6
+export const Spinner = createMemoizedComponent('Spinner', function (props: SpinnerProps): JSX.Element {
+  const size = props.size ?? 66
+  const stroke = props.stroke ?? 6
 
   /* Adapted from here: https://tech.scrunch.com/blog/creating-an-animated-svg-spinner/ */
   const animation = keyframes({
@@ -35,7 +35,7 @@ export const Spinner = createMemoizedComponent('Spinner', function(props: Spinne
         width: rem(size / 10),
         height: rem(size / 10),
         fill: 'transparent',
-        stroke: props.color || colorBlack,
+        stroke: props.color ?? colorBlack,
         strokeWidth: stroke,
         strokeLinecap: 'round',
         strokeDasharray: [size * 3.14],

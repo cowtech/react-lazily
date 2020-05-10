@@ -1,5 +1,5 @@
 import { percent, rem } from 'csx'
-import React from 'react'
+import React, { MouseEvent, useEffect, useState } from 'react'
 import { style } from 'typestyle'
 import { colorAmber200, colorAmber500, colorGreen900, colorWhite } from '../styling/colors'
 import { debugClassName } from '../styling/mixins'
@@ -16,15 +16,16 @@ export interface NewVersionCheckerState {
 }
 
 export function listenForUpdates(currentVersion: string, callback: (newVersion: string) => void): void {
-  navigator.serviceWorker.addEventListener('message', (event: ServiceWorkerMessageEvent) => {
-    const { type, payload } = event.data
+  navigator.serviceWorker.addEventListener('message', (event: Event) => {
+    const { type, payload } = (event as ServiceWorkerMessageEvent).data
+
     if (type === 'new-version-available' && payload.version !== currentVersion) {
       callback(payload.version)
     }
   })
 }
 
-export function updateVersion(ev: React.MouseEvent): void {
+export function updateVersion(ev: MouseEvent): void {
   ev.preventDefault()
   location.reload(true) // tslint:disable-line deprecation
 }
@@ -55,14 +56,14 @@ export const newVersionCheckerClassName: string = style(debugClassName('new-vers
   }
 })
 
-export const NewVersionChecker = createMemoizedComponent('NewVersionChecker', function({
+export const NewVersionChecker = createMemoizedComponent('NewVersionChecker', function ({
   currentVersion,
   message,
   action
 }: NewVersionCheckerProps): JSX.Element | null {
-  const [newVersionAvailable, setNewVersionAvailable] = React.useState(false)
+  const [newVersionAvailable, setNewVersionAvailable] = useState(false)
 
-  React.useEffect(() => {
+  useEffect(() => {
     listenForUpdates(currentVersion, () => setNewVersionAvailable(true))
   }, [])
 
@@ -72,8 +73,8 @@ export const NewVersionChecker = createMemoizedComponent('NewVersionChecker', fu
     return null
   }
 
-  message = message || 'There is a shiny new version.'
-  action = action || 'Update now!'
+  message = message ?? 'There is a shiny new version.'
+  action = action ?? 'Update now!'
 
   return (
     <div

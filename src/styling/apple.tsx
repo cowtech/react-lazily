@@ -1,7 +1,9 @@
 import React from 'react'
 import { env } from './environment'
 
-export type SplashDictionary = { [key: string]: string }
+export interface SplashDictionary {
+  [key: string]: string
+}
 
 export interface ScreenSize {
   id: string

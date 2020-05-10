@@ -3,5 +3,6 @@ export function titleCase(input: string): string {
 }
 
 export function quoteRegexp(raw: string): string {
+  // eslint-disable-next-line no-useless-escape
   return raw.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, '\\$1')
 }

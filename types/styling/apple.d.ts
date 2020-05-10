@@ -1,7 +1,7 @@
 /// <reference types="react" />
-export declare type SplashDictionary = {
+export interface SplashDictionary {
     [key: string]: string;
-};
+}
 export interface ScreenSize {
     id: string;
     label?: string;

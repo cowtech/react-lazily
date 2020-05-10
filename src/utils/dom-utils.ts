@@ -1,6 +1,4 @@
-import React from 'react'
-
-export type BoundHandler = (...args: Array<any>) => void | Promise<void>
+import { FunctionComponent, memo, NamedExoticComponent } from 'react'
 
 export function handleIOSMinHeight(offset: number): void {
   const main = document.getElementById('main')
@@ -27,15 +25,11 @@ export function loadScript(url: string, tag: string): Promise<void> {
   })
 }
 
-export function emptyBoundHandler(): void {
-  // Empty implementation
-}
-
 export function createMemoizedComponent<Props extends object>(
   name: string,
-  component: React.FunctionComponent<Props>
-): React.NamedExoticComponent<Props> {
-  const created = React.memo(component)
+  component: FunctionComponent<Props>
+): NamedExoticComponent<Props> {
+  const created = memo(component)
   created.displayName = name
   return created
 }

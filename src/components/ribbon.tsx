@@ -1,5 +1,5 @@
 import { percent, px, rem } from 'csx'
-import React from 'react'
+import React, { ReactNode } from 'react'
 import { classes, media, style } from 'typestyle'
 import { maxWidth6xx } from '../styling/breakpoints'
 import { colorGrey500, colorGrey800 } from '../styling/colors'
@@ -9,10 +9,10 @@ import { createMemoizedComponent } from '../utils/dom-utils'
 export interface RibbonProps {
   position?: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right'
   className?: string
-  children?: React.ReactNode
+  children?: ReactNode
 }
 
-export const Ribbon = createMemoizedComponent('Ribbon', function({
+export const Ribbon = createMemoizedComponent('Ribbon', function ({
   position,
   className,
   children

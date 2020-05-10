@@ -22,7 +22,7 @@ export const madeInItalyClassName: string = style(debugClassName('made-in-italy'
   }
 })
 
-export const MadeInItaly = createMemoizedComponent('MadeInItaly', function({ position }: RibbonProps): JSX.Element {
+export const MadeInItaly = createMemoizedComponent('MadeInItaly', function ({ position }: RibbonProps): JSX.Element {
   return (
     <Ribbon className={madeInItalyClassName} position={position}>
       <a href="http://www.italia.it" target="_blank" rel="noopener noreferrer">

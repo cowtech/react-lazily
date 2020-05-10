@@ -44,11 +44,11 @@ export const browseHappyClassName: string = style(debugClassName('browse-happy')
   }
 })
 
-export const BrowseHappy = createMemoizedComponent('BrowseHappy', function(
+export const BrowseHappy = createMemoizedComponent('BrowseHappy', function (
   props: BrowseHappyProps
 ): JSX.Element | null {
   const message =
-    props.message || 'Your browser is obsolete. For the best browsing experience, update it for free by visiting'
+    props.message ?? 'Your browser is obsolete. For the best browsing experience, update it for free by visiting'
 
   return (
     <div
@@ -57,7 +57,7 @@ export const BrowseHappy = createMemoizedComponent('BrowseHappy', function(
       data-hidden={typeof window === 'undefined'} // tslint:disable-line strict-type-predicates
     >
       <span>{message}&nbsp;</span>
-      <a href="https://browsehappy.com/" target="_blank" rel="noopener">
+      <a href="https://browsehappy.com/" target="_blank" rel="noopener noreferrer">
         BrowseHappy
       </a>
       .

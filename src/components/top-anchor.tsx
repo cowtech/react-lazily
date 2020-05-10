@@ -1,10 +1,10 @@
 import { em, rem } from 'csx'
-import React from 'react'
+import React, { MouseEvent, useCallback, useEffect, useRef } from 'react'
 import { media, style } from 'typestyle'
 import { maxHeight6xx, maxWidth45x, maxWidth6xx } from '../styling/breakpoints'
 import { colorGrey600, colorWhite } from '../styling/colors'
 import { debugClassName } from '../styling/mixins'
-import { BoundHandler, createMemoizedComponent } from '../utils/dom-utils'
+import { createMemoizedComponent } from '../utils/dom-utils'
 import { Icon } from './icons'
 
 export interface TopAnchorProps {
@@ -34,7 +34,7 @@ export function updateTopAnchorStatus(element: HTMLAnchorElement): void {
   element.setAttribute('data-hidden', (window.pageYOffset === 0).toString())
 }
 
-export function scrollToTop(ev: React.MouseEvent, duration: number): void {
+export function scrollToTop(ev: MouseEvent, duration: number): void {
   ev.preventDefault()
 
   const startTime = Date.now()
@@ -69,7 +69,7 @@ export function scrollToTop(ev: React.MouseEvent, duration: number): void {
   animate()
 }
 
-export const TopAnchor = createMemoizedComponent('TopAnchor', function({
+export const TopAnchor = createMemoizedComponent('TopAnchor', function ({
   duration,
   backgroundColor,
   foregroundColor
@@ -86,30 +86,38 @@ export const TopAnchor = createMemoizedComponent('TopAnchor', function({
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-      backgroundColor: backgroundColor || colorGrey600,
-      color: foregroundColor || colorWhite,
+      backgroundColor: backgroundColor ?? colorGrey600,
+      color: foregroundColor ?? colorWhite,
       borderRadius: rem(0.5),
       opacity: 0.5,
       transition: 'opacity 0.2s ease',
       $nest: {
         '&[data-hidden=true]': { display: 'none' },
-        '&:hover': { opacity: 1, color: foregroundColor || colorWhite },
-        '&:focus, &:active, &:visited': { color: foregroundColor || colorWhite },
+        '&:hover': { opacity: 1, color: foregroundColor ?? colorWhite },
+        '&:focus, &:active, &:visited': { color: foregroundColor ?? colorWhite },
         '& svg, & .fa': { fontSize: em(2.5) }
       }
     },
-    media({ minWidth: maxWidth45x + 1, maxWidth: maxWidth6xx }, { width: em(3), height: em(3) }),
-    media({ maxWidth: maxWidth45x }, { width: em(2), height: em(2) }),
-    media({ maxHeight: maxHeight6xx }, { width: em(2), height: em(2) })
+    media({ minWidth: maxWidth45x + 1, maxWidth: maxWidth6xx }, { width: em(3), height: em(3), fontSize: em(1.5) }),
+    media({ maxWidth: maxWidth45x }, { width: em(2), height: em(2), fontSize: em(1) }),
+    media({ maxHeight: maxHeight6xx }, { width: em(2), height: em(2), fontSize: em(1) })
   )
 
-  const element = React.useRef<HTMLAnchorElement>(null)
-  const handleScrollToTop = (ev: React.MouseEvent): void => scrollToTop(ev, duration!)
+  const element = useRef<HTMLAnchorElement>(null)
+
+  const handleScroll = useCallback(() => {
+    updateTopAnchorStatus(element.current!)
+  }, [element])
+
+  const handleScrollToTop = useCallback(
+    (ev: MouseEvent) => {
+      scrollToTop(ev, duration!)
+    },
+    [duration]
+  )
 
   // Handle events
-  React.useEffect(() => {
-    const handleScroll: BoundHandler = updateTopAnchorStatus.bind(null, element.current!)
-
+  useEffect(() => {
     // Register the scroll event
     window.addEventListener('scroll', handleScroll, false)
 
@@ -117,7 +125,7 @@ export const TopAnchor = createMemoizedComponent('TopAnchor', function({
     handleScroll()
 
     // Remove event binding upon exist
-    return function(): void {
+    return () => {
       window.removeEventListener('scroll', handleScroll, false)
     }
   }, [])

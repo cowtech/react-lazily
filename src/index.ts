@@ -1,3 +1,5 @@
+import './utils/sitemap'
+
 export * from './components/browse-happy'
 export * from './components/icons'
 export * from './components/made-in-italy'
@@ -13,7 +15,6 @@ export * from './styling/mixins'
 export * from './styling/reset'
 export * from './utils/array-utils'
 export * from './utils/dom-utils'
+export * from './utils/sitemap'
 export * from './utils/storage-utils'
 export * from './utils/string-utils'
-
-import './utils/sitemap'
