@@ -1,5 +1,3 @@
-import './utils/sitemap'
-
 export * from './components/browse-happy'
 export * from './components/icons'
 export * from './components/made-in-italy'
