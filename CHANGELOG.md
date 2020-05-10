@@ -1,3 +1,7 @@
+### 2020-05-10 / 1.6.1
+
+- fix: Fixed Sitemap issue.
+
 ### 2020-05-10 / 1.6.0
 
 - feat: Updated code style and dependencies.
