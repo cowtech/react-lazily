@@ -31,6 +31,7 @@ export const browseHappyClassName: string = style(debugClassName('browse-happy')
   backgroundColor: colorRed700,
   color: colorWhite,
   padding: rem(1),
+  paddingBottom: `calc(${rem(1)} + env(safe-area-inset-bottom))`,
   textAlign: 'center',
   $nest: {
     '&[data-hidden=true]': { display: 'none' },
