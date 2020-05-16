@@ -2,7 +2,7 @@ import { FunctionComponent, memo, NamedExoticComponent } from 'react'
 
 function updateBodySize(offset: number): void {
   // @ts-ignore
-  document.body.style.setProperty('--ios-height', `${window.visualViewport.height - offset}px`)
+  document.body.style.setProperty('--rl-ios-height', `${window.visualViewport.height - offset}px`)
 }
 
 export function handleIOSMinHeight(offset: number = 0): void {
@@ -12,7 +12,7 @@ export function handleIOSMinHeight(offset: number = 0): void {
     window.addEventListener('resize', updateBodySize.bind(undefined, offset))
   }
 
-  document.body.style.setProperty('--ios-height', `${window.innerHeight - offset}px`)
+  document.body.style.setProperty('--rl-ios-height', `${window.innerHeight - offset}px`)
 }
 
 export function loadScript(url: string, tag: string): Promise<void> {
