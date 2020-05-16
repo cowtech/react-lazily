@@ -1,11 +1,18 @@
 import { FunctionComponent, memo, NamedExoticComponent } from 'react'
 
-export function handleIOSMinHeight(offset: number): void {
-  const main = document.getElementById('main')
+function updateBodySize(offset: number): void {
+  // @ts-ignore
+  document.body.style.setProperty('--ios-height', `${window.visualViewport.height - offset}px`)
+}
 
-  if (main) {
-    document.body.style.minHeight = main.style.minHeight = `${window.innerHeight - offset}px`
+export function handleIOSMinHeight(offset: number = 0): void {
+  if ('visualViewport' in window) {
+    // @ts-ignore
+    window.visualViewport.addEventListener('resize', updateBodySize.bind(undefined, offset))
+    window.addEventListener('resize', updateBodySize.bind(undefined, offset))
   }
+
+  document.body.style.setProperty('--ios-height', `${window.innerHeight - offset}px`)
 }
 
 export function loadScript(url: string, tag: string): Promise<void> {

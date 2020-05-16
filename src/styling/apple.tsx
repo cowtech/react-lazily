@@ -50,7 +50,7 @@ export function generateAppleSplashTags(
       <link
         key={[width, ratio, height].join('-')}
         rel="apple-touch-startup-image"
-        media={`(device-width: ${width}px) and (device-height: ${height}px) and (-webkit-device-pixel-ratio: ${ratio})`}
+        media={`(device-width: ${width}px) and (device-height: ${height}px) and (-webkit-device-pixel-ratio: ${ratio}) and (orientation: portrait)`}
         href={href}
         data-splash-id={env === 'development' ? label : null}
       />
