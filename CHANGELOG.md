@@ -1,3 +1,7 @@
+### 2020-05-16 / 1.8.0
+
+- feat: Namespace CSS var.
+
 ### 2020-05-16 / 1.7.0
 
 - feat: Improve iOS support.
