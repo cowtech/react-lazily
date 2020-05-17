@@ -4,10 +4,10 @@ export interface SplashDictionary {
 }
 export interface ScreenSize {
     id: string;
-    label?: string;
+    devices: Array<string>;
     width: number;
     height: number;
     ratio: number;
 }
 export declare const appleScreenSizes: Array<ScreenSize>;
-export declare function generateAppleSplashTags(url: string | SplashDictionary, whitelist?: Array<string>): Array<JSX.Element>;
+export declare function generateAppleSplashTags(url: string | SplashDictionary, includeLandscape?: boolean, whitelist?: Array<string>): Array<JSX.Element>;
