@@ -1,3 +1,8 @@
+### 2020-05-17 / 1.9.0
+
+- fix: Minor label fix.
+- feat: Improve iOS splash generation.
+
 ### 2020-05-16 / 1.8.0
 
 - feat: Namespace CSS var.
