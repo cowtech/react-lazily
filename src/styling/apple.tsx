@@ -76,7 +76,7 @@ export function generateAppleSplashTags(
     const portraitId = env === 'development' ? `${devices.join(', ')} - Portrait` : null
     const [portraitKey, portraitQuery, portraitHref] = splashParams(width, height, ratio, url, 'portrait')
 
-    const tags: Array<JSX.Element> = [
+    tags.push(
       <link
         key={portraitKey}
         rel="apple-touch-startup-image"
@@ -84,7 +84,7 @@ export function generateAppleSplashTags(
         href={portraitHref}
         data-splash-id={portraitId}
       />
-    ]
+    )
 
     if (includeLandscape) {
       const landscapeId = env === 'development' ? `${devices.join(', ')} - Landscape` : null
