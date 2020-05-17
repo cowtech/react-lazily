@@ -14,14 +14,14 @@ export interface ScreenSize {
 }
 
 export const appleScreenSizes: Array<ScreenSize> = [
-  { id: 'iphone-11-pro', devices: ['iPhone 11 Pro', 'iPhone XS', 'iPhone X'], width: 375, height: 812, ratio: 3 },
   {
     id: 'iphone-11-pro-max',
     devices: ['iPhone 11 Pro Max', 'iPhone XS Max', 'iPhone X Max'],
-    width: 375,
-    height: 812,
+    width: 414,
+    height: 896,
     ratio: 3
   },
+  { id: 'iphone-11-pro', devices: ['iPhone 11 Pro', 'iPhone XS', 'iPhone X'], width: 375, height: 812, ratio: 3 },
   { id: 'iphone-11', devices: ['iPhone 11', 'iPhone 11', 'iPhone XR'], width: 414, height: 896, ratio: 2 },
   {
     id: 'iphone-8',
