@@ -1,3 +1,7 @@
+### 2020-05-17 / 1.9.2
+
+- fix: Fix iOS sizes.
+
 ### 2020-05-17 / 1.9.1
 
 - fix: Fix generation.
