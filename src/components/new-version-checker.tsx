@@ -16,6 +16,10 @@ export interface NewVersionCheckerState {
 }
 
 export function listenForUpdates(currentVersion: string, callback: (newVersion: string) => void): void {
+  if (!navigator.serviceWorker) {
+    return
+  }
+
   navigator.serviceWorker.addEventListener('message', (event: Event) => {
     const { type, payload } = (event as ServiceWorkerMessageEvent).data
 
