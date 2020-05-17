@@ -1,3 +1,7 @@
+### 2020-05-17 / 1.9.1
+
+- fix: Fix generation.
+
 ### 2020-05-17 / 1.9.0
 
 - fix: Minor label fix.
