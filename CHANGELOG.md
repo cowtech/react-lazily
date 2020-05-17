@@ -1,3 +1,7 @@
+### 2020-05-17 / 1.9.3
+
+- fix: Always make sure serviceWorker are supported.
+
 ### 2020-05-17 / 1.9.2
 
 - fix: Fix iOS sizes.
