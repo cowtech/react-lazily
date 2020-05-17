@@ -73,7 +73,7 @@ export function generateAppleSplashTags(
   const tags: Array<JSX.Element> = []
 
   for (const { devices, width, height, ratio } of sizes) {
-    const id = env === 'development' ? devices.join(', ') : null
+    const portraitId = env === 'development' ? `${devices.join(', ')} - Portrait` : null
     const [portraitKey, portraitQuery, portraitHref] = splashParams(width, height, ratio, url, 'portrait')
 
     const tags: Array<JSX.Element> = [
@@ -82,11 +82,12 @@ export function generateAppleSplashTags(
         rel="apple-touch-startup-image"
         media={portraitQuery}
         href={portraitHref}
-        data-splash-id={id}
+        data-splash-id={portraitId}
       />
     ]
 
     if (includeLandscape) {
+      const landscapeId = env === 'development' ? `${devices.join(', ')} - Landscape` : null
       const [landscapeKey, landscapeQuery, landscapeHref] = splashParams(height, width, ratio, url, 'landscape')
 
       tags.push(
@@ -95,7 +96,7 @@ export function generateAppleSplashTags(
           rel="apple-touch-startup-image"
           media={landscapeQuery}
           href={landscapeHref}
-          data-splash-id={id}
+          data-splash-id={landscapeId}
         />
       )
     }
