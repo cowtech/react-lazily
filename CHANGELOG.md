@@ -1,3 +1,7 @@
+### 2020-05-25 / 1.10.0
+
+- feat: Added Shortcuts element.
+
 ### 2020-05-17 / 1.9.3
 
 - fix: Always make sure serviceWorker are supported.
