@@ -1,3 +1,7 @@
+### 2020-05-25 / 1.10.1
+
+- feat: Added Shortcuts element to exports.
+
 ### 2020-05-25 / 1.10.0
 
 - feat: Added Shortcuts element.
