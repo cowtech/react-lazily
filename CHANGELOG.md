@@ -1,3 +1,7 @@
+### 2020-06-02 / 1.10.3
+
+- feat: Added custom class support to spinner.
+
 ### 2020-06-02 / 1.10.2
 
 - fix: Update style.
