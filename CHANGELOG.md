@@ -1,3 +1,7 @@
+### 2020-06-02 / 1.10.4
+
+- fix: Added needed iOS function
+
 ### 2020-06-02 / 1.10.3
 
 - feat: Added custom class support to spinner.
