@@ -1,6 +1,6 @@
 import { FunctionComponent, memo, NamedExoticComponent } from 'react'
 
-function updateBodySize(offset: number): void {
+export function updateBodySize(offset: number): void {
   // @ts-ignore
   document.body.style.setProperty('--rl-ios-height', `${window.visualViewport.height - offset}px`)
 }
