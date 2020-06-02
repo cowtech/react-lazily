@@ -4,5 +4,6 @@ export interface SpinnerProps {
     stroke?: number;
     color?: string;
     text?: string;
+    className?: string;
 }
 export declare const Spinner: React.NamedExoticComponent<SpinnerProps>;

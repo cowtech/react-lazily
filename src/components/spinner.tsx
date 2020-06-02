@@ -1,6 +1,6 @@
 import { percent, rem } from 'csx'
 import React from 'react'
-import { keyframes, style } from 'typestyle'
+import { classes, keyframes, style } from 'typestyle'
 import { colorBlack } from '../styling/colors'
 import { debugClassName } from '../styling/mixins'
 import { createMemoizedComponent } from '../utils/dom-utils'
@@ -10,6 +10,7 @@ export interface SpinnerProps {
   stroke?: number
   color?: string
   text?: string
+  className?: string
 }
 
 export const Spinner = createMemoizedComponent('Spinner', function (props: SpinnerProps): JSX.Element {
@@ -23,7 +24,7 @@ export const Spinner = createMemoizedComponent('Spinner', function (props: Spinn
     [percent(100)]: { strokeDashoffset: size * 0.66, transform: 'rotate(1080deg)' }
   })
 
-  const className = style(debugClassName('spinner'), {
+  const spinnerClassName = style(debugClassName('spinner'), {
     alignSelf: 'center',
     justifySelf: 'center',
     $nest: {
@@ -46,7 +47,7 @@ export const Spinner = createMemoizedComponent('Spinner', function (props: Spinn
   })
 
   return (
-    <main className={className}>
+    <main className={classes(spinnerClassName, props.className)}>
       <svg viewBox={`0 0 ${size} ${size}`}>
         <circle fill="none" strokeWidth="6" strokeLinecap="round" cx={size / 2} cy={size / 2} r={(size - stroke) / 2} />
       </svg>
