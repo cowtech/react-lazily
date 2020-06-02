@@ -1,3 +1,7 @@
+### 2020-06-02 / 1.10.2
+
+- fix: Update style.
+
 ### 2020-05-25 / 1.10.1
 
 - feat: Added Shortcuts element to exports.
