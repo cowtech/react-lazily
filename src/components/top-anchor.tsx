@@ -1,7 +1,7 @@
 import { em, rem } from 'csx'
 import React, { MouseEvent, useCallback, useEffect, useRef } from 'react'
 import { media, style } from 'typestyle'
-import { maxHeight6xx, maxWidth45x, maxWidth6xx } from '../styling/breakpoints'
+import { maxHeight6xx, maxWidth45x } from '../styling/breakpoints'
 import { colorGrey600, colorWhite } from '../styling/colors'
 import { debugClassName } from '../styling/mixins'
 import { createMemoizedComponent } from '../utils/dom-utils'
@@ -81,6 +81,7 @@ export const TopAnchor = createMemoizedComponent('TopAnchor', function ({
       height: em(4),
       bottom: rem(2),
       right: rem(2),
+      padding: rem(1),
       position: 'fixed',
       zIndex: 101,
       display: 'flex',
@@ -98,9 +99,8 @@ export const TopAnchor = createMemoizedComponent('TopAnchor', function ({
         '& svg, & .fa': { fontSize: em(2.5) }
       }
     },
-    media({ minWidth: maxWidth45x + 1, maxWidth: maxWidth6xx }, { width: em(3), height: em(3), fontSize: em(1.5) }),
-    media({ maxWidth: maxWidth45x }, { width: em(2), height: em(2), fontSize: em(1), padding: rem(0.5) }),
-    media({ maxHeight: maxHeight6xx }, { width: em(2), height: em(2), fontSize: em(1), padding: rem(0.5) })
+    media({ maxWidth: maxWidth45x }, { width: em(3), height: em(3) }),
+    media({ maxHeight: maxHeight6xx }, { width: em(3), height: em(3) })
   )
 
   const element = useRef<HTMLAnchorElement>(null)
