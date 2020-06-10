@@ -1,3 +1,7 @@
+### 2020-06-10 / 1.10.5
+
+- fix: Disable ribbon on smaller screens.
+
 ### 2020-06-02 / 1.10.4
 
 - fix: Added needed iOS function
