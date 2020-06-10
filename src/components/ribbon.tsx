@@ -1,7 +1,7 @@
 import { percent, px, rem } from 'csx'
 import React, { ReactNode } from 'react'
 import { classes, media, style } from 'typestyle'
-import { maxWidth6xx } from '../styling/breakpoints'
+import { maxWidth7xx } from '../styling/breakpoints'
 import { colorGrey500, colorGrey800 } from '../styling/colors'
 import { debugClassName } from '../styling/mixins'
 import { createMemoizedComponent } from '../utils/dom-utils'
@@ -76,7 +76,7 @@ export const Ribbon = createMemoizedComponent('Ribbon', function ({
       textAlign: 'center'
     },
     positionCss,
-    media({ maxWidth: maxWidth6xx }, { display: 'none' })
+    media({ maxWidth: maxWidth7xx }, { display: 'none' })
   )
 
   return <div className={classes(baseClassName, className)}>{children}</div>
