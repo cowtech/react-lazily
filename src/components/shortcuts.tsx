@@ -1,12 +1,6 @@
 import { useCallback, useEffect } from 'react'
 import { createMemoizedComponent } from '../utils/dom-utils'
 
-interface ShortcutsProps {
-  shortcuts: {
-    [key: string]: () => void
-  }
-}
-
 function triggerShortcuts(shortcuts: { [key: string]: () => void }, ev: KeyboardEvent): void {
   // First of all, if within a input, ignore unless is Esc or Enter
   if (
@@ -22,6 +16,12 @@ function triggerShortcuts(shortcuts: { [key: string]: () => void }, ev: Keyboard
   if (handler) {
     ev.preventDefault()
     handler()
+  }
+}
+
+export interface ShortcutsProps {
+  shortcuts: {
+    [key: string]: () => void
   }
 }
 

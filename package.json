@@ -1,6 +1,6 @@
 {
   "name": "@cowtech/react-lazily",
-  "version": "1.10.5",
+  "version": "2.0.0-beta.5",
   "description": "CowTech React components and utilities.",
   "main": "./lib/index.js",
   "typings": "types/index.d.ts",
@@ -16,7 +16,7 @@
     "lint": "eslint src/*.ts src/**/*.ts src/**/*.tsx",
     "prebuild": "rm -rf lib/* types/* && yarn lint",
     "build": "tsc -p . && cp src/utils/sitemap.d.ts types/utils",
-    "postpublish": "git push origin && git push origin -f --tags",
+    "postpublish1": "git push origin && git push origin -f --tags",
     "update:normalize": "node scripts/update-normalize.js"
   },
   "repository": {
@@ -31,22 +31,20 @@
   },
   "homepage": "https://github.com/cowtech/react-lazily",
   "peerDependencies": {
-    "csx": "^10.0.1",
     "idb-keyval": "^3.2.0",
     "react": "^16.13.1",
     "typestyle": "^2.1.0"
   },
   "devDependencies": {
     "@cowtech/eslint-config": "^6.9.2",
-    "@types/react": "^16.9.34",
-    "csx": "^10.0.1",
-    "got": "^11.1.2",
+    "@types/react": "^16.9.36",
+    "got": "^11.3.0",
     "idb-keyval": "^3.2.0",
     "normalize.css": "^8.0.1",
     "prettier": "^2.0.5",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
-    "typescript": "^3.8.3",
+    "typescript": "^3.9.5",
     "typestyle": "^2.1.0"
   },
   "engines": {

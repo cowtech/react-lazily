@@ -13,6 +13,23 @@ export interface ScreenSize {
   ratio: number
 }
 
+function splashParams(
+  width: number,
+  height: number,
+  ratio: number,
+  url: string | SplashDictionary,
+  orientation: 'portrait' | 'landscape'
+): Array<string> {
+  const spec = `${width * ratio}x${height * ratio}`
+  const isTemplateUrl = typeof url === 'string'
+
+  return [
+    [width, height, ratio].join('-'), // Key
+    `(device-width: ${width}px) and (device-height: ${height}px) and (-webkit-device-pixel-ratio: ${ratio}) and (orientation: ${orientation})`, // Media query
+    isTemplateUrl ? (url as string).replace('SUFFIX', spec) : (url as SplashDictionary)[spec] // Href
+  ]
+}
+
 export const appleScreenSizes: Array<ScreenSize> = [
   {
     id: 'iphone-11-pro-max',
@@ -43,23 +60,6 @@ export const appleScreenSizes: Array<ScreenSize> = [
   { id: 'ipad-pro-10', devices: ['iPad Pro 10.5"'], width: 834, height: 1112, ratio: 2 },
   { id: 'ipad', devices: ['iPad', 'iPad Pro 9.7', 'iPad Air', 'iPad Mini'], width: 768, height: 1024, ratio: 2 }
 ]
-
-function splashParams(
-  width: number,
-  height: number,
-  ratio: number,
-  url: string | SplashDictionary,
-  orientation: 'portrait' | 'landscape'
-): Array<string> {
-  const spec = `${width * ratio}x${height * ratio}`
-  const isTemplateUrl = typeof url === 'string'
-
-  return [
-    [width, height, ratio].join('-'), // Key
-    `(device-width: ${width}px) and (device-height: ${height}px) and (-webkit-device-pixel-ratio: ${ratio}) and (orientation: ${orientation})`, // Media query
-    isTemplateUrl ? (url as string).replace('SUFFIX', spec) : (url as SplashDictionary)[spec] // Href
-  ]
-}
 
 export function generateAppleSplashTags(
   url: string | SplashDictionary,

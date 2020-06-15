@@ -1,19 +1,39 @@
-import { percent, rem } from 'csx'
 import React, { MouseEvent, useEffect, useState } from 'react'
-import { style } from 'typestyle'
+import { classes, style } from 'typestyle'
 import { colorAmber200, colorAmber500, colorGreen900, colorWhite } from '../styling/colors'
 import { debugClassName } from '../styling/mixins'
 import { createMemoizedComponent } from '../utils/dom-utils'
 
-export interface NewVersionCheckerProps {
-  currentVersion: string
-  message?: string
-  action?: string
-}
+// #region style
+export const newVersionCheckerClassName = style(debugClassName('new-version-checker'), {
+  width: '100%',
+  position: 'fixed',
+  top: 0,
+  left: 0,
+  zIndex: 100,
+  backgroundColor: colorGreen900,
+  color: colorWhite,
+  paddingTop: 'calc(1rem + env(safe-area-inset-top))',
+  paddingBottom: '1rem',
+  paddingLeft: 'calc(1rem + env(safe-area-inset-left))',
+  paddingRight: 'calc(1rem + env(safe-area-inset-right))',
+  textAlign: 'center'
+})
 
-export interface NewVersionCheckerState {
-  newVersionAvailable: boolean
-}
+export const newVersionCheckerHiddenClassName = style(debugClassName('new-version-checker-hidden'), {
+  $unique: true,
+  display: 'none'
+})
+
+export const newVersionCheckerLinkClassName = style(debugClassName('new-version-checker-link'), {
+  $unique: true,
+  color: colorAmber500,
+  fontWeight: 'bold',
+  $nest: {
+    '&:hover, &:focus, &:active': { color: colorAmber200 }
+  }
+})
+// #endregion style
 
 export function listenForUpdates(currentVersion: string, callback: (newVersion: string) => void): void {
   if (!navigator.serviceWorker) {
@@ -31,38 +51,24 @@ export function listenForUpdates(currentVersion: string, callback: (newVersion: 
 
 export function updateVersion(ev: MouseEvent): void {
   ev.preventDefault()
-  location.reload(true) // tslint:disable-line deprecation
+  location.reload(true)
 }
 
-export const newVersionCheckerClassName: string = style(debugClassName('new-version-checker'), {
-  width: percent(100),
-  position: 'fixed',
-  top: 0,
-  left: 0,
-  zIndex: 100,
-  backgroundColor: colorGreen900,
-  color: colorWhite,
-  padding: rem(1),
-  paddingTop: `calc(${rem(1)} + env(safe-area-inset-top))`,
-  paddingBottom: rem(1),
-  paddingLeft: `calc(${rem(1)} + env(safe-area-inset-left))`,
-  paddingRight: `calc(${rem(1)} + env(safe-area-inset-right))`,
-  textAlign: 'center',
-  $nest: {
-    '&[data-hidden=true]': { display: 'none' },
-    '& a': {
-      color: colorAmber500,
-      fontWeight: 'bold',
-      $nest: {
-        '&:hover, &:focus, &:active': { color: colorAmber200 }
-      }
-    }
-  }
-})
+export interface NewVersionCheckerProps {
+  currentVersion: string
+  message?: string
+  className?: string
+  action?: string
+}
+
+export interface NewVersionCheckerState {
+  newVersionAvailable: boolean
+}
 
 export const NewVersionChecker = createMemoizedComponent('NewVersionChecker', function ({
   currentVersion,
   message,
+  className,
   action
 }: NewVersionCheckerProps): JSX.Element | null {
   const [newVersionAvailable, setNewVersionAvailable] = useState(false)
@@ -72,7 +78,6 @@ export const NewVersionChecker = createMemoizedComponent('NewVersionChecker', fu
   }, [])
 
   // The check on window is for SSR
-  // tslint:disable-next-line strict-type-predicates
   if (typeof window !== 'undefined' && !newVersionAvailable) {
     return null
   }
@@ -83,12 +88,15 @@ export const NewVersionChecker = createMemoizedComponent('NewVersionChecker', fu
   return (
     <div
       id="newVersionChecker"
-      className={newVersionCheckerClassName}
+      className={classes(
+        newVersionCheckerClassName,
+        (typeof window === 'undefined' || !newVersionAvailable) && newVersionCheckerHiddenClassName,
+        className
+      )}
       data-current-version={currentVersion}
-      data-hidden={typeof window === 'undefined' || !newVersionAvailable} // tslint:disable-line strict-type-predicates
     >
       <span>{message}&nbsp;</span>
-      <a href="#" onClick={updateVersion}>
+      <a href="#" onClick={updateVersion} className={newVersionCheckerLinkClassName}>
         {action}
       </a>
     </div>
@@ -97,12 +105,14 @@ export const NewVersionChecker = createMemoizedComponent('NewVersionChecker', fu
 
 export const NewVersionCheckerSSR: string = `
   document.addEventListener('DOMContentLoaded', function(){
-    ${listenForUpdates}
-    ${updateVersion}
+    ${listenForUpdates};
+    ${updateVersion};
 
-    const element = document.getElementById('newVersionChecker')
-
-    element.querySelector('a').addEventListener('click', updateVersion, false)
-    listenForUpdates(element.getAttribute('data-current-version'), () => element.removeAttribute('data-hidden'))
+    const element = document.getElementById('newVersionChecker');
+    element.querySelector('a').addEventListener('click', updateVersion, false);
+    
+    listenForUpdates(element.getAttribute('data-current-version'), () => {
+      element.classList.remove('${newVersionCheckerHiddenClassName}');
+    });
   });
 `

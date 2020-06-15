@@ -1,4 +1,6 @@
 import React from 'react';
+export declare const spinnerClassName: string;
+export declare const spinnerCircleBaseClassName: string;
 export interface SpinnerProps {
     size?: number;
     stroke?: number;

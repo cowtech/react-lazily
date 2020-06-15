@@ -1,26 +1,12 @@
-import { em } from 'csx'
 import React from 'react'
 import { classes, style } from 'typestyle'
 import { debugClassName } from '../styling/mixins'
 import { createMemoizedComponent } from '../utils/dom-utils'
 
-interface Icons {
-  prefix: string
-  tags: { [key: string]: string }
-  definitions: string
-}
-
-export interface IconProps {
-  name: string
-  className?: string
-  onClick?(): void
-}
-
-declare const ICONS: Icons
-
-export const iconClassName: string = style(debugClassName('icon'), {
-  width: em(1),
-  height: em(1),
+// #region style
+export const iconClassName = style(debugClassName('icon'), {
+  width: '1em',
+  height: '1em',
   display: 'inline-block',
   verticalAlign: 'middle',
   strokeWidth: 0,
@@ -28,13 +14,28 @@ export const iconClassName: string = style(debugClassName('icon'), {
   fill: 'currentColor'
 })
 
-export const iconsDefinitionsClassName: string = style(debugClassName('icons-definitions'), {
+export const iconsDefinitionsClassName = style(debugClassName('icons-definitions'), {
   width: 0,
   height: 0,
   display: 'none',
   position: 'absolute',
   overflow: 'hidden'
 })
+// #endregion style
+
+interface Icons {
+  prefix: string
+  tags: { [key: string]: string }
+  definitions: string
+}
+
+declare const ICONS: Icons
+
+export interface IconProps {
+  name: string
+  className?: string
+  onClick?(): void
+}
 
 export const Icon = createMemoizedComponent('Icon', function ({
   name,
@@ -44,9 +45,7 @@ export const Icon = createMemoizedComponent('Icon', function ({
   const icon = ICONS.tags[name]
 
   if (!icon) {
-    console.error(`Missing icon ${name}.`)
-
-    return null
+    throw new Error(`Missing icon ${name}.`)
   }
 
   return (

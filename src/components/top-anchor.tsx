@@ -1,17 +1,36 @@
-import { em, rem } from 'csx'
 import React, { MouseEvent, useCallback, useEffect, useRef } from 'react'
-import { media, style } from 'typestyle'
-import { maxHeight6xx, maxWidth45x } from '../styling/breakpoints'
+import { classes, style } from 'typestyle'
 import { colorGrey600, colorWhite } from '../styling/colors'
 import { debugClassName } from '../styling/mixins'
 import { createMemoizedComponent } from '../utils/dom-utils'
 import { Icon } from './icons'
 
-export interface TopAnchorProps {
-  duration?: number
-  backgroundColor?: string
-  foregroundColor?: string
-}
+// #region style
+const topAnchorBaseClassName = style(debugClassName('top-anchor-base'), {
+  width: 'var(--rl-top-anchor-size)',
+  height: 'var(--rl-top-anchor-size)',
+  bottom: '2rem',
+  right: '2rem',
+  padding: '1rem',
+  position: 'fixed',
+  zIndex: 101,
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  borderRadius: '5px',
+  opacity: 0.5,
+  transition: 'opacity 0.2s ease'
+})
+
+export const topAnchorHiddenClassName = style(debugClassName('top-anchor-hidden'), {
+  $unique: true,
+  display: 'none'
+})
+
+const topAnchorIconClassName = style(debugClassName('top-anchor-icon'), {
+  fontSize: '1.5em'
+})
+// #endregion style
 
 export function animationProgress(startTime: number, duration: number): number {
   if (!duration) {
@@ -26,12 +45,12 @@ export function ease(x: number): number {
   return x < 0.5 ? Math.pow(x, 2) * 2 : (4 - x * 2) * x - 1
 }
 
-export function updateTopAnchorStatus(element: HTMLAnchorElement): void {
+export function updateTopAnchorStatus(element: HTMLAnchorElement, klass: string): void {
   if (!element) {
     return
   }
 
-  element.setAttribute('data-hidden', (window.pageYOffset === 0).toString())
+  element.classList.toggle(klass, window.pageYOffset === 0)
 }
 
 export function scrollToTop(ev: MouseEvent, duration: number): void {
@@ -69,45 +88,33 @@ export function scrollToTop(ev: MouseEvent, duration: number): void {
   animate()
 }
 
+export interface TopAnchorProps {
+  duration?: number
+  backgroundColor?: string
+  foregroundColor?: string
+  className?: string
+}
+
 export const TopAnchor = createMemoizedComponent('TopAnchor', function ({
   duration,
   backgroundColor,
-  foregroundColor
+  foregroundColor,
+  className
 }: TopAnchorProps): JSX.Element {
-  const className: string = style(
-    debugClassName('top-anchor'),
-    {
-      width: em(4),
-      height: em(4),
-      bottom: rem(2),
-      right: rem(2),
-      padding: rem(1),
-      position: 'fixed',
-      zIndex: 101,
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      backgroundColor: backgroundColor ?? colorGrey600,
-      color: foregroundColor ?? colorWhite,
-      borderRadius: rem(0.5),
-      opacity: 0.5,
-      transition: 'opacity 0.2s ease',
-      $nest: {
-        '&[data-hidden=true]': { display: 'none' },
-        '&:hover': { opacity: 1, color: foregroundColor ?? colorWhite },
-        '&:focus, &:active, &:visited': { color: foregroundColor ?? colorWhite },
-        '& svg, & .fa': { fontSize: em(2.5) }
-      }
-    },
-    media({ maxWidth: maxWidth45x }, { width: em(3), height: em(3) }),
-    media({ maxHeight: maxHeight6xx }, { width: em(3), height: em(3) })
-  )
+  const topAnchorClassName = style(debugClassName('top-anchor'), {
+    backgroundColor: backgroundColor ?? colorGrey600,
+    color: foregroundColor ?? colorWhite,
+    $nest: {
+      '&:hover': { opacity: 1, color: foregroundColor ?? colorWhite },
+      '&:focus, &:active, &:visited': { color: foregroundColor ?? colorWhite }
+    }
+  })
 
   const element = useRef<HTMLAnchorElement>(null)
 
   const handleScroll = useCallback(() => {
-    updateTopAnchorStatus(element.current!)
-  }, [element])
+    updateTopAnchorStatus(element.current!, topAnchorHiddenClassName)
+  }, [element, topAnchorHiddenClassName])
 
   const handleScrollToTop = useCallback(
     (ev: MouseEvent) => {
@@ -131,23 +138,30 @@ export const TopAnchor = createMemoizedComponent('TopAnchor', function ({
   }, [])
 
   return (
-    <a id="topAnchor" ref={element} className={className} onClick={handleScrollToTop} href="#top" title="Top">
-      <Icon name="arrow-up" />
+    <a
+      id="topAnchor"
+      ref={element}
+      className={classes(topAnchorBaseClassName, topAnchorClassName, className)}
+      onClick={handleScrollToTop}
+      href="#top"
+      title="Top"
+    >
+      <Icon name="arrow-up" className={topAnchorIconClassName} />
     </a>
   )
 })
 
 export const TopAnchorSSR: string = `
   document.addEventListener('DOMContentLoaded', function(){
-    ${ease}
-    ${animationProgress}
-    ${updateTopAnchorStatus}
-    ${scrollToTop}
+    ${ease};
+    ${animationProgress};
+    ${updateTopAnchorStatus};
+    ${scrollToTop};
 
-    const element = document.getElementById('topAnchor')
+    const element = document.getElementById('topAnchor');
 
-    element.addEventListener('click', scrollToTop, false)
-    window.addEventListener('scroll', function(){ updateTopAnchorStatus(element); }, false)
-    updateTopAnchorStatus(element)
+    element.addEventListener('click', scrollToTop, false);
+    window.addEventListener('scroll', () => updateTopAnchorStatus(element, '${topAnchorHiddenClassName}'), false);
+    updateTopAnchorStatus(element, '${topAnchorHiddenClassName}');
   });
 `
