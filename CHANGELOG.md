@@ -1,3 +1,7 @@
+### 2020-06-15 / 2.0.0
+
+- feat: Removed CSX and simplified styles. Allow className everywhere.
+
 ### 2020-06-10 / 1.10.5
 
 - fix: Disable ribbon on smaller screens.
