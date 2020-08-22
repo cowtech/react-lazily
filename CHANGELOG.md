@@ -1,3 +1,7 @@
+### 2020-08-22 / 2.2.0
+
+- feat: Added CSSVarName.
+
 ### 2020-08-22 / 2.1.0
 
 - feat: Added linkStyle and onServer.
