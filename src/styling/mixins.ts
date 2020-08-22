@@ -23,3 +23,26 @@ export function debugClassName($debugName: string, force?: boolean): NestedCSSPr
     return { $debugName }
   }
 }
+
+export function linkStyle(
+  normalStyle: NestedCSSProperties | string,
+  hoverStyle: NestedCSSProperties | string,
+  normalNestSelector: string = '&:focus, &:active, &:visited',
+  hoverNestSelector: string = '&:hover'
+): NestedCSSProperties {
+  if (typeof normalStyle === 'string') {
+    normalStyle = { color: normalStyle }
+  }
+
+  if (typeof hoverStyle === 'string') {
+    hoverStyle = { color: hoverStyle }
+  }
+
+  return {
+    ...normalStyle,
+    $nest: {
+      [normalNestSelector]: normalStyle,
+      [hoverNestSelector]: hoverStyle
+    }
+  }
+}
