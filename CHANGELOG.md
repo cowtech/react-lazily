@@ -1,3 +1,7 @@
+### 2020-08-22 / 2.1.0
+
+- feat: Added linkStyle and onServer.
+
 ### 2020-06-15 / 2.0.0
 
 - feat: Removed CSX and simplified styles. Allow className everywhere.
