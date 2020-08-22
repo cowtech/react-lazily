@@ -2,6 +2,8 @@ import { NestedCSSProperties } from 'typestyle/lib/types'
 import { colorGrey300, colorGrey500, colorWhite } from './colors'
 import { env } from './environment'
 
+export type CSSVarName = keyof NestedCSSProperties
+
 export const centeredContentsStyle: NestedCSSProperties = {
   width: '90%',
   maxWidth: '120rem',
