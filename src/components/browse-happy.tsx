@@ -56,7 +56,6 @@ export interface BrowseHappyProps {
   className?: string
 }
 
-// TODO@PI: For this, MadeInItaly, NewVersionChecker and TopAnchor - Use a portal to append to body directly when not in SSR
 export const BrowseHappy = createMemoizedComponent('BrowseHappy', function ({
   message,
   className
