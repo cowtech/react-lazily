@@ -1,3 +1,7 @@
+### 2020-08-30 / 2.3.0
+
+- feat: Version bump.
+
 ### 2020-08-30 / 2.2.2
 
 - feat: Render generic components inside a portal.
