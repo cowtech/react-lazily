@@ -15,7 +15,7 @@
   "scripts": {
     "lint": "eslint src/*.ts src/**/*.ts src/**/*.tsx",
     "prebuild": "rm -rf lib/* types/* && yarn lint",
-    "build": "tsc -p . && cp src/utils/sitemap.d.ts types/utils",
+    "build": "tsc -p . && echo '' >> types/index.d.ts && cat src/utils/sitemap.d.ts >> types/index.d.ts",
     "postpublish1": "git push origin && git push origin -f --tags",
     "update:normalize": "node scripts/update-normalize.js"
   },
