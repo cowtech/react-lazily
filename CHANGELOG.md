@@ -1,3 +1,7 @@
+### 2020-08-30 / 2.3.1
+
+- fix: Fix sitemap exporting.
+
 ### 2020-08-30 / 2.3.0
 
 - feat: Version bump.
