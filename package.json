@@ -33,11 +33,13 @@
   "peerDependencies": {
     "idb-keyval": "^3.2.0",
     "react": "^16.13.1",
+    "react-dom": "^16.13.1",
     "typestyle": "^2.1.0"
   },
   "devDependencies": {
     "@cowtech/eslint-config": "^6.9.2",
     "@types/react": "^16.9.36",
+    "@types/react-dom": "^16.9.8",
     "got": "^11.3.0",
     "idb-keyval": "^3.2.0",
     "normalize.css": "^8.0.1",

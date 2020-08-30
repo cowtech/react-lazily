@@ -1,6 +1,8 @@
 import React, { ReactNode } from 'react'
+import { createPortal } from 'react-dom'
 import { classes, style } from 'typestyle'
 import { colorGrey500, colorGrey800 } from '../styling/colors'
+import { onServer } from '../styling/environment'
 import { debugClassName } from '../styling/mixins'
 import { createMemoizedComponent } from '../utils/dom-utils'
 
@@ -66,5 +68,7 @@ export const Ribbon = createMemoizedComponent('Ribbon', function ({
 }: RibbonProps): JSX.Element {
   const positionClassName = ribbonPositionsClassesNames[position!] ?? ribbonPositionsClassesNames['top-right']
 
-  return <div className={classes(ribbonBaseClassName, positionClassName, className)}>{children}</div>
+  const contents = <div className={classes(ribbonBaseClassName, positionClassName, className)}>{children}</div>
+
+  return onServer ? contents : createPortal(contents, document.getElementById('rl-modal-root')!)
 })

@@ -1,6 +1,8 @@
 import React from 'react'
+import { createPortal } from 'react-dom'
 import { classes, style } from 'typestyle'
 import { colorAmber200, colorAmber500, colorRed700, colorWhite } from '../styling/colors'
+import { onServer } from '../styling/environment'
 import { debugClassName } from '../styling/mixins'
 import { createMemoizedComponent } from '../utils/dom-utils'
 
@@ -61,7 +63,7 @@ export const BrowseHappy = createMemoizedComponent('BrowseHappy', function ({
 }: BrowseHappyProps): JSX.Element | null {
   message = message ?? 'Your browser is obsolete. For the best browsing experience, update it for free by visiting'
 
-  return (
+  const contents = (
     <div
       id="browseHappy"
       className={classes(browseHappyClassName, typeof window === 'undefined' && browseHappyHiddenClassName, className)}
@@ -73,6 +75,8 @@ export const BrowseHappy = createMemoizedComponent('BrowseHappy', function ({
       .
     </div>
   )
+
+  return onServer ? contents : createPortal(contents, document.getElementById('rl-modal-root')!)
 })
 
 export const BrowseHappySSR: string = `
