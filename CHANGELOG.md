@@ -1,3 +1,7 @@
+### 2020-08-30 / 2.2.2
+
+- feat: Render generic components inside a portal.
+
 ### 2020-08-23 / 2.2.1
 
 - fix: Added missing export.
