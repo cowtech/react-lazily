@@ -1,3 +1,7 @@
+### 2021-01-02 / 2.4.1
+
+- fix: Format fix.
+
 ### 2021-01-02 / 2.4.0
 
 - chore: Updated dependencies, code and tools.
