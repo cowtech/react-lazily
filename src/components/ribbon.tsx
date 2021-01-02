@@ -61,14 +61,13 @@ export interface RibbonProps {
   children?: ReactNode
 }
 
-export const Ribbon = createMemoizedComponent('Ribbon', function ({
-  position,
-  className,
-  children
-}: RibbonProps): JSX.Element {
-  const positionClassName = ribbonPositionsClassesNames[position!] ?? ribbonPositionsClassesNames['top-right']
+export const Ribbon = createMemoizedComponent(
+  'Ribbon',
+  function ({ position, className, children }: RibbonProps): JSX.Element {
+    const positionClassName = ribbonPositionsClassesNames[position!] ?? ribbonPositionsClassesNames['top-right']
 
-  const contents = <div className={classes(ribbonBaseClassName, positionClassName, className)}>{children}</div>
+    const contents = <div className={classes(ribbonBaseClassName, positionClassName, className)}>{children}</div>
 
-  return onServer ? contents : createPortal(contents, document.getElementById('rl-modal-root')!)
-})
+    return onServer ? contents : createPortal(contents, document.getElementById('rl-modal-root')!)
+  }
+)

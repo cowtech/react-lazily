@@ -56,27 +56,36 @@ export interface BrowseHappyProps {
   className?: string
 }
 
-export const BrowseHappy = createMemoizedComponent('BrowseHappy', function ({
-  message,
-  className
-}: BrowseHappyProps): JSX.Element | null {
-  message = message ?? 'Your browser is obsolete. For the best browsing experience, update it for free by visiting'
+export const BrowseHappy = createMemoizedComponent(
+  'BrowseHappy',
+  function ({ message, className }: BrowseHappyProps): JSX.Element | null {
+    message = message ?? 'Your browser is obsolete. For the best browsing experience, update it for free by visiting'
 
-  const contents = (
-    <div
-      id="browseHappy"
-      className={classes(browseHappyClassName, typeof window === 'undefined' && browseHappyHiddenClassName, className)}
-    >
-      <span>{message}&nbsp;</span>
-      <a href="https://browsehappy.com/" target="_blank" rel="noopener noreferrer" className={browseHappyLinkClassName}>
-        BrowseHappy
-      </a>
-      .
-    </div>
-  )
+    const contents = (
+      <div
+        id="browseHappy"
+        className={classes(
+          browseHappyClassName,
+          typeof window === 'undefined' && browseHappyHiddenClassName,
+          className
+        )}
+      >
+        <span>{message}&nbsp;</span>
+        <a
+          href="https://browsehappy.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className={browseHappyLinkClassName}
+        >
+          BrowseHappy
+        </a>
+        .
+      </div>
+    )
 
-  return onServer ? contents : createPortal(contents, document.getElementById('rl-modal-root')!)
-})
+    return onServer ? contents : createPortal(contents, document.getElementById('rl-modal-root')!)
+  }
+)
 
 export const BrowseHappySSR: string = `
   document.addEventListener('DOMContentLoaded', function() {

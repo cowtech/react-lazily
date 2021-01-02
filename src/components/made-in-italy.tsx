@@ -22,15 +22,15 @@ export const madeInItalyLinkClassName = style(debugClassName('made-in-italy-link
 })
 // #endregion style
 
-export const MadeInItaly = createMemoizedComponent('MadeInItaly', function ({
-  position,
-  className
-}: RibbonProps): JSX.Element {
-  return (
-    <Ribbon className={classes(madeInItalyClassName, className)} position={position}>
-      <a className={madeInItalyLinkClassName} href="http://www.italia.it" target="_blank" rel="noopener noreferrer">
-        Made by a proud Italian!
-      </a>
-    </Ribbon>
-  )
-})
+export const MadeInItaly = createMemoizedComponent(
+  'MadeInItaly',
+  function ({ position, className }: RibbonProps): JSX.Element {
+    return (
+      <Ribbon className={classes(madeInItalyClassName, className)} position={position}>
+        <a className={madeInItalyLinkClassName} href="http://www.italia.it" target="_blank" rel="noopener noreferrer">
+          Made by a proud Italian!
+        </a>
+      </Ribbon>
+    )
+  }
+)

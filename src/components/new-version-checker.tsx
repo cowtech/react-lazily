@@ -67,45 +67,43 @@ export interface NewVersionCheckerState {
   newVersionAvailable: boolean
 }
 
-export const NewVersionChecker = createMemoizedComponent('NewVersionChecker', function ({
-  currentVersion,
-  message,
-  className,
-  action
-}: NewVersionCheckerProps): JSX.Element | null {
-  const [newVersionAvailable, setNewVersionAvailable] = useState(false)
+export const NewVersionChecker = createMemoizedComponent(
+  'NewVersionChecker',
+  function ({ currentVersion, message, className, action }: NewVersionCheckerProps): JSX.Element | null {
+    const [newVersionAvailable, setNewVersionAvailable] = useState(false)
 
-  useEffect(() => {
-    listenForUpdates(currentVersion, () => setNewVersionAvailable(true))
-  }, [])
+    useEffect(() => {
+      listenForUpdates(currentVersion, () => setNewVersionAvailable(true))
+    }, [])
 
-  // The check on window is for SSR
-  if (typeof window !== 'undefined' && !newVersionAvailable) {
-    return null
+    // The check on window is for SSR
+    if (typeof window !== 'undefined' && !newVersionAvailable) {
+      return null
+    }
+
+    message = message ?? 'There is a shiny new version.'
+    action = action ?? 'Update now!'
+
+    const contents = (
+      <div
+        id="newVersionChecker"
+        className={classes(
+          newVersionCheckerClassName,
+          (typeof window === 'undefined' || !newVersionAvailable) && newVersionCheckerHiddenClassName,
+          className
+        )}
+        data-current-version={currentVersion}
+      >
+        <span>{message}&nbsp;</span>
+        <a href="#" onClick={updateVersion} className={newVersionCheckerLinkClassName}>
+          {action}
+        </a>
+      </div>
+    )
+
+    return onServer ? contents : createPortal(contents, document.getElementById('rl-modal-root')!)
   }
-
-  message = message ?? 'There is a shiny new version.'
-  action = action ?? 'Update now!'
-
-  const contents = (
-    <div
-      id="newVersionChecker"
-      className={classes(
-        newVersionCheckerClassName,
-        (typeof window === 'undefined' || !newVersionAvailable) && newVersionCheckerHiddenClassName,
-        className
-      )}
-      data-current-version={currentVersion}
-    >
-      <span>{message}&nbsp;</span>
-      <a href="#" onClick={updateVersion} className={newVersionCheckerLinkClassName}>
-        {action}
-      </a>
-    </div>
-  )
-
-  return onServer ? contents : createPortal(contents, document.getElementById('rl-modal-root')!)
-})
+)
 
 export const NewVersionCheckerSSR: string = `
   document.addEventListener('DOMContentLoaded', function(){

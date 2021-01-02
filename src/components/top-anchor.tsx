@@ -97,63 +97,61 @@ export interface TopAnchorProps {
   className?: string
 }
 
-export const TopAnchor = createMemoizedComponent('TopAnchor', function ({
-  duration,
-  backgroundColor,
-  foregroundColor,
-  className
-}: TopAnchorProps): JSX.Element {
-  const topAnchorClassName = style(debugClassName('top-anchor'), {
-    backgroundColor: backgroundColor ?? colorGrey600,
-    color: foregroundColor ?? colorWhite,
-    $nest: {
-      '&:hover': { opacity: 1, color: foregroundColor ?? colorWhite },
-      '&:focus, &:active, &:visited': { color: foregroundColor ?? colorWhite }
-    }
-  })
+export const TopAnchor = createMemoizedComponent(
+  'TopAnchor',
+  function ({ duration, backgroundColor, foregroundColor, className }: TopAnchorProps): JSX.Element {
+    const topAnchorClassName = style(debugClassName('top-anchor'), {
+      backgroundColor: backgroundColor ?? colorGrey600,
+      color: foregroundColor ?? colorWhite,
+      $nest: {
+        '&:hover': { opacity: 1, color: foregroundColor ?? colorWhite },
+        '&:focus, &:active, &:visited': { color: foregroundColor ?? colorWhite }
+      }
+    })
 
-  const element = useRef<HTMLAnchorElement>(null)
+    const element = useRef<HTMLAnchorElement>(null)
 
-  const handleScroll = useCallback(() => {
-    updateTopAnchorStatus(element.current!, topAnchorHiddenClassName)
-  }, [element, topAnchorHiddenClassName])
+    const handleScroll = useCallback(() => {
+      updateTopAnchorStatus(element.current!, topAnchorHiddenClassName)
+    }, [element, topAnchorHiddenClassName])
 
-  const handleScrollToTop = useCallback(
-    (ev: MouseEvent) => {
-      scrollToTop(ev, duration!)
-    },
-    [duration]
-  )
+    const handleScrollToTop = useCallback(
+      (ev: MouseEvent) => {
+        scrollToTop(ev, duration!)
+      },
+      [duration]
+    )
 
-  // Handle events
-  useEffect(() => {
-    // Register the scroll event
-    window.addEventListener('scroll', handleScroll, false)
+    // Handle events
+    useEffect(() => {
+      // Register the scroll event
+      window.addEventListener('scroll', handleScroll, false)
 
-    // Perform the first update
-    handleScroll()
+      // Perform the first update
+      handleScroll()
 
-    // Remove event binding upon exist
-    return () => {
-      window.removeEventListener('scroll', handleScroll, false)
-    }
-  }, [])
+      // Remove event binding upon exist
+      return () => {
+        window.removeEventListener('scroll', handleScroll, false)
+      }
+    }, [])
 
-  const contents = (
-    <a
-      id="topAnchor"
-      ref={element}
-      className={classes(topAnchorBaseClassName, topAnchorClassName, className)}
-      onClick={handleScrollToTop}
-      href="#top"
-      title="Top"
-    >
-      <Icon name="arrow-up" className={topAnchorIconClassName} />
-    </a>
-  )
+    const contents = (
+      <a
+        id="topAnchor"
+        ref={element}
+        className={classes(topAnchorBaseClassName, topAnchorClassName, className)}
+        onClick={handleScrollToTop}
+        href="#top"
+        title="Top"
+      >
+        <Icon name="arrow-up" className={topAnchorIconClassName} />
+      </a>
+    )
 
-  return onServer ? contents : createPortal(contents, document.getElementById('rl-modal-root')!)
-})
+    return onServer ? contents : createPortal(contents, document.getElementById('rl-modal-root')!)
+  }
+)
 
 export const TopAnchorSSR: string = `
   document.addEventListener('DOMContentLoaded', function(){
