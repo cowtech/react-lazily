@@ -1,3 +1,7 @@
+### 2021-01-02 / 2.4.0
+
+- chore: Updated dependencies, code and tools.
+
 ### 2020-08-30 / 2.3.1
 
 - fix: Fix sitemap exporting.
