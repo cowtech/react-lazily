@@ -34,26 +34,25 @@ declare const ICONS: Icons
 export interface IconProps {
   name: string
   className?: string
-  onClick?(): void
+  onClick?: () => void
 }
 
-export const Icon = createMemoizedComponent('Icon', function ({
-  name,
-  className,
-  onClick
-}: IconProps): JSX.Element | null {
-  const icon = ICONS.tags[name]
+export const Icon = createMemoizedComponent(
+  'Icon',
+  function ({ name, className, onClick }: IconProps): JSX.Element | null {
+    const icon = ICONS.tags[name]
 
-  if (!icon) {
-    throw new Error(`Missing icon ${name}.`)
+    if (!icon) {
+      throw new Error(`Missing icon ${name}.`)
+    }
+
+    return (
+      <svg className={classes(iconClassName, `Icon-${name}`, className)} onClick={onClick}>
+        <use xlinkHref={`#${icon.toString()}`} />
+      </svg>
+    )
   }
-
-  return (
-    <svg className={classes(iconClassName, `Icon-${name}`, className)} onClick={onClick}>
-      <use xlinkHref={`#${icon.toString()}`} />
-    </svg>
-  )
-})
+)
 
 export const IconsDefinitions = createMemoizedComponent('IconsDefinitions', function (): JSX.Element {
   return (
