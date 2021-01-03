@@ -1,3 +1,7 @@
+### 2021-01-03 / 2.4.2
+
+- chore: Updated linter config.
+
 ### 2021-01-02 / 2.4.1
 
 - fix: Format fix.
