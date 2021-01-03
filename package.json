@@ -38,7 +38,7 @@
     "typestyle": "^2.1.0"
   },
   "devDependencies": {
-    "@cowtech/eslint-config": "^7.12.2",
+    "@cowtech/eslint-config": "^7.14.0",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
     "got": "^11.8.1",
