@@ -4,7 +4,7 @@
     "module": "es6",
     "moduleResolution": "node",
     "jsx": "react",
-    "outDir": "lib",
+    "outDir": "dist/cjs",
     "declarationDir": "types",
     "allowJs": false,
     "allowSyntheticDefaultImports": true,
@@ -14,7 +14,6 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "strictNullChecks": true,
-    "baseUrl": ".",
     "declaration": true
   },
   "include": ["src/**/*.tsx", "src/**/*.ts"],

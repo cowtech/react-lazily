@@ -16,18 +16,23 @@
   "private": false,
   "files": [
     "images",
-    "lib",
+    "dist",
     "types",
-    "README.md",
-    "CHANGELOG.md"
+    "CHANGELOG.md",
+    "LICENSE.md",
+    "README.md"
   ],
-  "main": "./lib/index.js",
+  "main": "dist/cjs/index.js",
+  "exports": {
+    "require": "./dist/cjs/index.js",
+    "import": "./dist/mjs/index.mjs"
+  },
   "typings": "types/index.d.ts",
   "types": "types/index.d.ts",
   "scripts": {
     "lint": "eslint src/*.ts src/**/*.ts src/**/*.tsx",
-    "prebuild": "rm -rf lib/* types/* && yarn lint",
-    "build": "tsc -p . && echo '' >> types/index.d.ts && cat src/utils/sitemap.d.ts >> types/index.d.ts",
+    "prebuild": "rm -rf dist types && yarn lint",
+    "build": "tsc -p . && tsc -p tsconfig.modules.json && renamer --find js --replace mjs dist/mjs/* dist/mjs/**/* >> /dev/null && jscodeshift -s --extensions=mjs -t node_modules/@cowtech/esm-package-utils dist/mjs/** && echo '' >> types/index.d.ts && cat src/utils/sitemap.d.ts >> types/index.d.ts",
     "postpublish": "git push origin && git push origin -f --tags",
     "update:normalize": "node scripts/update-normalize.js"
   },
@@ -39,6 +44,7 @@
   },
   "devDependencies": {
     "@cowtech/eslint-config": "^7.14.0",
+    "@cowtech/esm-package-utils": "^0.2.0",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
     "got": "^11.8.1",

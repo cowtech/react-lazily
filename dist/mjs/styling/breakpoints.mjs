@@ -1,0 +1,16 @@
+export const maxWidth38x = 380;
+export const maxWidth45x = 450;
+export const maxWidth6xx = 600;
+export const maxWidth7xx = 700;
+export const maxWidth8xx = 800;
+export const maxHeight6xx = 600;
+export const maxHeight8xx = 800;
+export const maxWidth11xx = 1100;
+export const queryMaxWidth38x = `(max-width: ${maxWidth38x}px)`;
+export const queryMaxWidth45x = `(max-width: ${maxWidth45x}px)`;
+export const queryMaxWidth6xx = `(max-width: ${maxWidth6xx}px)`;
+export const queryMaxWidth7xx = `(max-width: ${maxWidth7xx}px)`;
+export const queryMaxWidth8xx = `(max-width: ${maxWidth8xx}px)`;
+export const queryMaxHeight6xx = `(max-height: ${maxHeight6xx}px)`;
+export const queryMaxHeight8xx = `(max-height: ${maxHeight8xx}px)`;
+export const queryMaxWidth11xx = `(max-width: ${maxWidth11xx}px)`;
