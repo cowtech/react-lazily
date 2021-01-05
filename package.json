@@ -24,8 +24,14 @@
   ],
   "main": "dist/cjs/index.js",
   "exports": {
-    "require": "./dist/cjs/index.js",
-    "import": "./dist/mjs/index.mjs"
+    ".": {
+      "require": "./dist/cjs/index.js",
+      "import": "./dist/mjs/index.mjs"
+    },
+    "./images/cowtech.png": "./images/cowtech.png",
+    "./images/favicon-32.png": "./images/favicon-32.png",
+    "./images/favicon-192.png": "./images/favicon-192.png",
+    "./images/favicon-196.png": "./images/favicon-196.png"
   },
   "typings": "types/index.d.ts",
   "types": "types/index.d.ts",
