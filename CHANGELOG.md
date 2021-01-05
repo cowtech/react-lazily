@@ -1,3 +1,8 @@
+### 2021-01-05 / 2.5.1
+
+- chore: Rebuild.
+- fix: Bugfix.
+
 ### 2021-01-04 / 2.5.0
 
 - feat: Export as ESM.
