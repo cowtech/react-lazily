@@ -1,3 +1,7 @@
+### 2021-03-03 / 2.6.0
+
+- chore: Updated dependencies.
+
 ### 2021-01-05 / 2.5.1
 
 - chore: Rebuild.
