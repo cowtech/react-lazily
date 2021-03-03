@@ -1,7 +1,7 @@
-import { del, get, set, Store } from 'idb-keyval';
+import { createStore, del, get, set } from 'idb-keyval';
 export let idbStore;
 export function setupStorage(database, store) {
-    idbStore = new Store(database, store);
+    idbStore = createStore(database, store);
     return idbStore;
 }
 export async function getStorageValue(key) {

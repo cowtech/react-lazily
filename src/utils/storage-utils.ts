@@ -1,13 +1,13 @@
-import { del, get, set, Store } from 'idb-keyval'
+import { createStore, del, get, set, UseStore } from 'idb-keyval'
 
-export let idbStore: Store
+export let idbStore: UseStore
 
-export function setupStorage(database: string, store: string): Store {
-  idbStore = new Store(database, store)
+export function setupStorage(database: string, store: string): UseStore {
+  idbStore = createStore(database, store)
   return idbStore
 }
 
-export async function getStorageValue<T = string>(key: string): Promise<T | null> {
+export async function getStorageValue<T = string>(key: string): Promise<T | null | undefined> {
   return get(key, idbStore)
 }
 

@@ -37,7 +37,7 @@
   "types": "types/index.d.ts",
   "scripts": {
     "lint": "eslint src/*.ts src/**/*.ts src/**/*.tsx",
-    "prebuild": "rm -rf dist types && yarn lint",
+    "prebuild": "rm -rf dist types && npm run lint",
     "build": "tsc -p . && tsc -p tsconfig.modules.json && renamer --find js --replace mjs dist/mjs/* dist/mjs/**/* >> /dev/null && jscodeshift -s --extensions=mjs -t node_modules/@cowtech/esm-package-utils dist/mjs/** && echo '' >> types/index.d.ts && cat src/utils/sitemap.d.ts >> types/index.d.ts",
     "postpublish": "git push origin && git push origin -f --tags",
     "update:normalize": "node scripts/update-normalize.js"
@@ -51,15 +51,15 @@
   "devDependencies": {
     "@cowtech/eslint-config": "^7.14.0",
     "@cowtech/esm-package-utils": "^0.2.0",
-    "@types/react": "^17.0.0",
-    "@types/react-dom": "^17.0.0",
-    "got": "^11.8.1",
-    "idb-keyval": "^3.2.0",
+    "@types/react": "^17.0.2",
+    "@types/react-dom": "^17.0.1",
+    "got": "^11.8.2",
+    "idb-keyval": "^5.0.4",
     "normalize.css": "^8.0.1",
     "prettier": "^2.2.1",
     "prop-types": "^15.7.2",
     "react": "^17.0.1",
-    "typescript": "^4.1.3",
+    "typescript": "^4.2.2",
     "typestyle": "^2.1.0"
   },
   "engines": {
