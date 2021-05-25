@@ -1,3 +1,8 @@
+### 2021-05-25 / 3.0.0-alpha.1
+
+- feat: Use fela for styling.
+- chore: Removed ignored files.
+
 ### 2021-03-03 / 2.6.0
 
 - chore: Updated dependencies.
