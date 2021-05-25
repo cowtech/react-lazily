@@ -1,19 +1,56 @@
+import { TKeyFrame } from 'fela'
 import React from 'react'
-import { classes, keyframes, style } from 'typestyle'
+import { useFela } from 'react-fela'
 import { colorBlack } from '../styling/colors'
-import { debugClassName } from '../styling/mixins'
+import { Style } from '../styling/environment'
 import { createMemoizedComponent } from '../utils/dom-utils'
 
 // #region style
-export const spinnerClassName = style(debugClassName('spinner'), {
+export const spinnerStyles: Style = {
   margin: 'auto'
-})
+}
 
-export const spinnerCircleBaseClassName = style(debugClassName('spinner-base-circle'), {
+export const spinnerCircleBaseStyles: Style = {
   fill: 'transparent',
   strokeLinecap: 'round',
   transformOrigin: 'center'
-})
+}
+
+/* Adapted from here: https://tech.scrunch.com/blog/creating-an-animated-svg-spinner/ */
+function animation({ size }: { size: number }): Style {
+  return {
+    '0%': { strokeDashoffset: size * 0.66, transform: 'rotate(0deg)' },
+    '50%': { strokeDashoffset: size * 3.14, transform: 'rotate(720deg)' },
+    '100%': { strokeDashoffset: size * 0.66, transform: 'rotate(1080deg)' }
+  }
+}
+
+function spinnerImageStyles({ remSize }: { remSize: string }): Style {
+  return { width: remSize, height: remSize }
+}
+
+function spinnerCircleStyles({
+  animation,
+  size,
+  remSize,
+  stroke,
+  color
+}: {
+  animation: string
+  size: number
+  remSize: string
+  stroke: number
+  color?: string
+}): Style {
+  return {
+    width: remSize,
+    height: remSize,
+    stroke: color ?? colorBlack,
+    strokeWidth: stroke,
+    strokeDasharray: size * 3.14,
+    animation: `${animation} 2s linear infinite`
+  }
+}
 // #endregion style
 
 export interface SpinnerProps {
@@ -21,38 +58,20 @@ export interface SpinnerProps {
   stroke?: number
   color?: string
   text?: string
-  className?: string
+  additionalStyles?: Style
 }
 
 export const Spinner = createMemoizedComponent('Spinner', function (props: SpinnerProps): JSX.Element {
+  const { css, renderer } = useFela()
+
   const size = props.size ?? 66
   const stroke = props.stroke ?? 6
   const remSize = `${size / 10}rem`
-
-  /* Adapted from here: https://tech.scrunch.com/blog/creating-an-animated-svg-spinner/ */
-  const animation = keyframes({
-    '0%': { strokeDashoffset: size * 0.66, transform: 'rotate(0deg)' },
-    '50%': { strokeDashoffset: size * 3.14, transform: 'rotate(720deg)' },
-    '100%': { strokeDashoffset: size * 0.66, transform: 'rotate(1080deg)' }
-  })
-
-  const spinnerImageClassName = style(debugClassName('spinner-image'), {
-    width: remSize,
-    height: remSize
-  })
-
-  const spinnerCircleClassName = style(debugClassName('spinner'), {
-    width: remSize,
-    height: remSize,
-    stroke: props.color ?? colorBlack,
-    strokeWidth: stroke,
-    strokeDasharray: [size * 3.14],
-    animation: `${animation} 2s linear infinite`
-  })
+  const animationName = renderer.renderKeyframe(animation as TKeyFrame<{ size: number }>, { size })
 
   return (
-    <main className={classes(spinnerClassName, props.className)}>
-      <svg viewBox={`0 0 ${size} ${size}`} className={spinnerImageClassName}>
+    <main className={css(spinnerStyles, props.additionalStyles ?? {})}>
+      <svg viewBox={`0 0 ${size} ${size}`} className={css(spinnerImageStyles({ remSize }))}>
         <circle
           fill="none"
           strokeWidth="6"
@@ -60,7 +79,10 @@ export const Spinner = createMemoizedComponent('Spinner', function (props: Spinn
           cx={size / 2}
           cy={size / 2}
           r={(size - stroke) / 2}
-          className={classes(spinnerCircleBaseClassName, spinnerCircleClassName)}
+          className={css(
+            spinnerCircleBaseStyles,
+            spinnerCircleStyles({ animation: animationName, size, remSize, stroke, color: props.color })
+          )}
         />
       </svg>
       {props.text && <h3>{props.text}</h3>}

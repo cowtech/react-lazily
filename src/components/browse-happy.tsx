@@ -1,13 +1,13 @@
 import React from 'react'
 import { createPortal } from 'react-dom'
-import { classes, style } from 'typestyle'
+import { useFela } from 'react-fela'
 import { colorAmber200, colorAmber500, colorRed700, colorWhite } from '../styling/colors'
-import { onServer } from '../styling/environment'
-import { debugClassName } from '../styling/mixins'
+import { onServer, Style } from '../styling/environment'
 import { createMemoizedComponent } from '../utils/dom-utils'
 
 // #region style
-export const browseHappyClassName = style(debugClassName('browse-happy'), {
+export const browseHappyStyles: Style = {
+  display: 'none',
   width: '100%',
   position: 'fixed',
   bottom: 0,
@@ -20,21 +20,13 @@ export const browseHappyClassName = style(debugClassName('browse-happy'), {
   paddingLeft: 'calc(1rem + env(safe-area-inset-left))',
   paddingRight: 'calc(1rem + env(safe-area-inset-right))',
   textAlign: 'center'
-})
+}
 
-export const browseHappyHiddenClassName = style(debugClassName('browse-happy-hidden'), {
-  $unique: true,
-  display: 'none'
-})
-
-export const browseHappyLinkClassName = style(debugClassName('browse-happy-link'), {
-  $unique: true,
+export const browseHappyLinkStyles: Style = {
   color: colorAmber500,
   fontWeight: 'bold',
-  $nest: {
-    '&:hover, &:focus, &:active': { color: colorAmber200 }
-  }
-})
+  '&:hover, &:focus, &:active': { color: colorAmber200 }
+}
 // #endregion style
 
 export function isModernBrowser(): boolean {
@@ -53,29 +45,24 @@ export function isModernBrowser(): boolean {
 
 export interface BrowseHappyProps {
   message?: string
-  className?: string
+  additionalStyles?: Style
 }
 
 export const BrowseHappy = createMemoizedComponent(
   'BrowseHappy',
-  function ({ message, className }: BrowseHappyProps): JSX.Element | null {
+  function ({ message, additionalStyles }: BrowseHappyProps): JSX.Element | null {
+    const { css } = useFela()
+
     message = message ?? 'Your browser is obsolete. For the best browsing experience, update it for free by visiting'
 
     const contents = (
-      <div
-        id="browseHappy"
-        className={classes(
-          browseHappyClassName,
-          typeof window === 'undefined' && browseHappyHiddenClassName,
-          className
-        )}
-      >
+      <div id="browseHappy" className={css(browseHappyStyles, additionalStyles ?? {})}>
         <span>{message}&nbsp;</span>
         <a
           href="https://browsehappy.com/"
           target="_blank"
           rel="noopener noreferrer"
-          className={browseHappyLinkClassName}
+          className={css(browseHappyLinkStyles)}
         >
           BrowseHappy
         </a>
@@ -96,7 +83,7 @@ export const BrowseHappySSR: string = `
     if(isModernBrowser()) {
       element.remove();
     } else {
-      element.classList.remove('${browseHappyHiddenClassName}');
+      element.style.display = 'block';
     }
   });
 `

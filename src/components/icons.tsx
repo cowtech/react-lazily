@@ -1,10 +1,10 @@
 import React from 'react'
-import { classes, style } from 'typestyle'
-import { debugClassName } from '../styling/mixins'
+import { useFela } from 'react-fela'
+import { Style } from '../styling/environment'
 import { createMemoizedComponent } from '../utils/dom-utils'
 
 // #region style
-export const iconClassName = style(debugClassName('icon'), {
+export const iconStyles: Style = {
   width: '1em',
   height: '1em',
   display: 'inline-block',
@@ -12,15 +12,15 @@ export const iconClassName = style(debugClassName('icon'), {
   strokeWidth: 0,
   stroke: 'currentColor',
   fill: 'currentColor'
-})
+}
 
-export const iconsDefinitionsClassName = style(debugClassName('icons-definitions'), {
+export const iconsDefinitionsStyles: Style = {
   width: 0,
   height: 0,
   display: 'none',
   position: 'absolute',
   overflow: 'hidden'
-})
+}
 // #endregion style
 
 interface Icons {
@@ -33,13 +33,14 @@ declare const ICONS: Icons
 
 export interface IconProps {
   name: string
-  className?: string
+  additionalStyles?: Style
   onClick?: () => void
 }
 
 export const Icon = createMemoizedComponent(
   'Icon',
-  function ({ name, className, onClick }: IconProps): JSX.Element | null {
+  function ({ name, additionalStyles, onClick }: IconProps): JSX.Element | null {
+    const { css } = useFela()
     const icon = ICONS.tags[name]
 
     if (!icon) {
@@ -47,7 +48,7 @@ export const Icon = createMemoizedComponent(
     }
 
     return (
-      <svg className={classes(iconClassName, `Icon-${name}`, className)} onClick={onClick}>
+      <svg className={css(iconStyles, additionalStyles ?? {})} onClick={onClick}>
         <use xlinkHref={`#${icon.toString()}`} />
       </svg>
     )
@@ -55,9 +56,11 @@ export const Icon = createMemoizedComponent(
 )
 
 export const IconsDefinitions = createMemoizedComponent('IconsDefinitions', function (): JSX.Element {
+  const { css } = useFela()
+
   return (
     <svg
-      className={iconsDefinitionsClassName}
+      className={css(iconsDefinitionsStyles)}
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"

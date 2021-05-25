@@ -1,13 +1,13 @@
 import React, { MouseEvent, useEffect, useState } from 'react'
 import { createPortal } from 'react-dom'
-import { classes, style } from 'typestyle'
+import { useFela } from 'react-fela'
 import { colorAmber200, colorAmber500, colorGreen900, colorWhite } from '../styling/colors'
-import { onServer } from '../styling/environment'
-import { debugClassName } from '../styling/mixins'
+import { onServer, Style } from '../styling/environment'
 import { createMemoizedComponent } from '../utils/dom-utils'
 
 // #region style
-export const newVersionCheckerClassName = style(debugClassName('new-version-checker'), {
+export const newVersionCheckerStyles: Style = {
+  display: 'none',
   width: '100%',
   position: 'fixed',
   top: 0,
@@ -20,21 +20,13 @@ export const newVersionCheckerClassName = style(debugClassName('new-version-chec
   paddingLeft: 'calc(1rem + env(safe-area-inset-left))',
   paddingRight: 'calc(1rem + env(safe-area-inset-right))',
   textAlign: 'center'
-})
+}
 
-export const newVersionCheckerHiddenClassName = style(debugClassName('new-version-checker-hidden'), {
-  $unique: true,
-  display: 'none'
-})
-
-export const newVersionCheckerLinkClassName = style(debugClassName('new-version-checker-link'), {
-  $unique: true,
+export const newVersionCheckerLinkStyles: Style = {
   color: colorAmber500,
   fontWeight: 'bold',
-  $nest: {
-    '&:hover, &:focus, &:active': { color: colorAmber200 }
-  }
-})
+  '&:hover, &:focus, &:active': { color: colorAmber200 }
+}
 // #endregion style
 
 export function listenForUpdates(currentVersion: string, callback: (newVersion: string) => void): void {
@@ -59,7 +51,7 @@ export function updateVersion(ev: MouseEvent): void {
 export interface NewVersionCheckerProps {
   currentVersion: string
   message?: string
-  className?: string
+  additionalStyles?: Style
   action?: string
 }
 
@@ -69,7 +61,8 @@ export interface NewVersionCheckerState {
 
 export const NewVersionChecker = createMemoizedComponent(
   'NewVersionChecker',
-  function ({ currentVersion, message, className, action }: NewVersionCheckerProps): JSX.Element | null {
+  function ({ currentVersion, message, additionalStyles, action }: NewVersionCheckerProps): JSX.Element | null {
+    const { css } = useFela()
     const [newVersionAvailable, setNewVersionAvailable] = useState(false)
 
     useEffect(() => {
@@ -87,15 +80,11 @@ export const NewVersionChecker = createMemoizedComponent(
     const contents = (
       <div
         id="newVersionChecker"
-        className={classes(
-          newVersionCheckerClassName,
-          (typeof window === 'undefined' || !newVersionAvailable) && newVersionCheckerHiddenClassName,
-          className
-        )}
+        className={css(newVersionCheckerStyles, additionalStyles ?? {})}
         data-current-version={currentVersion}
       >
         <span>{message}&nbsp;</span>
-        <a href="#" onClick={updateVersion} className={newVersionCheckerLinkClassName}>
+        <a href="#" onClick={updateVersion} className={css(newVersionCheckerLinkStyles)}>
           {action}
         </a>
       </div>
@@ -114,7 +103,7 @@ export const NewVersionCheckerSSR: string = `
     element.querySelector('a').addEventListener('click', updateVersion, false);
     
     listenForUpdates(element.getAttribute('data-current-version'), () => {
-      element.classList.remove('${newVersionCheckerHiddenClassName}');
+      element.classList.display = 'block';
     });
   });
 `

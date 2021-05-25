@@ -22,12 +22,10 @@
     "LICENSE.md",
     "README.md"
   ],
-  "main": "dist/cjs/index.js",
+  "type": "module",
+  "main": "./dist/index.js",
   "exports": {
-    ".": {
-      "require": "./dist/cjs/index.js",
-      "import": "./dist/mjs/index.mjs"
-    },
+    ".": "./dist/index.js",
     "./images/cowtech.png": "./images/cowtech.png",
     "./images/favicon-32.png": "./images/favicon-32.png",
     "./images/favicon-192.png": "./images/favicon-192.png",
@@ -36,33 +34,37 @@
   "typings": "types/index.d.ts",
   "types": "types/index.d.ts",
   "scripts": {
-    "lint": "eslint src/*.ts src/**/*.ts src/**/*.tsx",
     "prebuild": "rm -rf dist types && npm run lint",
-    "build": "tsc -p . && tsc -p tsconfig.modules.json && renamer --find js --replace mjs dist/mjs/* dist/mjs/**/* >> /dev/null && jscodeshift -s --extensions=mjs -t node_modules/@cowtech/esm-package-utils dist/mjs/** && echo '' >> types/index.d.ts && cat src/utils/sitemap.d.ts >> types/index.d.ts",
+    "build": "tsc -p . && esm-pkg-add-imports-extensions dist && echo '' >> types/index.d.ts && cat src/utils/sitemap.d.ts >> types/index.d.ts",
+    "format": "prettier -w src scripts",
+    "lint": "eslint src scripts",
     "postpublish": "git push origin && git push origin -f --tags",
-    "update:normalize": "node scripts/update-normalize.js"
+    "update:normalize": "ts-node scripts/update-normalize.ts"
   },
   "peerDependencies": {
-    "idb-keyval": "^3.2.0",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
-    "typestyle": "^2.1.0"
+    "idb-keyval": "^5.0.5",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-fela": "^11.6.1"
   },
   "devDependencies": {
-    "@cowtech/eslint-config": "^7.14.0",
-    "@cowtech/esm-package-utils": "^0.2.0",
-    "@types/react": "^17.0.2",
-    "@types/react-dom": "^17.0.1",
+    "@cowtech/eslint-config": "^7.14.2",
+    "@cowtech/esm-package-utils": "^0.8.2",
+    "@types/react": "^17.0.7",
+    "@types/react-dom": "^17.0.5",    
     "got": "^11.8.2",
-    "idb-keyval": "^5.0.4",
+    "idb-keyval": "^5.0.5",
     "normalize.css": "^8.0.1",
-    "prettier": "^2.2.1",
+    "prettier": "^2.3.0",
     "prop-types": "^15.7.2",
-    "react": "^17.0.1",
-    "typescript": "^4.2.2",
-    "typestyle": "^2.1.0"
+    "react": "^17.0.2",
+    "react-fela": "^11.6.1",
+    "typescript": "^4.2.4"
   },
   "engines": {
-    "node": ">=12.15.0"
+    "node": ">=14.15.0"
+  },
+  "dependencies": {
+    "react-fela": "^11.6.1"
   }
 }

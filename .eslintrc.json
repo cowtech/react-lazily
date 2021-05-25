@@ -1,7 +1,7 @@
 {
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
-    "project": "tsconfig.json"
+    "project": "tsconfig.local.json"
   },
   "extends": ["@cowtech/eslint-config/react-with-typescript"]
 }
