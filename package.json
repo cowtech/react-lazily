@@ -1,6 +1,6 @@
 {
   "name": "@cowtech/react-lazily",
-  "version": "2.6.0",
+  "version": "3.0.0-alpha.1",
   "description": "CowTech React components and utilities.",
   "homepage": "https://sw.cowtech.it/react-lazily",
   "repository": "github:cowtech/react-lazily",
@@ -51,7 +51,7 @@
     "@cowtech/eslint-config": "^7.14.2",
     "@cowtech/esm-package-utils": "^0.8.2",
     "@types/react": "^17.0.7",
-    "@types/react-dom": "^17.0.5",    
+    "@types/react-dom": "^17.0.5",
     "got": "^11.8.2",
     "idb-keyval": "^5.0.5",
     "normalize.css": "^8.0.1",
