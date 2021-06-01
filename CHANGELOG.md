@@ -1,3 +1,7 @@
+### 2021-06-01 / 3.0.0-alpha.3
+
+- feat: Update React generation.
+
 ### 2021-06-01 / 3.0.0-alpha.2
 
 - fix: Fixed build.
