@@ -1,3 +1,7 @@
+### 2021-06-01 / 3.0.0-alpha.4
+
+- feat: Renamed styles.
+
 ### 2021-06-01 / 3.0.0-alpha.3
 
 - feat: Update React generation.
