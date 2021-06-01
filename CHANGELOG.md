@@ -1,3 +1,7 @@
+### 2021-06-01 / 3.0.0-alpha.2
+
+- fix: Fixed build.
+
 ### 2021-05-25 / 3.0.0-alpha.1
 
 - feat: Use fela for styling.
