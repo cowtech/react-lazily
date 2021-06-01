@@ -3,7 +3,7 @@ import { Style } from '../styling/environment'
 import { createMemoizedComponent } from '../utils/dom-utils'
 
 // #region style
-export const iconStyles: Style = {
+export const iconStyle: Style = {
   width: '1em',
   height: '1em',
   display: 'inline-block',
@@ -13,7 +13,7 @@ export const iconStyles: Style = {
   fill: 'currentColor'
 }
 
-export const iconsDefinitionsStyles: Style = {
+export const iconsDefinitionsStyle: Style = {
   width: 0,
   height: 0,
   display: 'none',
@@ -32,13 +32,13 @@ declare const ICONS: Icons
 
 export interface IconProps {
   name: string
-  additionalStyles?: Style
+  additionalStyle?: Style
   onClick?: () => void
 }
 
 export const Icon = createMemoizedComponent(
   'Icon',
-  function ({ name, additionalStyles, onClick }: IconProps): JSX.Element | null {
+  function ({ name, additionalStyle, onClick }: IconProps): JSX.Element | null {
     const { css } = useFela()
     const icon = ICONS.tags[name]
 
@@ -47,7 +47,7 @@ export const Icon = createMemoizedComponent(
     }
 
     return (
-      <svg className={css(iconStyles, additionalStyles ?? {})} onClick={onClick}>
+      <svg className={css(iconStyle, additionalStyle ?? {})} onClick={onClick}>
         <use xlinkHref={`#${icon.toString()}`} />
       </svg>
     )
@@ -59,7 +59,7 @@ export const IconsDefinitions = createMemoizedComponent('IconsDefinitions', func
 
   return (
     <svg
-      className={css(iconsDefinitionsStyles)}
+      className={css(iconsDefinitionsStyle)}
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"

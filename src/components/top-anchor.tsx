@@ -7,7 +7,7 @@ import { createMemoizedComponent } from '../utils/dom-utils'
 import { Icon } from './icons'
 
 // #region style
-const topAnchorBaseStyles: Style = {
+const topAnchorBaseStyle: Style = {
   display: 'none',
   width: 'var(--rl-top-anchor-size)',
   height: 'var(--rl-top-anchor-size)',
@@ -23,11 +23,11 @@ const topAnchorBaseStyles: Style = {
   transition: 'opacity 0.2s ease'
 }
 
-const topAnchorIconStyles: Style = {
+const topAnchorIconStyle: Style = {
   fontSize: '1.5em'
 }
 
-function topAnchorStyles(backgroundColor: string | undefined, foregroundColor: string | undefined): Style {
+function topAnchorStyle(backgroundColor: string | undefined, foregroundColor: string | undefined): Style {
   return {
     backgroundColor: backgroundColor ?? colorGrey600,
     color: foregroundColor ?? colorWhite,
@@ -98,12 +98,12 @@ export interface TopAnchorProps {
   duration?: number
   backgroundColor?: string
   foregroundColor?: string
-  additionalStyles?: Style
+  additionalStyle?: Style
 }
 
 export const TopAnchor = createMemoizedComponent(
   'TopAnchor',
-  function ({ duration, backgroundColor, foregroundColor, additionalStyles }: TopAnchorProps): JSX.Element {
+  function ({ duration, backgroundColor, foregroundColor, additionalStyle }: TopAnchorProps): JSX.Element {
     const { css } = useFela()
 
     const element = useRef<HTMLAnchorElement>(null)
@@ -137,12 +137,12 @@ export const TopAnchor = createMemoizedComponent(
       <a
         id="topAnchor"
         ref={element}
-        className={css(topAnchorBaseStyles, topAnchorStyles(backgroundColor, foregroundColor), additionalStyles ?? {})}
+        className={css(topAnchorBaseStyle, topAnchorStyle(backgroundColor, foregroundColor), additionalStyle ?? {})}
         onClick={handleScrollToTop}
         href="#top"
         title="Top"
       >
-        <Icon name="arrow-up" additionalStyles={topAnchorIconStyles} />
+        <Icon name="arrow-up" additionalStyle={topAnchorIconStyle} />
       </a>
     )
 

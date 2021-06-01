@@ -5,11 +5,11 @@ import { createMemoizedComponent } from '../utils/dom-utils'
 import { Ribbon, RibbonProps } from './ribbon'
 
 // #region style
-export const madeInItalyStyles: Style = {
+export const madeInItalyStyle: Style = {
   background: 'linear-gradient(90deg, #009246, #009246 30%, #f1f2f1 30%, #f1f2f1 70%, #ce2b37 70%)'
 }
 
-export const madeInItalyLinkStyles: Style = {
+export const madeInItalyLinkStyle: Style = {
   display: 'inline-block',
   width: '60%',
   fontWeight: 'bold',
@@ -23,12 +23,12 @@ export const madeInItalyLinkStyles: Style = {
 
 export const MadeInItaly = createMemoizedComponent(
   'MadeInItaly',
-  function ({ position, additionalStyles }: RibbonProps): JSX.Element {
+  function ({ position, additionalStyle }: RibbonProps): JSX.Element {
     const { css } = useFela()
 
     return (
-      <Ribbon additionalStyles={{ ...madeInItalyStyles, ...additionalStyles }} position={position}>
-        <a className={css(madeInItalyLinkStyles)} href="http://www.italia.it" target="_blank" rel="noopener noreferrer">
+      <Ribbon additionalStyle={{ ...madeInItalyStyle, ...additionalStyle }} position={position}>
+        <a className={css(madeInItalyLinkStyle)} href="http://www.italia.it" target="_blank" rel="noopener noreferrer">
           Made by a proud Italian!
         </a>
       </Ribbon>

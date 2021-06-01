@@ -5,7 +5,7 @@ import { onServer, Style } from '../styling/environment'
 import { createMemoizedComponent } from '../utils/dom-utils'
 
 // #region style
-export const browseHappyStyles: Style = {
+export const browseHappyStyle: Style = {
   display: 'none',
   width: '100%',
   position: 'fixed',
@@ -21,7 +21,7 @@ export const browseHappyStyles: Style = {
   textAlign: 'center'
 }
 
-export const browseHappyLinkStyles: Style = {
+export const browseHappyLinkStyle: Style = {
   color: colorAmber500,
   fontWeight: 'bold',
   '&:hover, &:focus, &:active': { color: colorAmber200 }
@@ -44,24 +44,24 @@ export function isModernBrowser(): boolean {
 
 export interface BrowseHappyProps {
   message?: string
-  additionalStyles?: Style
+  additionalStyle?: Style
 }
 
 export const BrowseHappy = createMemoizedComponent(
   'BrowseHappy',
-  function ({ message, additionalStyles }: BrowseHappyProps): JSX.Element | null {
+  function ({ message, additionalStyle }: BrowseHappyProps): JSX.Element | null {
     const { css } = useFela()
 
     message = message ?? 'Your browser is obsolete. For the best browsing experience, update it for free by visiting'
 
     const contents = (
-      <div id="browseHappy" className={css(browseHappyStyles, additionalStyles ?? {})}>
+      <div id="browseHappy" className={css(browseHappyStyle, additionalStyle ?? {})}>
         <span>{message}&nbsp;</span>
         <a
           href="https://browsehappy.com/"
           target="_blank"
           rel="noopener noreferrer"
-          className={css(browseHappyLinkStyles)}
+          className={css(browseHappyLinkStyle)}
         >
           BrowseHappy
         </a>

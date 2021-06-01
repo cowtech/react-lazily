@@ -6,7 +6,7 @@ import { onServer, Style } from '../styling/environment'
 import { createMemoizedComponent } from '../utils/dom-utils'
 
 // #region style
-const ribbonBaseStyles: Style = {
+const ribbonBaseStyle: Style = {
   display: 'var(--rl-ribbon-display)',
   position: 'fixed',
   backfaceVisibility: 'hidden',
@@ -56,17 +56,17 @@ export const ribbonPositionsStyles: Record<string, Style> = {
 
 export interface RibbonProps {
   position?: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right'
-  additionalStyles?: Style
+  additionalStyle?: Style
   children?: ReactNode
 }
 
 export const Ribbon = createMemoizedComponent(
   'Ribbon',
-  function ({ position, additionalStyles, children }: RibbonProps): JSX.Element {
+  function ({ position, additionalStyle, children }: RibbonProps): JSX.Element {
     const { css } = useFela()
-    const positionStyles = ribbonPositionsStyles[position!] ?? ribbonPositionsStyles['top-right']
+    const positionStyle = ribbonPositionsStyles[position!] ?? ribbonPositionsStyles['top-right']
 
-    const contents = <div className={css(ribbonBaseStyles, positionStyles, additionalStyles ?? {})}>{children}</div>
+    const contents = <div className={css(ribbonBaseStyle, positionStyle, additionalStyle ?? {})}>{children}</div>
 
     return onServer ? contents : createPortal(contents, document.getElementById('rl-modal-root')!)
   }

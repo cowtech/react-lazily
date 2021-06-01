@@ -6,7 +6,7 @@ import { onServer, Style } from '../styling/environment'
 import { createMemoizedComponent } from '../utils/dom-utils'
 
 // #region style
-export const newVersionCheckerStyles: Style = {
+export const newVersionCheckerStyle: Style = {
   display: 'none',
   width: '100%',
   position: 'fixed',
@@ -22,7 +22,7 @@ export const newVersionCheckerStyles: Style = {
   textAlign: 'center'
 }
 
-export const newVersionCheckerLinkStyles: Style = {
+export const newVersionCheckerLinkStyle: Style = {
   color: colorAmber500,
   fontWeight: 'bold',
   '&:hover, &:focus, &:active': { color: colorAmber200 }
@@ -51,7 +51,7 @@ export function updateVersion(ev: MouseEvent): void {
 export interface NewVersionCheckerProps {
   currentVersion: string
   message?: string
-  additionalStyles?: Style
+  additionalStyle?: Style
   action?: string
 }
 
@@ -61,7 +61,7 @@ export interface NewVersionCheckerState {
 
 export const NewVersionChecker = createMemoizedComponent(
   'NewVersionChecker',
-  function ({ currentVersion, message, additionalStyles, action }: NewVersionCheckerProps): JSX.Element | null {
+  function ({ currentVersion, message, additionalStyle, action }: NewVersionCheckerProps): JSX.Element | null {
     const { css } = useFela()
     const [newVersionAvailable, setNewVersionAvailable] = useState(false)
 
@@ -80,11 +80,11 @@ export const NewVersionChecker = createMemoizedComponent(
     const contents = (
       <div
         id="newVersionChecker"
-        className={css(newVersionCheckerStyles, additionalStyles ?? {})}
+        className={css(newVersionCheckerStyle, additionalStyle ?? {})}
         data-current-version={currentVersion}
       >
         <span>{message}&nbsp;</span>
-        <a href="#" onClick={updateVersion} className={css(newVersionCheckerLinkStyles)}>
+        <a href="#" onClick={updateVersion} className={css(newVersionCheckerLinkStyle)}>
           {action}
         </a>
       </div>

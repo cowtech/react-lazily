@@ -5,11 +5,11 @@ import { Style } from '../styling/environment'
 import { createMemoizedComponent } from '../utils/dom-utils'
 
 // #region style
-export const spinnerStyles: Style = {
+export const spinnerStyle: Style = {
   margin: 'auto'
 }
 
-export const spinnerCircleBaseStyles: Style = {
+export const spinnerCircleBaseStyle: Style = {
   fill: 'transparent',
   strokeLinecap: 'round',
   transformOrigin: 'center'
@@ -24,11 +24,11 @@ function animation({ size }: { size: number }): Style {
   }
 }
 
-function spinnerImageStyles({ remSize }: { remSize: string }): Style {
+function spinnerImageStyle({ remSize }: { remSize: string }): Style {
   return { width: remSize, height: remSize }
 }
 
-function spinnerCircleStyles({
+function spinnerCircleStyle({
   animation,
   size,
   remSize,
@@ -57,7 +57,7 @@ export interface SpinnerProps {
   stroke?: number
   color?: string
   text?: string
-  additionalStyles?: Style
+  additionalStyle?: Style
 }
 
 export const Spinner = createMemoizedComponent('Spinner', function (props: SpinnerProps): JSX.Element {
@@ -69,8 +69,8 @@ export const Spinner = createMemoizedComponent('Spinner', function (props: Spinn
   const animationName = renderer.renderKeyframe(animation as TKeyFrame<{ size: number }>, { size })
 
   return (
-    <main className={css(spinnerStyles, props.additionalStyles ?? {})}>
-      <svg viewBox={`0 0 ${size} ${size}`} className={css(spinnerImageStyles({ remSize }))}>
+    <main className={css(spinnerStyle, props.additionalStyle ?? {})}>
+      <svg viewBox={`0 0 ${size} ${size}`} className={css(spinnerImageStyle({ remSize }))}>
         <circle
           fill="none"
           strokeWidth="6"
@@ -79,8 +79,8 @@ export const Spinner = createMemoizedComponent('Spinner', function (props: Spinn
           cy={size / 2}
           r={(size - stroke) / 2}
           className={css(
-            spinnerCircleBaseStyles,
-            spinnerCircleStyles({ animation: animationName, size, remSize, stroke, color: props.color })
+            spinnerCircleBaseStyle,
+            spinnerCircleStyle({ animation: animationName, size, remSize, stroke, color: props.color })
           )}
         />
       </svg>
