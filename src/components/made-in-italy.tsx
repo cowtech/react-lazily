@@ -1,4 +1,3 @@
-import React from 'react'
 import { useFela } from 'react-fela'
 import { colorBlack, colorWhite } from '../styling/colors'
 import { Style } from '../styling/environment'

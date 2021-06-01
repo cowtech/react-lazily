@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react'
+import { ReactNode } from 'react'
 import { createPortal } from 'react-dom'
 import { useFela } from 'react-fela'
 import { colorGrey500, colorGrey800 } from '../styling/colors'

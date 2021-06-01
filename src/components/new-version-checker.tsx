@@ -1,4 +1,4 @@
-import React, { MouseEvent, useEffect, useState } from 'react'
+import { MouseEvent, useEffect, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { useFela } from 'react-fela'
 import { colorAmber200, colorAmber500, colorGreen900, colorWhite } from '../styling/colors'

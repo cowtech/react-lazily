@@ -1,5 +1,4 @@
 import { TKeyFrame } from 'fela'
-import React from 'react'
 import { useFela } from 'react-fela'
 import { colorBlack } from '../styling/colors'
 import { Style } from '../styling/environment'

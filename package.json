@@ -48,7 +48,7 @@
     "react-fela": "^11.6.1"
   },
   "devDependencies": {
-    "@cowtech/eslint-config": "^7.14.2",
+    "@cowtech/eslint-config": "^7.14.5",
     "@cowtech/esm-package-utils": "^0.9.0",
     "@types/react": "^17.0.7",
     "@types/react-dom": "^17.0.5",

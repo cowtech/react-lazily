@@ -1,4 +1,3 @@
-import React from 'react'
 import { useFela } from 'react-fela'
 import { Style } from '../styling/environment'
 import { createMemoizedComponent } from '../utils/dom-utils'

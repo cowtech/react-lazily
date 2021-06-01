@@ -1,4 +1,3 @@
-import React from 'react'
 import { env } from './environment'
 
 export interface SplashDictionary {
