@@ -18,7 +18,7 @@ const ribbonBaseStyles: Style = {
 }
 
 // 29.28% = 100% - (100% / sqrt(2))
-export const ribbonPositionsClassesNames: Record<string, Style> = {
+export const ribbonPositionsStyles: Record<string, Style> = {
   'top-left': {
     top: 0,
     left: 0,
@@ -64,7 +64,7 @@ export const Ribbon = createMemoizedComponent(
   'Ribbon',
   function ({ position, additionalStyles, children }: RibbonProps): JSX.Element {
     const { css } = useFela()
-    const positionStyles = ribbonPositionsClassesNames[position!] ?? ribbonPositionsClassesNames['top-right']
+    const positionStyles = ribbonPositionsStyles[position!] ?? ribbonPositionsStyles['top-right']
 
     const contents = <div className={css(ribbonBaseStyles, positionStyles, additionalStyles ?? {})}>{children}</div>
 

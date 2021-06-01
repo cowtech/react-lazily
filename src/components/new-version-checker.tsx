@@ -35,7 +35,7 @@ export function listenForUpdates(currentVersion: string, callback: (newVersion: 
   }
 
   navigator.serviceWorker.addEventListener('message', (event: Event) => {
-    const { type, payload } = (event as ServiceWorkerMessageEvent).data
+    const { type, payload } = (event as MessageEvent).data
 
     if (type === 'new-version-available' && payload.version !== currentVersion) {
       callback(payload.version)
