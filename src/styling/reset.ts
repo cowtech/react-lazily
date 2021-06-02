@@ -18,7 +18,7 @@ export function defineScopedVariables(
     .map(([key, value]: [string, unknown]) => `${key}: ${value};`)
     .join(' ')
 
-  renderer.renderStatic(`${selector}{${definitions}}}`, scope)
+  renderer.renderStatic(`${selector}{${definitions}}`, scope)
 }
 
 export function resetStyles(renderer: IRenderer): void {
