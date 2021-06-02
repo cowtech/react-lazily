@@ -1,6 +1,6 @@
 import { IRenderer, IStyle } from 'fela'
 import { renderToMarkup } from 'fela-dom'
-import { renderToStaticMarkup } from 'react-dom/server'
+import { renderToStaticMarkup } from 'react-dom/server.js'
 import { RendererProvider } from 'react-fela'
 
 export type Style = IStyle
