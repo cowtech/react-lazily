@@ -1,3 +1,7 @@
+### 2021-06-02 / 3.0.0-alpha.9
+
+- feat: Added renderHTML.
+
 ### 2021-06-02 / 3.0.0-alpha.8
 
 - fix: Bugfixes.
