@@ -32,7 +32,7 @@ function topAnchorStyle(backgroundColor: string | undefined, foregroundColor: st
   return {
     backgroundColor: backgroundColor ?? colorGrey600,
     color: foregroundColor ?? colorWhite,
-    ...linkStyle({ opacity: 1, color: foregroundColor ?? colorWhite }, { color: foregroundColor ?? colorWhite })
+    ...linkStyle({ color: foregroundColor ?? colorWhite }, { opacity: 1, color: foregroundColor ?? colorWhite })
   }
 }
 
