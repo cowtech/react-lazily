@@ -1,3 +1,7 @@
+### 2021-06-02 / 3.0.0-alpha.8
+
+- fix: Bugfixes.
+
 ### 2021-06-02 / 3.0.0-alpha.7
 
 - fix: Bugfixes.
