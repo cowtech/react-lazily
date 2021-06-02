@@ -103,7 +103,7 @@ export const NewVersionCheckerSSR: string = `
     element.querySelector('a').addEventListener('click', updateVersion, false);
     
     listenForUpdates(element.getAttribute('data-current-version'), () => {
-      element.classList.display = 'block';
+      element.style.display = 'block';
     });
   });
 `

@@ -8,25 +8,41 @@ export function globalRule(renderer: IRenderer, selector: string, rule: IStyle):
   renderer.renderStatic(rule, selector)
 }
 
+export function defineScopedVariables(
+  renderer: IRenderer,
+  scope: string,
+  variables: Record<string, unknown>,
+  selector: string = 'html'
+): void {
+  const definitions = Object.entries(variables)
+    .map(([key, value]: [string, unknown]) => `${key}: ${value};`)
+    .join(' ')
+
+  renderer.renderStatic(`${selector}{${definitions}}}`, scope)
+}
+
 export function resetStyles(renderer: IRenderer): void {
   renderer.renderStatic(normalizeCss)
 
   globalRule(renderer, 'html', {
     fontSize: '10px', // This sets 1rem = 10px
     '--rl-ribbon-display': 'block',
-    '--rl-top-anchor-size': '4em',
-    [`@media(max-width: ${maxWidth7xx}px)`]: {
-      '--rl-ribbon-display': 'none'
-    },
-    [`@media(max-width: ${maxWidth45x}px)`]: {
-      '--rl-top-anchor-size': '3em'
-    },
-    [`@media(max-width: ${maxHeight6xx}px)`]: {
-      '--rl-top-anchor-size': '3em'
-    }
+    '--rl-top-anchor-size': '4em'
   })
 
-  globalRule(renderer, '*, *:hover, *:focus, *:active, *:before, *::after', {
+  defineScopedVariables(renderer, `@media(max-width: ${maxWidth7xx}px)`, {
+    '--rl-ribbon-display': 'none'
+  })
+
+  defineScopedVariables(renderer, `@media(max-width: ${maxWidth45x}px)`, {
+    '--rl-top-anchor-size': '3em'
+  })
+
+  defineScopedVariables(renderer, `@media(max-width: ${maxHeight6xx}px)`, {
+    '--rl-top-anchor-size': '3em'
+  })
+
+  globalRule(renderer, '*, *:hover, *:focus, *:active, *::before, *::after', {
     boxSizing: 'border-box',
     outline: 'none'
   })

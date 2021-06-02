@@ -18,8 +18,8 @@ export const cardStyle: Style = {
 export function linkStyle(
   normalStyle: Style | string,
   hoverStyle: Style | string,
-  normalNestSelector: string = '&:focus, &:active, &:visited',
-  hoverNestSelector: string = '&:hover'
+  normalClasses: Array<string> = [':focus', ':active', ':visited'],
+  hoverClasses: Array<string> = [':hover']
 ): Style {
   if (typeof normalStyle === 'string') {
     normalStyle = { color: normalStyle }
@@ -31,7 +31,7 @@ export function linkStyle(
 
   return {
     ...normalStyle,
-    [normalNestSelector]: normalStyle,
-    [hoverNestSelector]: hoverStyle
+    ...Object.fromEntries(normalClasses.map((klass: string) => [klass, normalStyle])),
+    ...Object.fromEntries(hoverClasses.map((klass: string) => [klass, hoverStyle]))
   }
 }
