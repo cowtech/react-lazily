@@ -3,6 +3,7 @@ import { createPortal } from 'react-dom'
 import { useFela } from 'react-fela'
 import { colorGrey600, colorWhite } from '../styling/colors'
 import { onServer, Style } from '../styling/environment'
+import { linkStyle } from '../styling/mixins'
 import { createMemoizedComponent } from '../utils/dom-utils'
 import { Icon } from './icons'
 
@@ -31,8 +32,7 @@ function topAnchorStyle(backgroundColor: string | undefined, foregroundColor: st
   return {
     backgroundColor: backgroundColor ?? colorGrey600,
     color: foregroundColor ?? colorWhite,
-    '&:hover': { opacity: 1, color: foregroundColor ?? colorWhite },
-    '&:focus, &:active, &:visited': { color: foregroundColor ?? colorWhite }
+    ...linkStyle({ opacity: 1, color: foregroundColor ?? colorWhite }, { color: foregroundColor ?? colorWhite })
   }
 }
 

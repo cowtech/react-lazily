@@ -2,6 +2,7 @@ import { createPortal } from 'react-dom'
 import { useFela } from 'react-fela'
 import { colorAmber200, colorAmber500, colorRed700, colorWhite } from '../styling/colors'
 import { onServer, Style } from '../styling/environment'
+import { linkStyle } from '../styling/mixins'
 import { createMemoizedComponent } from '../utils/dom-utils'
 
 // #region style
@@ -24,7 +25,7 @@ export const browseHappyStyle: Style = {
 export const browseHappyLinkStyle: Style = {
   color: colorAmber500,
   fontWeight: 'bold',
-  '&:hover, &:focus, &:active': { color: colorAmber200 }
+  ...linkStyle(colorAmber500, colorAmber200)
 }
 // #endregion style
 

@@ -3,6 +3,7 @@ import { createPortal } from 'react-dom'
 import { useFela } from 'react-fela'
 import { colorAmber200, colorAmber500, colorGreen900, colorWhite } from '../styling/colors'
 import { onServer, Style } from '../styling/environment'
+import { linkStyle } from '../styling/mixins'
 import { createMemoizedComponent } from '../utils/dom-utils'
 
 // #region style
@@ -25,7 +26,7 @@ export const newVersionCheckerStyle: Style = {
 export const newVersionCheckerLinkStyle: Style = {
   color: colorAmber500,
   fontWeight: 'bold',
-  '&:hover, &:focus, &:active': { color: colorAmber200 }
+  ...linkStyle(colorAmber500, colorAmber200)
 }
 // #endregion style
 
