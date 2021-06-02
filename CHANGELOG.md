@@ -1,3 +1,7 @@
+### 2021-06-02 / 3.0.0-alpha.10
+
+- fix: Fixed import.
+
 ### 2021-06-02 / 3.0.0-alpha.9
 
 - feat: Added renderHTML.
