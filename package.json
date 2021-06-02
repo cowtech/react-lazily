@@ -63,8 +63,5 @@
   },
   "engines": {
     "node": ">=14.15.0"
-  },
-  "dependencies": {
-    "react-fela": "^11.6.1"
   }
 }
