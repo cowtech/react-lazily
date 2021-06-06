@@ -1,3 +1,7 @@
+### 2021-06-06 / 3.0.0-alpha.12
+
+- fix: Fixed NewVersionChecker JS style handling.
+
 ### 2021-06-06 / 3.0.0-alpha.11
 
 - fix: Fixed export.
