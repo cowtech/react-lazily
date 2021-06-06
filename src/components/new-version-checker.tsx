@@ -81,7 +81,7 @@ export const NewVersionChecker = createMemoizedComponent(
     const contents = (
       <div
         id="newVersionChecker"
-        className={css(newVersionCheckerStyle, additionalStyle ?? {})}
+        className={css(newVersionCheckerStyle, newVersionAvailable ? { display: 'block' } : {}, additionalStyle ?? {})}
         data-current-version={currentVersion}
       >
         <span>{message}&nbsp;</span>
