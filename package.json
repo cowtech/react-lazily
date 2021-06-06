@@ -30,10 +30,10 @@
     "./images/favicon-32.png": "./images/favicon-32.png",
     "./images/favicon-192.png": "./images/favicon-192.png",
     "./images/favicon-196.png": "./images/favicon-196.png",
-    "./images/cowtech.webp": "./images/cowtech.png",
-    "./images/favicon-32.webp": "./images/favicon-32.png",
-    "./images/favicon-192.webp": "./images/favicon-192.png",
-    "./images/favicon-196.webp": "./images/favicon-196.png"
+    "./images/cowtech.webp": "./images/cowtech.webp",
+    "./images/favicon-32.webp": "./images/favicon-32.webp",
+    "./images/favicon-192.webp": "./images/favicon-192.webp",
+    "./images/favicon-196.webp": "./images/favicon-196.webp"
   },
   "typings": "types/index.d.ts",
   "types": "types/index.d.ts",
