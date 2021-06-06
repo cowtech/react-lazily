@@ -1,3 +1,9 @@
+### 2021-06-06 / 3.0.0-alpha.11
+
+- fix: Fixed export.
+- feat: Added missing files.
+- feat: Added WebP exports.
+
 ### 2021-06-02 / 3.0.0-alpha.10
 
 - fix: Fixed import.
