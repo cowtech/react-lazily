@@ -1,3 +1,6 @@
+### 2021-08-05 / 3.0.0
+
+
 ### 2021-06-06 / 3.0.0-alpha.12
 
 - fix: Fixed NewVersionChecker JS style handling.
