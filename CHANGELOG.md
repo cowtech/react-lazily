@@ -1,3 +1,7 @@
+### 2021-08-30 / 3.0.2
+
+- fix: Fixed idb-keyval import.
+
 ### 2021-08-30 / 3.0.1
 
 - fix: Fixed idb-keyval import.
