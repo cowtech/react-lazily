@@ -1,4 +1,4 @@
-import idb from 'idb-keyval'
+import * as idb from 'idb-keyval'
 
 export let idbStore: idb.UseStore
 
