@@ -1,20 +1,20 @@
-import { createStore, del, get, set, UseStore } from 'idb-keyval'
+import idb from 'idb-keyval'
 
-export let idbStore: UseStore
+export let idbStore: idb.UseStore
 
-export function setupStorage(database: string, store: string): UseStore {
-  idbStore = createStore(database, store)
+export function setupStorage(database: string, store: string): idb.UseStore {
+  idbStore = idb.createStore(database, store)
   return idbStore
 }
 
 export async function getStorageValue<T = string>(key: string): Promise<T | null | undefined> {
-  return get(key, idbStore)
+  return idb.get(key, idbStore)
 }
 
 export async function setStorageValue<T = string>(key: string, value: T): Promise<void> {
-  return set(key, value, idbStore)
+  return idb.set(key, value, idbStore)
 }
 
 export async function deleteStorageValue(key: string): Promise<void> {
-  return del(key, idbStore)
+  return idb.del(key, idbStore)
 }
