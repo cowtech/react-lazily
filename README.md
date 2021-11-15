@@ -1,7 +1,7 @@
 # @cowtech/react-lazily
 
-[![Package Version](https://img.shields.io/npm/v/@cowtech/react-lazily.svg)](https://npm.im/@cowtech/react-lazily)
-[![Dependency Status](https://img.shields.io/david/cowtech/react-lazily)](https://david-dm.org/cowtech/react-lazily)
+[![Version](https://img.shields.io/npm/v/@cowtech/react-lazily.svg)](https://npm.im/@cowtech/react-lazily)
+[![Dependencies](https://img.shields.io/librariesio/release/npm/@cowtech/react-lazily)](https://libraries.io/npm/@cowtech%2Freact-lazily)
 
 CowTech React components and utilities.
 
