@@ -23,7 +23,6 @@
     "README.md"
   ],
   "type": "module",
-  "main": "./dist/index.js",
   "exports": {
     ".": "./dist/index.js",
     "./images/cowtech.png": "./images/cowtech.png",
@@ -35,8 +34,8 @@
     "./images/favicon-192.webp": "./images/favicon-192.webp",
     "./images/favicon-196.webp": "./images/favicon-196.webp"
   },
-  "typings": "types/index.d.ts",
-  "types": "types/index.d.ts",
+  "typings": "./types/index.d.ts",
+  "types": "./types/index.d.ts",
   "scripts": {
     "prebuild": "rm -rf dist types && npm run lint",
     "build": "tsc -p . && esm-pkg-add-imports-extensions dist && echo '' >> types/index.d.ts && cat src/utils/sitemap.d.ts >> types/index.d.ts",
