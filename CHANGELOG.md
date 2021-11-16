@@ -1,3 +1,9 @@
+### 2021-11-16 / 3.0.3
+
+- fix: Added ESM note in the README.md
+- chore: Updated badges.
+- fix: Fixed Typescript configuration.
+
 ### 2021-08-30 / 3.0.2
 
 - fix: Fixed idb-keyval import.
