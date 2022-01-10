@@ -1,3 +1,8 @@
+### 2022-01-10 / 3.0.4
+
+- fix: Fixed build.
+- chore: Removed useless file.
+
 ### 2021-11-16 / 3.0.3
 
 - fix: Added ESM note in the README.md
