@@ -25,7 +25,7 @@ function splashParams(
   return [
     [width, height, ratio].join('-'), // Key
     `(device-width: ${width}px) and (device-height: ${height}px) and (-webkit-device-pixel-ratio: ${ratio}) and (orientation: ${orientation})`, // Media query
-    isTemplateUrl ? (url as string).replace('SUFFIX', spec) : (url as SplashDictionary)[spec] // Href
+    isTemplateUrl ? url.replace('SUFFIX', spec) : url[spec] // Href
   ]
 }
 

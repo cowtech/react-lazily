@@ -46,7 +46,7 @@ export function listenForUpdates(currentVersion: string, callback: (newVersion: 
 
 export function updateVersion(ev: MouseEvent): void {
   ev.preventDefault()
-  location.reload(true)
+  location.reload()
 }
 
 export interface NewVersionCheckerProps {
