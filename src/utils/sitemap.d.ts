@@ -1,9 +1,8 @@
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { DetailedHTMLProps, ReactNode, ReactNodeArray } from 'react'
+import { DetailedHTMLProps, ReactNode } from 'react'
 
 declare global {
   namespace JSX {
-    type SitemapElement<T = {}> = DetailedHTMLProps<T & { children?: ReactNode | ReactNodeArray }, HTMLElement>
+    type SitemapElement<T = {}> = DetailedHTMLProps<T & { children?: ReactNode }, HTMLElement>
 
     interface IntrinsicElements {
       sitemap: SitemapElement

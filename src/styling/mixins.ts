@@ -31,7 +31,7 @@ export function linkStyle(
 
   return {
     ...normalStyle,
-    ...Object.fromEntries(normalClasses.map((klass: string) => [klass, normalStyle])),
-    ...Object.fromEntries(hoverClasses.map((klass: string) => [klass, hoverStyle]))
+    ...Object.fromEntries(normalClasses.map(klass => [klass, normalStyle])),
+    ...Object.fromEntries(hoverClasses.map(klass => [klass, hoverStyle]))
   }
 }

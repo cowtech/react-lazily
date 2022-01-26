@@ -14,7 +14,7 @@ export function handleIOSMinHeight(offset: number = 0): void {
 }
 
 export function loadScript(url: string, tag: string): Promise<void> {
-  return new Promise<void>((resolve: () => void) => {
+  return new Promise<void>(resolve => {
     if (document.querySelector(`script[data-tag="${tag}"]`)) {
       return resolve()
     }

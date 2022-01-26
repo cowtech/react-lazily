@@ -15,7 +15,7 @@ export function defineScopedVariables(
   selector: string = 'html'
 ): void {
   const definitions = Object.entries(variables)
-    .map(([key, value]: [string, unknown]) => `${key}: ${value};`)
+    .map(([key, value]) => `${key}: ${value};`)
     .join(' ')
 
   renderer.renderStatic(`${selector}{${definitions}}`, scope)
