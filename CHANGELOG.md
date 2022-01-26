@@ -1,3 +1,7 @@
+### 2022-01-26 / 3.0.5
+
+- chore: Updated dependencies and linted code.
+
 ### 2022-01-10 / 3.0.4
 
 - fix: Fixed build.
