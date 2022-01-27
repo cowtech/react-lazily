@@ -1,12 +1,12 @@
 #!/usr/bin/env node
 
+// TODO@PI: Replace with modern-normalize - See cards
 import { readFile, writeFile } from 'fs/promises'
 import { resolve } from 'path'
 import prettier from 'prettier'
 import undici from 'undici'
 
-const versionUrl = 'https://api.cdnjs.com/libraries/normalize'
-const downloadUrl = 'https://cdnjs.cloudflare.com/ajax/libs/normalize/{version}/normalize.min.css'
+const downloadUrl = 'https://cdn.jsdelivr.net/npm/modern-normalize/modern-normalize.min.css'
 const fileToPatch = 'src/styling/reset.ts'
 
 async function download(url: string): Promise<string> {
@@ -21,12 +21,8 @@ async function download(url: string): Promise<string> {
 }
 
 async function main(): Promise<void> {
-  console.log('Determine normalize.css version to download ...')
-  const apiVersion = JSON.parse(await download(versionUrl))
-  const version = apiVersion.version
-
-  console.log(`Downloading normalize.css ${version} ...`)
-  let normalize = (await download(downloadUrl.replace('{version}', version))).replace(/\n+/g, '')
+  console.log('Downloading modern-normalize ...')
+  let normalize = (await download(downloadUrl)).replace(/\n+/g, '').replace(/'/g, '"')
   normalize = normalize.replace(/\/\*# sourceMappingURL=.+ \*\//, '')
 
   console.log(`Patching file ${fileToPatch} ...`)
