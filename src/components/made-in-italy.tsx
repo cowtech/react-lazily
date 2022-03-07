@@ -1,8 +1,8 @@
 import { useFela } from 'react-fela'
-import { colorBlack, colorWhite } from '../styling/colors'
-import { Style } from '../styling/environment'
-import { createMemoizedComponent } from '../utils/dom-utils'
-import { Ribbon, RibbonProps } from './ribbon'
+import { colorBlack, colorWhite } from '../styling/colors.js'
+import { Style } from '../styling/environment.js'
+import { createMemoizedComponent } from '../utils/dom-utils.js'
+import { Ribbon, RibbonProps } from './ribbon.js'
 
 // #region style
 export const madeInItalyStyle: Style = {

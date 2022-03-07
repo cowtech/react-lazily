@@ -1,9 +1,9 @@
 import { ReactNode } from 'react'
 import { createPortal } from 'react-dom'
 import { useFela } from 'react-fela'
-import { colorGrey500, colorGrey800 } from '../styling/colors'
-import { onServer, Style } from '../styling/environment'
-import { createMemoizedComponent } from '../utils/dom-utils'
+import { colorGrey500, colorGrey800 } from '../styling/colors.js'
+import { onServer, Style } from '../styling/environment.js'
+import { createMemoizedComponent } from '../utils/dom-utils.js'
 
 // #region style
 const ribbonBaseStyle: Style = {
@@ -68,6 +68,6 @@ export const Ribbon = createMemoizedComponent(
 
     const contents = <div className={css(ribbonBaseStyle, positionStyle, additionalStyle ?? {})}>{children}</div>
 
-    return onServer ? contents : createPortal(contents, document.getElementById('rl-modal-root')!)
+    return onServer ? contents : createPortal(contents, document.querySelector('#rl-modal-root')!)
   }
 )

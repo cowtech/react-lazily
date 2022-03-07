@@ -1,10 +1,10 @@
 import { MouseEvent, useEffect, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { useFela } from 'react-fela'
-import { colorAmber200, colorAmber500, colorGreen900, colorWhite } from '../styling/colors'
-import { onServer, Style } from '../styling/environment'
-import { linkStyle } from '../styling/mixins'
-import { createMemoizedComponent } from '../utils/dom-utils'
+import { colorAmber200, colorAmber500, colorGreen900, colorWhite } from '../styling/colors.js'
+import { onServer, Style } from '../styling/environment.js'
+import { linkStyle } from '../styling/mixins.js'
+import { createMemoizedComponent } from '../utils/dom-utils.js'
 
 // #region style
 export const newVersionCheckerStyle: Style = {
@@ -91,7 +91,7 @@ export const NewVersionChecker = createMemoizedComponent(
       </div>
     )
 
-    return onServer ? contents : createPortal(contents, document.getElementById('rl-modal-root')!)
+    return onServer ? contents : createPortal(contents, document.querySelector('#rl-modal-root')!)
   }
 )
 

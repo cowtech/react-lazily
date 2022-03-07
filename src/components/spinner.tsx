@@ -1,8 +1,8 @@
 import { TKeyFrame } from 'fela'
 import { useFela } from 'react-fela'
-import { colorBlack } from '../styling/colors'
-import { Style } from '../styling/environment'
-import { createMemoizedComponent } from '../utils/dom-utils'
+import { colorBlack } from '../styling/colors.js'
+import { Style } from '../styling/environment.js'
+import { createMemoizedComponent } from '../utils/dom-utils.js'
 
 // #region style
 export const spinnerStyle: Style = {

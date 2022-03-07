@@ -37,12 +37,17 @@
   "typings": "./types/index.d.ts",
   "types": "./types/index.d.ts",
   "scripts": {
-    "prebuild": "rm -rf dist types && npm run lint",
-    "build": "tsc -p . && esm-pkg-add-imports-extensions dist && echo '' >> types/index.d.ts && cat src/utils/sitemap.d.ts >> types/index.d.ts",
-    "format": "prettier -w src scripts",
-    "lint": "eslint src scripts",
+    "dev": "swc -w -d dist src",
+    "prebuild": "rm -rf dist types && npm run typecheck && npm run lint",
+    "build": "swc --delete-dir-on-start -d dist src",
+    "postbuild": "echo '' >> types/index.d.ts && cat src/utils/sitemap.d.ts.tpl >> types/index.d.ts",
+    "format": "prettier -w src",
+    "typecheck": "tsc -p . --emitDeclarationOnly",
+    "lint": "eslint src",
+    "ci": "npm run build && npm run lint",
+    "prepublishOnly": "npm run ci",
     "postpublish": "git push origin && git push origin -f --tags",
-    "update:normalize": "esm-ts-node scripts/update-normalize.ts"
+    "update:normalize": "node --loader ts-node/esm scripts/update-normalize.ts"
   },
   "peerDependencies": {
     "fela": "^11.7.0",
@@ -52,22 +57,24 @@
     "react-fela": "^11.6.1"
   },
   "devDependencies": {
-    "@cowtech/eslint-config": "^8.0.1",
-    "@cowtech/esm-package-utils": "^0.9.3",
-    "@types/node": "^17.0.2",
-    "@types/prettier": "^2.4.3",
-    "@types/react": "^17.0.7",
-    "@types/react-dom": "^17.0.5",
+    "@cowtech/eslint-config": "^8.4.0",
+    "@swc/cli": "^0.1.55",
+    "@swc/core": "^1.2.150",
+    "@types/node": "^17.0.21",
+    "@types/prettier": "^2.4.4",
+    "@types/react": "^17.0.39",
+    "@types/react-dom": "^17.0.13",
+    "chokidar": "^3.5.3",
     "fela": "^11.7.0",
     "idb-keyval": "^6.1.0",
     "normalize.css": "^8.0.1",
-    "prettier": "^2.3.0",
-    "prop-types": "^15.7.2",
+    "prettier": "^2.5.1",
+    "prop-types": "^15.8.1",
     "react": "^17.0.2",
-    "react-fela": "^11.6.1",
-    "ts-node": "^10.4.0",
-    "typescript": "^4.2.4",
-    "undici": "^4.12.2"
+    "react-fela": "^11.7.0",
+    "ts-node": "^10.7.0",
+    "typescript": "^4.6.2",
+    "undici": "^4.15.0"
   },
   "engines": {
     "node": ">=14.15.0"

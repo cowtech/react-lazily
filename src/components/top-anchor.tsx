@@ -1,11 +1,11 @@
 import { MouseEvent, useCallback, useEffect, useRef } from 'react'
 import { createPortal } from 'react-dom'
 import { useFela } from 'react-fela'
-import { colorGrey600, colorWhite } from '../styling/colors'
-import { onServer, Style } from '../styling/environment'
-import { linkStyle } from '../styling/mixins'
-import { createMemoizedComponent } from '../utils/dom-utils'
-import { Icon } from './icons'
+import { colorGrey600, colorWhite } from '../styling/colors.js'
+import { onServer, Style } from '../styling/environment.js'
+import { linkStyle } from '../styling/mixins.js'
+import { createMemoizedComponent } from '../utils/dom-utils.js'
+import { Icon } from './icons.js'
 
 // #region style
 const topAnchorBaseStyle: Style = {
@@ -146,7 +146,7 @@ export const TopAnchor = createMemoizedComponent(
       </a>
     )
 
-    return onServer ? contents : createPortal(contents, document.getElementById('rl-modal-root')!)
+    return onServer ? contents : createPortal(contents, document.querySelector('#rl-modal-root')!)
   }
 )
 

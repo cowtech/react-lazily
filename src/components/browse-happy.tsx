@@ -1,9 +1,9 @@
 import { createPortal } from 'react-dom'
 import { useFela } from 'react-fela'
-import { colorAmber200, colorAmber500, colorRed700, colorWhite } from '../styling/colors'
-import { onServer, Style } from '../styling/environment'
-import { linkStyle } from '../styling/mixins'
-import { createMemoizedComponent } from '../utils/dom-utils'
+import { colorAmber200, colorAmber500, colorRed700, colorWhite } from '../styling/colors.js'
+import { onServer, Style } from '../styling/environment.js'
+import { linkStyle } from '../styling/mixins.js'
+import { createMemoizedComponent } from '../utils/dom-utils.js'
 
 // #region style
 export const browseHappyStyle: Style = {
@@ -32,12 +32,12 @@ export const browseHappyLinkStyle: Style = {
 export function isModernBrowser(): boolean {
   try {
     return (
-      Array.from(new Map([[1, 2]]).entries()).join(',') === '1,2' &&
+      [...new Map([[1, 2]]).entries()].join(',') === '1,2' &&
       CSS.supports('display', 'grid') &&
       CSS.supports('display', 'flex') &&
       CSS.supports('color', 'var(--var)')
     )
-  } catch (e) {
+  } catch {
     // Some of these are not supported. Assume legacy browser.
     return false
   }
@@ -70,7 +70,7 @@ export const BrowseHappy = createMemoizedComponent(
       </div>
     )
 
-    return onServer ? contents : createPortal(contents, document.getElementById('rl-modal-root')!)
+    return onServer ? contents : createPortal(contents, document.querySelector('#rl-modal-root')!)
   }
 )
 

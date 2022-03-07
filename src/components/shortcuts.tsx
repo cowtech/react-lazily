@@ -1,5 +1,5 @@
 import { useCallback, useEffect } from 'react'
-import { createMemoizedComponent } from '../utils/dom-utils'
+import { createMemoizedComponent } from '../utils/dom-utils.js'
 
 function triggerShortcuts(shortcuts: { [key: string]: () => void }, ev: KeyboardEvent): void {
   // First of all, if within a input, ignore unless is Esc or Enter

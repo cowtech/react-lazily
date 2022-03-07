@@ -1,5 +1,5 @@
-import { colorGrey300, colorGrey500, colorWhite } from './colors'
-import { Style } from './environment'
+import { colorGrey300, colorGrey500, colorWhite } from './colors.js'
+import { Style } from './environment.js'
 
 export const centeredContentsStyle: Style = {
   width: '90%',

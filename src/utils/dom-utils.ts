@@ -21,12 +21,12 @@ export function loadScript(url: string, tag: string): Promise<void> {
 
     const script = document.createElement('script')
     script.src = url
-    script.setAttribute('data-tag', tag)
-    script.onload = () => {
+    script.dataset.tag = tag
+    script.addEventListener('load', () => {
       setTimeout(resolve, 100)
-    }
+    })
 
-    document.head.appendChild(script)
+    document.head.append(script)
   })
 }
 

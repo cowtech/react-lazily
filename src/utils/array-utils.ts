@@ -1,5 +1,5 @@
-export function range(max: number, min: number = 0): Array<number> {
-  return Array.from(Array(max), (_, i) => min + i)
+export function range(min: number, max: number = 0): Array<number> {
+  return Array.from({ length: Math.abs(max - min) + 1 }).map((_, i) => Math.min(min, max) + i)
 }
 
 // Algorithm found here: http://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
