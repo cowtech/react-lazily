@@ -1,3 +1,7 @@
+### 2022-03-07 / 3.1.1
+
+- chore: Updated build system.
+
 ### 2022-01-27 / 3.1.0
 
 - feat: Replace normalize.css with modern-normalize.
