@@ -1,3 +1,7 @@
+### 2022-03-14 / 3.1.4
+
+- fix: Updated peer dependencies.
+
 ### 2022-03-14 / 3.1.3
 
 - fix: Fixed JSX runtime.
