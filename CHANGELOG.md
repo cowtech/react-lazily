@@ -1,3 +1,7 @@
+### 2022-03-14 / 3.1.3
+
+- fix: Fixed JSX runtime.
+
 ### 2022-03-07 / 3.1.2
 
 - chore: Updated dependencies.
