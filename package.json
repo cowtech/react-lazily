@@ -37,7 +37,7 @@
   "typings": "./types/index.d.ts",
   "types": "./types/index.d.ts",
   "scripts": {
-    "dev": "swc -w -d dist src",
+    "dev": "swc -s -w -d dist src",
     "prebuild": "rm -rf dist types && npm run typecheck && npm run lint",
     "build": "swc --delete-dir-on-start -d dist src",
     "postbuild": "echo '' >> types/index.d.ts && cat src/utils/sitemap.d.ts.tpl >> types/index.d.ts",
