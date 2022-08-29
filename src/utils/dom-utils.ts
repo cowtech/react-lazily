@@ -1,11 +1,13 @@
 import { FunctionComponent, memo, NamedExoticComponent } from 'react'
 
 export function updateBodySize(offset: number): void {
-  document.body.style.setProperty('--rl-ios-height', `${window.visualViewport.height - offset}px`)
+  if (window.visualViewport) {
+    document.body.style.setProperty('--rl-ios-height', `${window.visualViewport.height - offset}px`)
+  }
 }
 
 export function handleIOSMinHeight(offset: number = 0): void {
-  if ('visualViewport' in window) {
+  if (window.visualViewport) {
     window.visualViewport.addEventListener('resize', updateBodySize.bind(undefined, offset))
     window.addEventListener('resize', updateBodySize.bind(undefined, offset))
   }
