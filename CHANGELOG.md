@@ -1,3 +1,9 @@
+### 2022-11-23 / 3.1.8
+
+- chore: Updated dependencies.
+- chore: Update package.json
+- fix: Fixed build script.
+
 ### 2022-10-12 / 3.1.7
 
 - fix: Updated types layout.
