@@ -3,5 +3,5 @@ export function titleCase(input: string): string {
 }
 
 export function quoteRegexp(raw: string): string {
-  return raw.replace(/([!$()*+./:=?[\\\]^{|}])/g, '\\$1')
+  return raw.replaceAll(/([!$()*+./:=?[\\\]^{|}])/g, '\\$1')
 }

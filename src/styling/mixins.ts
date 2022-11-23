@@ -18,8 +18,8 @@ export const cardStyle: Style = {
 export function linkStyle(
   normalStyle: Style | string,
   hoverStyle: Style | string,
-  normalClasses: Array<string> = [':focus', ':active', ':visited'],
-  hoverClasses: Array<string> = [':hover']
+  normalClasses: string[] = [':focus', ':active', ':visited'],
+  hoverClasses: string[] = [':hover']
 ): Style {
   if (typeof normalStyle === 'string') {
     normalStyle = { color: normalStyle }

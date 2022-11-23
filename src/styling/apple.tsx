@@ -6,7 +6,7 @@ export interface SplashDictionary {
 
 export interface ScreenSize {
   id: string
-  devices: Array<string>
+  devices: string[]
   width: number
   height: number
   ratio: number
@@ -18,7 +18,7 @@ function splashParams(
   ratio: number,
   url: string | SplashDictionary,
   orientation: 'portrait' | 'landscape'
-): Array<string> {
+): string[] {
   const spec = `${width * ratio}x${height * ratio}`
   const isTemplateUrl = typeof url === 'string'
 
@@ -29,7 +29,7 @@ function splashParams(
   ]
 }
 
-export const appleScreenSizes: Array<ScreenSize> = [
+export const appleScreenSizes: ScreenSize[] = [
   {
     id: 'iphone-12-pro-max',
     devices: ['iPhone 12 Pro Max'],
@@ -141,13 +141,13 @@ export const appleScreenSizes: Array<ScreenSize> = [
 export function generateAppleSplashTags(
   url: string | SplashDictionary,
   includeLandscape: boolean = true,
-  whitelist: Array<string> = []
-): Array<JSX.Element> {
+  whitelist: string[] = []
+): JSX.Element[] {
   const sizes = whitelist.length
     ? appleScreenSizes.filter((s: ScreenSize) => whitelist.includes(s.id))
     : appleScreenSizes
 
-  const tags: Array<JSX.Element> = []
+  const tags: JSX.Element[] = []
 
   for (const { devices, width, height, ratio } of sizes) {
     const portraitId = env === 'development' ? `${devices.join(', ')} - Portrait` : null
