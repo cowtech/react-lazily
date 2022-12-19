@@ -1,3 +1,7 @@
+### 2022-12-19 / 4.0.0
+
+- feat: Full rewrite using Uno.css.
+
 ### 2022-11-23 / 3.1.8
 
 - chore: Updated dependencies.
