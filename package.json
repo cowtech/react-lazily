@@ -22,36 +22,25 @@
     "README.md"
   ],
   "type": "module",
-  "exports": {
-    ".": "./dist/index.js",
-    "./images/cowtech.png": "./images/cowtech.png",
-    "./images/favicon-32.png": "./images/favicon-32.png",
-    "./images/favicon-192.png": "./images/favicon-192.png",
-    "./images/favicon-196.png": "./images/favicon-196.png",
-    "./images/cowtech.webp": "./images/cowtech.webp",
-    "./images/favicon-32.webp": "./images/favicon-32.webp",
-    "./images/favicon-192.webp": "./images/favicon-192.webp",
-    "./images/favicon-196.webp": "./images/favicon-196.webp"
-  },
+  "exports": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
-    "dev": "swc --delete-dir-on-start -s -w -d dist src",
+    "dev": "swc --delete-dir-on-start -w -d dist src",
     "prebuild": "rm -rf dist && npm run lint",
     "build": "swc -d dist src",
-    "postbuild": "tsc -p . --emitDeclarationOnly && cat src/utils/sitemap.d.ts.tpl >> dist/index.d.ts",
+    "postbuild": "tsc -p . --emitDeclarationOnly && cat src/utils/sitemap.d.ts.tpl >> dist/index.d.ts && cp -a src/assets dist",
     "format": "prettier -w src",
     "lint": "eslint src",
     "ci": "npm run build && npm run lint",
     "prepublishOnly": "npm run ci",
     "postpublish": "git push origin && git push origin -f --tags",
-    "update:normalize": "node --loader ts-node/esm scripts/update-normalize.ts"
+    "update:normalize": "curl -sSL https://cdn.jsdelivr.net/npm/modern-normalize@1.1.0/modern-normalize.min.css | prettier --parser css | ghead -n -1 > src/assets/styles/normalize.css"
   },
   "peerDependencies": {
-    "fela": "^12.0.2",
-    "idb-keyval": "^6.1.0",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-fela": "^12.0.2"
+    "@unocss/core": "^0.47.5",
+    "@unocss/preset-mini": "^0.47.5",
+    "react": "^18.0.2",
+    "react-dom": "^18.0.2"
   },
   "devDependencies": {
     "@cowtech/eslint-config": "^8.8.0",
@@ -61,17 +50,13 @@
     "@types/prettier": "^2.7.1",
     "@types/react": "^18.0.25",
     "@types/react-dom": "^18.0.9",
+    "@unocss/core": "^0.47.5",
+    "@unocss/preset-mini": "^0.47.5",
     "chokidar": "^3.5.3",
-    "fela": "^12.2.1",
-    "idb-keyval": "^6.2.0",
-    "normalize.css": "^8.0.1",
     "prettier": "^2.8.0",
-    "prop-types": "^15.8.1",
     "react": "^18.2.0",
-    "react-fela": "^12.2.1",
-    "ts-node": "^10.9.1",
-    "typescript": "^4.9.3",
-    "undici": "^5.12.0"
+    "react-dom": "^18.2.0",
+    "typescript": "^4.9.4"
   },
   "engines": {
     "node": ">=14.15.0"

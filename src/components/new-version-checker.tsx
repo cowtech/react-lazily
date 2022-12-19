@@ -1,110 +1,65 @@
-import { MouseEvent, useEffect, useState } from 'react'
 import { createPortal } from 'react-dom'
-import { useFela } from 'react-fela'
-import { colorAmber200, colorAmber500, colorGreen900, colorWhite } from '../styling/colors.js'
-import { onServer, Style } from '../styling/environment.js'
-import { linkStyle } from '../styling/mixins.js'
-import { createMemoizedComponent } from '../utils/dom-utils.js'
+import { onServer } from '../environment.js'
+import { cleanCSSClasses } from '../utils/string.js'
 
-// #region style
-export const newVersionCheckerStyle: Style = {
-  display: 'none',
-  width: '100%',
-  position: 'fixed',
-  top: 0,
-  left: 0,
-  zIndex: 100,
-  backgroundColor: colorGreen900,
-  color: colorWhite,
-  paddingTop: 'calc(1rem + env(safe-area-inset-top))',
-  paddingBottom: '1rem',
-  paddingLeft: 'calc(1rem + env(safe-area-inset-left))',
-  paddingRight: 'calc(1rem + env(safe-area-inset-right))',
-  textAlign: 'center'
-}
-
-export const newVersionCheckerLinkStyle: Style = {
-  color: colorAmber500,
-  fontWeight: 'bold',
-  ...linkStyle(colorAmber500, colorAmber200)
-}
-// #endregion style
-
-export function listenForUpdates(currentVersion: string, callback: (newVersion: string) => void): void {
-  if (!navigator.serviceWorker) {
-    return
-  }
-
-  navigator.serviceWorker.addEventListener('message', (event: Event) => {
-    const { type, payload } = (event as MessageEvent).data
-
-    if (type === 'new-version-available' && payload.version !== currentVersion) {
-      callback(payload.version)
-    }
-  })
-}
-
-export function updateVersion(ev: MouseEvent): void {
-  ev.preventDefault()
-  location.reload()
-}
+const newVersionCheckerStyle = cleanCSSClasses(`
+  fixed hidden text-center w-full bottom-0 left-0 z-100 bg-green-900 text-white 
+  pt-1rem
+  pb-[calc(1rem_+_env(safe-area-inset-bottom))]
+  pl-[calc(1rem_+_env(safe-area-inset-left))]
+  pr-[calc(1rem_+_env(safe-area-inset-right))]
+`)
 
 export interface NewVersionCheckerProps {
-  currentVersion: string
   message?: string
-  additionalStyle?: Style
+  additionalStyle?: string
   action?: string
 }
 
-export interface NewVersionCheckerState {
-  newVersionAvailable: boolean
+export function NewVersionChecker({ message, additionalStyle, action }: NewVersionCheckerProps): JSX.Element | null {
+  message = message ?? 'There is a shiny new version.'
+  action = action ?? 'Update now!'
+
+  const contents = (
+    <div id="rl-new-version-checker" className={[newVersionCheckerStyle, additionalStyle].filter(Boolean).join(' ')}>
+      <span>{message}&nbsp;</span>
+      <a href="#" className="font-bold text-amber-500 hover:text-amber-200">
+        {action}
+      </a>
+    </div>
+  )
+
+  return onServer ? contents : createPortal(contents, document.querySelector('#rl-modal-root')!)
 }
 
-export const NewVersionChecker = createMemoizedComponent(
-  'NewVersionChecker',
-  function ({ currentVersion, message, additionalStyle, action }: NewVersionCheckerProps): JSX.Element | null {
-    const { css } = useFela()
-    const [newVersionAvailable, setNewVersionAvailable] = useState(false)
+export function NewVersionCheckerScript(currentVersion: string): string {
+  return `
+  document.addEventListener('DOMContentLoaded', function(){
+    const element = document.querySelector('#rl-new-version-checker');
 
-    useEffect(() => {
-      listenForUpdates(currentVersion, () => setNewVersionAvailable(true))
-    }, [])
-
-    // The check on window is for SSR
-    if (typeof window !== 'undefined' && !newVersionAvailable) {
-      return null
+    if (!navigator.serviceWorker) {
+      element.remove();
+      return;
     }
 
-    message = message ?? 'There is a shiny new version.'
-    action = action ?? 'Update now!'
 
-    const contents = (
-      <div
-        id="newVersionChecker"
-        className={css(newVersionCheckerStyle, newVersionAvailable ? { display: 'block' } : {}, additionalStyle ?? {})}
-        data-current-version={currentVersion}
-      >
-        <span>{message}&nbsp;</span>
-        <a href="#" onClick={updateVersion} className={css(newVersionCheckerLinkStyle)}>
-          {action}
-        </a>
-      </div>
-    )
-
-    return onServer ? contents : createPortal(contents, document.querySelector('#rl-modal-root')!)
-  }
-)
-
-export const NewVersionCheckerSSR: string = `
-  document.addEventListener('DOMContentLoaded', function(){
-    ${listenForUpdates};
-    ${updateVersion};
-
-    const element = document.getElementById('newVersionChecker');
-    element.querySelector('a').addEventListener('click', updateVersion, false);
+    element.querySelector('a').addEventListener(
+      'click', 
+      event => {
+        event.preventDefault();
+        location.reload();
+      }, 
+      false
+    );
     
-    listenForUpdates(element.getAttribute('data-current-version'), () => {
-      element.style.display = 'block';
+    navigator.serviceWorker.addEventListener('message', event => {
+      console.log(event)
+      const { type, payload } = event.data;
+  
+      if (type === 'new-version-available' && payload.version !== '${currentVersion}') {
+        element.style.display = 'block';
+      }
     });
   });
 `
+}

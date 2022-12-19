@@ -1,5 +1,10 @@
 import { useCallback, useEffect } from 'react'
-import { createMemoizedComponent } from '../utils/dom-utils.js'
+
+export interface ShortcutsProps {
+  shortcuts: {
+    [key: string]: () => void
+  }
+}
 
 function triggerShortcuts(shortcuts: { [key: string]: () => void }, ev: KeyboardEvent): void {
   // First of all, if within a input, ignore unless is Esc or Enter
@@ -19,13 +24,7 @@ function triggerShortcuts(shortcuts: { [key: string]: () => void }, ev: Keyboard
   }
 }
 
-export interface ShortcutsProps {
-  shortcuts: {
-    [key: string]: () => void
-  }
-}
-
-export const Shortcuts = createMemoizedComponent('Shortcuts', function ({ shortcuts }: ShortcutsProps): null {
+export function Shortcuts({ shortcuts }: ShortcutsProps): null {
   const handleShortcuts = useCallback(
     (ev: KeyboardEvent) => {
       triggerShortcuts(shortcuts, ev)
@@ -42,4 +41,4 @@ export const Shortcuts = createMemoizedComponent('Shortcuts', function ({ shortc
   })
 
   return null
-})
+}

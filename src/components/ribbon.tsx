@@ -1,73 +1,48 @@
 import { ReactNode } from 'react'
 import { createPortal } from 'react-dom'
-import { useFela } from 'react-fela'
-import { colorGrey500, colorGrey800 } from '../styling/colors.js'
-import { onServer, Style } from '../styling/environment.js'
-import { createMemoizedComponent } from '../utils/dom-utils.js'
-
-// #region style
-const ribbonBaseStyle: Style = {
-  display: 'var(--rl-ribbon-display)',
-  position: 'fixed',
-  backfaceVisibility: 'hidden',
-  zIndex: 99,
-  border: `1px solid ${colorGrey800}`,
-  boxShadow: `0 0 0.5rem ${colorGrey500}`,
-  padding: '0 2%',
-  textAlign: 'center'
-}
-
-// 29.28% = 100% - (100% / sqrt(2))
-export const ribbonPositionsStyles: Record<string, Style> = {
-  'top-left': {
-    top: 0,
-    left: 0,
-    bottom: 'auto',
-    right: 'auto',
-    transform: 'translate(-29.28%, -100%) rotate(-45deg)',
-    transformOrigin: 'bottom right'
-  },
-  'top-right': {
-    top: 0,
-    left: 'auto',
-    bottom: 'auto',
-    right: 0,
-    transform: 'translate(29.28%, -100%) rotate(45deg)',
-    transformOrigin: 'bottom left'
-  },
-  'bottom-right': {
-    top: 'auto',
-    left: 'auto',
-    bottom: 0,
-    right: 0,
-    transform: 'translate(29.28%, 100%) rotate(-45deg)',
-    transformOrigin: 'top left'
-  },
-  'bottom-left': {
-    top: 'auto',
-    left: 0,
-    bottom: 0,
-    right: 'auto',
-    transform: 'translate(-29.28%, 100%) rotate(45deg)',
-    transformOrigin: 'top right'
-  }
-}
-// #endregion style
+import { onServer } from '../environment.js'
 
 export interface RibbonProps {
   position?: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right'
-  additionalStyle?: Style
+  additionalStyle?: string
   children?: ReactNode
 }
 
-export const Ribbon = createMemoizedComponent(
-  'Ribbon',
-  function ({ position, additionalStyle, children }: RibbonProps): JSX.Element {
-    const { css } = useFela()
-    const positionStyle = ribbonPositionsStyles[position!] ?? ribbonPositionsStyles['top-right']
+const ribbonBaseStyle =
+  'fixed display-$rl-ribbon-display backface-hidden z-99 border-1px border-grey-800 px-2p text-center shadow-rl-ribbon'
 
-    const contents = <div className={css(ribbonBaseStyle, positionStyle, additionalStyle ?? {})}>{children}</div>
+// 29.28% = 100% - (100% / sqrt(2))
+const ribbonPositionsStyles: Record<string, string> = {
+  'top-left': 'top-0 left-0 origin-bottom-right -translate-x-29_28p -translate-y-full -rotate-45',
+  'top-right': 'top-0 right-0 origin-bottom-left translate-x-29_28p -translate-y-full rotate-45',
+  'bottom-right': 'bottom-0 right-0 origin-top-left translate-x-29_28p translate-y-full -rotate-45',
+  'bottom-left': 'bottom-0 left-0 origin-top-right -translate-x-29_28p translate-y-full rotate-45'
+}
 
-    return onServer ? contents : createPortal(contents, document.querySelector('#rl-modal-root')!)
-  }
-)
+export function Ribbon({ position, additionalStyle, children }: RibbonProps): JSX.Element {
+  const positionStyle = ribbonPositionsStyles[position!] ?? ribbonPositionsStyles['top-right']
+
+  const contents = (
+    <div className={[ribbonBaseStyle, positionStyle, additionalStyle].filter(Boolean).join(' ')}>{children}</div>
+  )
+
+  return onServer ? contents : createPortal(contents, document.querySelector('#rl-modal-root')!)
+}
+
+export function MadeInItaly({ position, additionalStyle }: Omit<RibbonProps, 'children'>): JSX.Element {
+  return (
+    <Ribbon
+      additionalStyle={['w-23rem bg-rl-made-in-italy', additionalStyle].filter(Boolean).join(' ')}
+      position={position}
+    >
+      <a
+        className="inline-block w-10rem font-bold font-size-0_85em line-height-1 text-black p-5px text-shadow-rl-made-in-italy"
+        href="http://www.italia.it"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Made by a proud Italian!
+      </a>
+    </Ribbon>
+  )
+}

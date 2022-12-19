@@ -1,4 +1,7 @@
-import { FunctionComponent, memo, NamedExoticComponent } from 'react'
+export const systemFonts =
+  "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'"
+
+export const systemMonospaceFonts = "ui-monospace, SFMono-Regular, Consolas, 'Liberation Mono', Menlo, monospace"
 
 export function updateBodySize(offset: number): void {
   if (window.visualViewport) {
@@ -30,13 +33,4 @@ export function loadScript(url: string, tag: string): Promise<void> {
 
     document.head.append(script)
   })
-}
-
-export function createMemoizedComponent<Props extends object>(
-  name: string,
-  component: FunctionComponent<Props>
-): NamedExoticComponent<Props> {
-  const created = memo(component)
-  created.displayName = name
-  return created
 }

@@ -1,88 +1,58 @@
 import { createPortal } from 'react-dom'
-import { useFela } from 'react-fela'
-import { colorAmber200, colorAmber500, colorRed700, colorWhite } from '../styling/colors.js'
-import { onServer, Style } from '../styling/environment.js'
-import { linkStyle } from '../styling/mixins.js'
-import { createMemoizedComponent } from '../utils/dom-utils.js'
-
-// #region style
-export const browseHappyStyle: Style = {
-  display: 'none',
-  width: '100%',
-  position: 'fixed',
-  bottom: 0,
-  left: 0,
-  zIndex: 100,
-  backgroundColor: colorRed700,
-  color: colorWhite,
-  paddingTop: '1rem',
-  paddingBottom: 'calc(1rem + env(safe-area-inset-bottom))',
-  paddingLeft: 'calc(1rem + env(safe-area-inset-left))',
-  paddingRight: 'calc(1rem + env(safe-area-inset-right))',
-  textAlign: 'center'
-}
-
-export const browseHappyLinkStyle: Style = {
-  color: colorAmber500,
-  fontWeight: 'bold',
-  ...linkStyle(colorAmber500, colorAmber200)
-}
-// #endregion style
-
-export function isModernBrowser(): boolean {
-  try {
-    return (
-      [...new Map([[1, 2]]).entries()].join(',') === '1,2' &&
-      CSS.supports('display', 'grid') &&
-      CSS.supports('display', 'flex') &&
-      CSS.supports('color', 'var(--var)')
-    )
-  } catch {
-    // Some of these are not supported. Assume legacy browser.
-    return false
-  }
-}
+import { onServer } from '../environment.js'
+import { cleanCSSClasses } from '../utils/string.js'
 
 export interface BrowseHappyProps {
   message?: string
-  additionalStyle?: Style
+  additionalStyle?: string
 }
 
-export const BrowseHappy = createMemoizedComponent(
-  'BrowseHappy',
-  function ({ message, additionalStyle }: BrowseHappyProps): JSX.Element | null {
-    const { css } = useFela()
+const browseHappyStyle = cleanCSSClasses(`
+  fixed hidden text-center w-full bottom-0 left-0 z-100 bg-red-700 text-white 
+  pt-1rem
+  pb-[calc(1rem_+_env(safe-area-inset-bottom))]
+  pl-[calc(1rem_+_env(safe-area-inset-left))]
+  pr-[calc(1rem_+_env(safe-area-inset-right))]
+`)
 
-    message = message ?? 'Your browser is obsolete. For the best browsing experience, update it for free by visiting'
+export function BrowseHappy({ message, additionalStyle }: BrowseHappyProps): JSX.Element | null {
+  message = message ?? 'Your browser is obsolete. For the best browsing experience, update it for free by visiting'
 
-    const contents = (
-      <div id="browseHappy" className={css(browseHappyStyle, additionalStyle ?? {})}>
-        <span>{message}&nbsp;</span>
-        <a
-          href="https://browsehappy.com/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className={css(browseHappyLinkStyle)}
-        >
-          BrowseHappy
-        </a>
-        .
-      </div>
-    )
+  const contents = (
+    <div id="rl-browse-happy" className={[browseHappyStyle, additionalStyle].filter(Boolean).join(' ')}>
+      <span>{message}&nbsp;</span>
+      <a
+        href="https://browsehappy.com/"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="font-bold text-amber-500  hover:text-amber-200"
+      >
+        BrowseHappy
+      </a>
+      .
+    </div>
+  )
 
-    return onServer ? contents : createPortal(contents, document.querySelector('#rl-modal-root')!)
-  }
-)
+  return onServer ? contents : createPortal(contents, document.querySelector('#rl-modal-root')!)
+}
 
-export const BrowseHappySSR: string = `
+export const BrowseHappyScript: string = `
   document.addEventListener('DOMContentLoaded', function() {
-    ${isModernBrowser};
+    const element = document.querySelector('#rl-browse-happy');
 
-    const element = document.getElementById('browseHappy');
-    
-    if(isModernBrowser()) {
-      element.remove();
-    } else {
+    try {
+      if (
+        [...new Map([[1, 2]]).entries()].join(',') === '1,2' &&
+        CSS.supports('display', 'grid') &&
+        CSS.supports('display', 'flex') &&
+        CSS.supports('color', 'var(--var)')
+      ) {
+        element.remove();
+      } else {
+        element.style.display = 'block';
+      }
+    } catch {
+      // Some of these are not supported. Assume legacy browser.
       element.style.display = 'block';
     }
   });

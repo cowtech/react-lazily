@@ -1,70 +1,32 @@
-import { useFela } from 'react-fela'
-import { Style } from '../styling/environment.js'
-import { createMemoizedComponent } from '../utils/dom-utils.js'
-
-// #region style
-export const iconStyle: Style = {
-  width: '1em',
-  height: '1em',
-  display: 'inline-block',
-  verticalAlign: 'middle',
-  strokeWidth: 0,
-  stroke: 'currentColor',
-  fill: 'currentColor'
-}
-
-export const iconsDefinitionsStyle: Style = {
-  width: 0,
-  height: 0,
-  display: 'none',
-  position: 'absolute',
-  overflow: 'hidden'
-}
-// #endregion style
-
-interface Icons {
-  prefix: string
-  tags: { [key: string]: string }
+export interface IconsDefinitionsProps {
   definitions: string
 }
 
-declare const ICONS: Icons
-
 export interface IconProps {
   name: string
-  additionalStyle?: Style
+  additionalStyle?: string
   onClick?: () => void
 }
 
-export const Icon = createMemoizedComponent(
-  'Icon',
-  function ({ name, additionalStyle, onClick }: IconProps): JSX.Element | null {
-    const { css } = useFela()
-    const icon = ICONS.tags[name]
+const iconStyle = 'inline-block align-middle w-1em h-1em stroke-0 stroke-current fill-current'
 
-    if (!icon) {
-      throw new Error(`Missing icon ${name}.`)
-    }
-
-    return (
-      <svg className={css(iconStyle, additionalStyle ?? {})} onClick={onClick}>
-        <use xlinkHref={`#${icon.toString()}`} />
-      </svg>
-    )
-  }
-)
-
-export const IconsDefinitions = createMemoizedComponent('IconsDefinitions', function (): JSX.Element {
-  const { css } = useFela()
-
+export function IconsDefinitions({ definitions }: IconsDefinitionsProps): JSX.Element {
   return (
     <svg
-      className={css(iconsDefinitionsStyle)}
+      className="absolute hidden w-0 h-0"
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
     >
-      <defs dangerouslySetInnerHTML={{ __html: ICONS.definitions }} />
+      <defs dangerouslySetInnerHTML={{ __html: definitions }} />
     </svg>
   )
-})
+}
+
+export function Icon({ name, additionalStyle, onClick }: IconProps): JSX.Element | null {
+  return (
+    <svg className={[iconStyle, additionalStyle].filter(Boolean).join(' ')} onClick={onClick}>
+      <use xlinkHref={`#${name}`} />
+    </svg>
+  )
+}

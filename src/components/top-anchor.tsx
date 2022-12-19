@@ -1,65 +1,33 @@
 import { MouseEvent, useCallback, useEffect, useRef } from 'react'
 import { createPortal } from 'react-dom'
-import { useFela } from 'react-fela'
-import { colorGrey600, colorWhite } from '../styling/colors.js'
-import { onServer, Style } from '../styling/environment.js'
-import { linkStyle } from '../styling/mixins.js'
-import { createMemoizedComponent } from '../utils/dom-utils.js'
+import { onServer } from '../environment.js'
+import { cleanCSSClasses } from '../utils/string.js'
 import { Icon } from './icons.js'
 
-// #region style
-const topAnchorBaseStyle: Style = {
-  display: 'none',
-  width: 'var(--rl-top-anchor-size)',
-  height: 'var(--rl-top-anchor-size)',
-  bottom: '2rem',
-  right: '2rem',
-  padding: '1rem',
-  position: 'fixed',
-  zIndex: 101,
-  alignItems: 'center',
-  justifyContent: 'center',
-  borderRadius: '5px',
-  opacity: 0.5,
-  transition: 'opacity 0.2s ease'
+export interface TopAnchorProps {
+  duration?: number
+  backgroundColor?: string
+  foregroundColor?: string
+  additionalStyle?: string
 }
 
-const topAnchorIconStyle: Style = {
-  fontSize: '1.5em'
-}
+const topAnchorBaseStyle = cleanCSSClasses(`
+  fixed hidden items-center justify-center
+  w-$rl-top-anchor-size h-$rl-top-anchor-size bottom-2rem right-2rem p-1rem z-101 
+  rounded-5px opacity-0 opacity-50 transition-opacity ease-linear duration-200
+`)
 
-function topAnchorStyle(backgroundColor: string | undefined, foregroundColor: string | undefined): Style {
-  return {
-    backgroundColor: backgroundColor ?? colorGrey600,
-    color: foregroundColor ?? colorWhite,
-    ...linkStyle({ color: foregroundColor ?? colorWhite }, { opacity: 1, color: foregroundColor ?? colorWhite })
-  }
-}
-
-// #endregion style
-
-export function animationProgress(startTime: number, duration: number): number {
-  if (!duration) {
-    duration = 350
-  }
-
-  return Math.min((Date.now() - startTime) / duration, 1)
-}
-
-// This is easeInOutQuad taken here: https://gist.github.com/gre/1650294
-export function ease(x: number): number {
-  return x < 0.5 ? Math.pow(x, 2) * 2 : (4 - x * 2) * x - 1
-}
-
-export function updateTopAnchorStatus(element: HTMLAnchorElement): void {
+function updateTopAnchorStatus(element: HTMLAnchorElement): void {
   if (!element) {
     return
   }
 
-  element.style.display = window.pageYOffset === 0 ? 'none' : 'flex'
+  const top = window.pageYOffset === 0
+  element.classList.toggle('hidden', top)
+  element.classList.toggle('flex', !top)
 }
 
-export function scrollToTop(ev: MouseEvent, duration: number): void {
+export function scrollToTop(ev: MouseEvent, duration: number = 350): void {
   ev.preventDefault()
 
   const startTime = Date.now()
@@ -76,10 +44,10 @@ export function scrollToTop(ev: MouseEvent, duration: number): void {
   // Step function for the the animation
   function animate(): void {
     // Compute the progress
-    const progress = animationProgress(startTime, duration)
+    const progress = Math.min((Date.now() - startTime) / duration, 1)
 
-    // Perform scrolling
-    const delta = base * ease(progress)
+    // Perform scrolling - Uses easeInOutQuad taken here: https://gist.github.com/gre/1650294
+    const delta = base * (progress < 0.5 ? Math.pow(progress, 2) * 2 : (4 - progress * 2) * progress - 1)
     scroll(Math.max(base - delta, 0))
 
     // Next step or fail stop
@@ -94,70 +62,66 @@ export function scrollToTop(ev: MouseEvent, duration: number): void {
   animate()
 }
 
-export interface TopAnchorProps {
-  duration?: number
-  backgroundColor?: string
-  foregroundColor?: string
-  additionalStyle?: Style
+export function TopAnchor({
+  duration,
+  backgroundColor,
+  foregroundColor,
+  additionalStyle
+}: TopAnchorProps): JSX.Element {
+  const element = useRef<HTMLAnchorElement>(null)
+
+  const handleScroll = useCallback(() => {
+    updateTopAnchorStatus(element.current!)
+  }, [element])
+
+  const handleScrollToTop = useCallback(
+    (ev: MouseEvent) => {
+      scrollToTop(ev, duration)
+    },
+    [duration]
+  )
+
+  // Handle events
+  useEffect(() => {
+    // Register the scroll event
+    window.addEventListener('scroll', handleScroll, false)
+
+    // Perform the first update
+    handleScroll()
+
+    // Remove event binding upon exist
+    return () => {
+      window.removeEventListener('scroll', handleScroll, false)
+    }
+  }, [])
+
+  const colorStyle = cleanCSSClasses(`
+    bg-${backgroundColor ?? 'grey-600'} text-${foregroundColor ?? 'white'} 
+    hover:opacity-100 hover:text-${foregroundColor ?? 'white'}
+  `)
+
+  const contents = (
+    <a
+      ref={element}
+      id="rl-top-anchor"
+      className={[topAnchorBaseStyle, colorStyle, additionalStyle].filter(Boolean).join(' ')}
+      onClick={handleScrollToTop}
+      href="#top"
+      title="Top"
+    >
+      <Icon name="arrow-up" additionalStyle={`font-size-1_5em text-${foregroundColor ?? 'white'}`} />
+    </a>
+  )
+
+  return onServer ? contents : createPortal(contents, document.querySelector('#rl-modal-root')!)
 }
 
-export const TopAnchor = createMemoizedComponent(
-  'TopAnchor',
-  function ({ duration, backgroundColor, foregroundColor, additionalStyle }: TopAnchorProps): JSX.Element {
-    const { css } = useFela()
-
-    const element = useRef<HTMLAnchorElement>(null)
-
-    const handleScroll = useCallback(() => {
-      updateTopAnchorStatus(element.current!)
-    }, [element])
-
-    const handleScrollToTop = useCallback(
-      (ev: MouseEvent) => {
-        scrollToTop(ev, duration!)
-      },
-      [duration]
-    )
-
-    // Handle events
-    useEffect(() => {
-      // Register the scroll event
-      window.addEventListener('scroll', handleScroll, false)
-
-      // Perform the first update
-      handleScroll()
-
-      // Remove event binding upon exist
-      return () => {
-        window.removeEventListener('scroll', handleScroll, false)
-      }
-    }, [])
-
-    const contents = (
-      <a
-        id="topAnchor"
-        ref={element}
-        className={css(topAnchorBaseStyle, topAnchorStyle(backgroundColor, foregroundColor), additionalStyle ?? {})}
-        onClick={handleScrollToTop}
-        href="#top"
-        title="Top"
-      >
-        <Icon name="arrow-up" additionalStyle={topAnchorIconStyle} />
-      </a>
-    )
-
-    return onServer ? contents : createPortal(contents, document.querySelector('#rl-modal-root')!)
-  }
-)
-
-export const TopAnchorSSR: string = `
+export const TopAnchorScript: string = `
   document.addEventListener('DOMContentLoaded', function(){
-    ${ease};
-    ${animationProgress};
     ${updateTopAnchorStatus};
     ${scrollToTop};
 
-    const element = document.getElementById('topAnchor');
+    const element = document.querySelector('#rl-top-anchor');
 
     element.addEventListener('click', scrollToTop, false);
     window.addEventListener('scroll', () => updateTopAnchorStatus(element), false);
