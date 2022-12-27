@@ -1,3 +1,7 @@
+### 2022-12-27 / 4.1.0
+
+- feat: Added new class to safelist.
+
 ### 2022-12-19 / 4.0.0
 
 - feat: Full rewrite using Uno.css.
