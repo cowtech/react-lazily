@@ -303,4 +303,4 @@ export const animations1: Record<string, string> = {
   'rl-spinner': 'rl-spinner 2s linear infinite'
 }
 
-export const safelist: string[] = ['block', 'hidden']
+export const safelist: string[] = ['block', 'hidden', 'flex']
