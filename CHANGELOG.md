@@ -1,3 +1,8 @@
+### 2023-10-09 / 4.2.0
+
+- chore: Updated dependencies.
+- chore: Fixed compilation.
+
 ### 2022-12-27 / 4.1.0
 
 - feat: Added new class to safelist.
