@@ -1,4 +1,4 @@
-import { MouseEvent, useCallback, useEffect, useRef } from 'react'
+import { useCallback, useEffect, useRef, type MouseEvent } from 'react'
 import { createPortal } from 'react-dom'
 import { onServer } from '../environment.js'
 import { cleanCSSClasses } from '../utils/string.js'

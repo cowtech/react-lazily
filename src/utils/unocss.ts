@@ -1,5 +1,5 @@
-import { CSSValue, Rule, UserConfig } from '@unocss/core'
-import { Theme as UnoTheme } from '@unocss/preset-mini'
+import { type CSSValue, type Rule, type UserConfig } from '@unocss/core'
+import { type Theme as UnoTheme } from '@unocss/preset-mini'
 import { h, handler } from '@unocss/preset-mini/utils'
 import { colorGrey500, colorWhite } from './colors.js'
 
@@ -108,6 +108,38 @@ export function generateBorders(customUnit: string, ratio: number, unit: string)
   return borders
 }
 
+export function generateRadiuses(customUnit: string, ratio: number, unit: string): Rule[] {
+  const radiuses: Rule[] = [
+    [new RegExp(`^rounded-(\\d+(?:_\\d+)?)${customUnit}$`), ([, d]) => numericRule('border-radius', d, unit, ratio)]
+  ]
+
+  for (const [short, long] of [
+    ['t', ['top-left', 'top-right']],
+    ['b', ['bottom-left', 'bottom-right']],
+    ['l', ['top-left', 'bottom-left']],
+    ['r', ['top-right', 'bottom-right']],
+    ['tl', ['top-left']],
+    ['tr', ['top-right']],
+    ['bl', ['bottom-left']],
+    ['br', ['bottom-right']]
+  ]) {
+    radiuses.push([
+      new RegExp(`^rounded-${short}-(\\d+(?:_\\d+)?)${customUnit}$`),
+      ([, d]) => {
+        const r: CSSValue = {}
+
+        for (const l of long) {
+          Object.assign(r, numericRule(`border-${l}-radius`, d, unit, ratio))
+        }
+
+        return r
+      }
+    ])
+  }
+
+  return radiuses
+}
+
 export function generatePositions(customUnit: string, ratio: number, unit: string): Rule[] {
   const positions: Rule[] = []
   for (const position of ['top', 'bottom', 'left', 'right']) {
@@ -203,6 +235,7 @@ export function generateCustomUnits(customUnits: [string, number, string][]): Ru
       ...generateBackgroundPositions(customUnit, ratio, unit),
       ...generateGaps(customUnit, ratio, unit),
       ...generateBorders(customUnit, ratio, unit),
+      ...generateRadiuses(customUnit, ratio, unit),
       ...generateDimensions('w', 'width', customUnit, ratio, unit),
       ...generateDimensions('h', 'height', customUnit, ratio, unit),
       ...generateTranslations(customUnit, ratio, unit)
@@ -212,7 +245,7 @@ export function generateCustomUnits(customUnits: [string, number, string][]): Ru
   return rules
 }
 
-export function defineUnoConfig<Theme extends {} = UnoTheme>(config: UserConfig<Theme>): UserConfig<Theme> {
+export function defineUnoConfig<Theme extends object = UnoTheme>(config: UserConfig<Theme>): UserConfig<Theme> {
   return config
 }
 
@@ -220,7 +253,10 @@ export const units: [string, number, string][] = [
   ['ch', 1, 'ch'],
   ['em', 1, 'em'],
   ['rem', 1, 'rem'],
-  ['p', 1, '%']
+  ['p', 1, '%'],
+  ['px', 1, 'px'],
+  ['vw', 1, 'vw'],
+  ['vh', 1, 'vh']
 ]
 
 export const rules: Rule<UnoTheme>[] = [

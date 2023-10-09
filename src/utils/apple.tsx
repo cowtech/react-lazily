@@ -1,8 +1,6 @@
 import { env } from '../environment.js'
 
-export interface SplashDictionary {
-  [key: string]: string
-}
+export type SplashDictionary = Record<string, string>
 
 export interface ScreenSize {
   id: string

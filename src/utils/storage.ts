@@ -14,7 +14,13 @@ export async function setupStorage(database: string, store: string): Promise<IDB
       },
       false
     )
-    req.addEventListener('error', () => reject(req.error), false)
+    req.addEventListener(
+      'error',
+      () => {
+        reject(req.error)
+      },
+      false
+    )
   })
 }
 
@@ -22,8 +28,12 @@ export async function getStorageValue<T = string>(store: IDBObjectStore, key: st
   return new Promise<T>((resolve, reject) => {
     const req = store.get(key)
 
-    req.addEventListener('success', () => resolve(req.result as T))
-    req.addEventListener('error', () => reject(req.error))
+    req.addEventListener('success', () => {
+      resolve(req.result as T)
+    })
+    req.addEventListener('error', () => {
+      reject(req.error)
+    })
   })
 }
 
@@ -31,8 +41,12 @@ export async function setStorageValue<T = string>(store: IDBObjectStore, key: st
   return new Promise((resolve, reject) => {
     const req = store.put(value, key)
 
-    req.addEventListener('success', () => resolve())
-    req.addEventListener('error', () => reject(req.error))
+    req.addEventListener('success', () => {
+      resolve()
+    })
+    req.addEventListener('error', () => {
+      reject(req.error)
+    })
   })
 }
 
@@ -40,7 +54,11 @@ export async function deleteStorageValue(store: IDBObjectStore, key: string): Pr
   return new Promise((resolve, reject) => {
     const req = store.delete(key)
 
-    req.addEventListener('success', () => resolve())
-    req.addEventListener('error', () => reject(req.error))
+    req.addEventListener('success', () => {
+      resolve()
+    })
+    req.addEventListener('error', () => {
+      reject(req.error)
+    })
   })
 }

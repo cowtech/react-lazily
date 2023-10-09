@@ -1,12 +1,10 @@
 import { useCallback, useEffect } from 'react'
 
 export interface ShortcutsProps {
-  shortcuts: {
-    [key: string]: () => void
-  }
+  shortcuts: Record<string, () => void>
 }
 
-function triggerShortcuts(shortcuts: { [key: string]: () => void }, ev: KeyboardEvent): void {
+function triggerShortcuts(shortcuts: Record<string, () => void>, ev: KeyboardEvent): void {
   // First of all, if within a input, ignore unless is Esc or Enter
   if (
     ev.key !== 'Escape' &&
