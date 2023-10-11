@@ -5,6 +5,7 @@ export interface IconsDefinitionsProps {
 export interface IconProps {
   name: string
   additionalStyle?: string
+  skipDefaultStyles?: boolean
   onClick?: () => void
 }
 
@@ -23,9 +24,12 @@ export function IconsDefinitions({ definitions }: IconsDefinitionsProps): JSX.El
   )
 }
 
-export function Icon({ name, additionalStyle, onClick }: IconProps): JSX.Element | null {
+export function Icon({ name, additionalStyle, skipDefaultStyles, onClick }: IconProps): JSX.Element | null {
   return (
-    <svg className={[iconStyle, additionalStyle].filter(Boolean).join(' ')} onClick={onClick}>
+    <svg
+      className={[!skipDefaultStyles ? iconStyle : false, additionalStyle].filter(Boolean).join(' ').trim()}
+      onClick={onClick}
+    >
       <use xlinkHref={`#${name}`} />
     </svg>
   )
