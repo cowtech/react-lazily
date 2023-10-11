@@ -1,3 +1,7 @@
+### 2023-10-11 / 4.3.0
+
+- feat: Allow not to apply default style on icons.
+
 ### 2023-10-09 / 4.2.0
 
 - chore: Updated dependencies.
