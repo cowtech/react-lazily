@@ -1,3 +1,7 @@
+### 2023-10-11 / 4.4.0
+
+- feat: Added new classes to safelist.
+
 ### 2023-10-11 / 4.3.0
 
 - feat: Allow not to apply default style on icons.
