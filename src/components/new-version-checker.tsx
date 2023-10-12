@@ -53,7 +53,6 @@ export function NewVersionCheckerScript(currentVersion: string): string {
     );
     
     navigator.serviceWorker.addEventListener('message', event => {
-      console.log(event)
       const { type, payload } = event.data;
   
       if (type === 'new-version-available' && payload.version !== '${currentVersion}') {
