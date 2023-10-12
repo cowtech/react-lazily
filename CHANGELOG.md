@@ -1,3 +1,7 @@
+### 2023-10-12 / 4.4.1
+
+- fix: Removed redundant UnoCSS rules.
+
 ### 2023-10-11 / 4.4.0
 
 - feat: Added new classes to safelist.
