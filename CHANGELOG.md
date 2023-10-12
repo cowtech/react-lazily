@@ -1,3 +1,7 @@
+### 2023-10-12 / 4.5.0
+
+- feat: Added new UnoCSS rule.
+
 ### 2023-10-12 / 4.4.1
 
 - fix: Removed redundant UnoCSS rules.
