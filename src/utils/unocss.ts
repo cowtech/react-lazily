@@ -261,24 +261,11 @@ export const units: [string, number, string][] = [
 
 export const rules: Rule<UnoTheme>[] = [
   [/^flex-(\d+)$/, ([, value]: string[]) => ({ flex: `${value} ${value} 0%` })],
-  ['flex-initial', { flex: 'initial' }],
-  ['flex-row', { 'flex-direction': 'row' }],
-  [/^grid-([a-z]+)$/, ([, value]: string[]) => ({ 'grid-area': value })],
-  [
-    /^grid-areas-(.+)$/,
-    ([, value]: string[]) => ({
-      'grid-template-areas': transformCSSValue(value)
-        ?.split(' _ ')
-        .map(s => `"${s}"`)
-        .join('\n')
-    })
-  ],
-  [/^grid-cols-\[([^\]]+)]$/, ([, value]: string[]) => ({ 'grid-template-columns': value.split(/\s*,\s*/).join(' ') })],
+  ['flex-initial', { flex: 'initial' }], // This rule purposely overrides preset-mini one
   [/^stroke-width-(\d+(?:_\d+)?)$/, ([, value]: string[]) => numericRule('stroke-width', value)],
   [/^line-height-(\d+(?:_\d+)?)$/, ([, value]: string[]) => numericRule('line-height', value, 'em')],
   [/^font-size-(\d+(?:_\d+)?)em$/, ([, value]: string[]) => numericRule('font-size', value, 'em')],
   [/^font-size-(\d+(?:_\d+)?)pt$/, ([, value]: string[]) => numericRule('font-size', value, 'px', 2.7)],
-  [/^font-size-\$(.+)$/, ([, value]: string[]) => ({ 'font-size': `var(--${value})` })],
   ['bg-position-x-center', { 'background-position-y': 'center' }],
   ['bg-position-y-center', { 'background-position-y': 'center' }],
   [
