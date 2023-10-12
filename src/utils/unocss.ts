@@ -262,6 +262,7 @@ export const units: [string, number, string][] = [
 export const rules: Rule<UnoTheme>[] = [
   [/^flex-(\d+)$/, ([, value]: string[]) => ({ flex: `${value} ${value} 0%` })],
   ['flex-initial', { flex: 'initial' }], // This rule purposely overrides preset-mini one
+  [/^flex-direction-(.+)$/, ([, value]: string[]) => ({ 'flex-direction': transformCSSValue(value) })],
   [/^stroke-width-(\d+(?:_\d+)?)$/, ([, value]: string[]) => numericRule('stroke-width', value)],
   [/^line-height-(\d+(?:_\d+)?)$/, ([, value]: string[]) => numericRule('line-height', value, 'em')],
   [/^font-size-(\d+(?:_\d+)?)em$/, ([, value]: string[]) => numericRule('font-size', value, 'em')],
