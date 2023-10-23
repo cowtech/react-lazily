@@ -1,3 +1,8 @@
+### 2023-10-23 / 4.6.0
+
+- chore: Updated dependencies and toolchain.
+- chore: Removed leftover.
+
 ### 2023-10-12 / 4.5.0
 
 - feat: Added new UnoCSS rule.
