@@ -3,7 +3,6 @@ export function titleCase(input: string): string {
 }
 
 export function quoteRegexp(raw: string): string {
-  // eslint-disable-next-line unicorn/prefer-string-replace-all
   return raw.replace(/([!$()*+./:=?[\\\]^{|}])/g, '\\$1')
 }
 
