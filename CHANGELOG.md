@@ -1,3 +1,9 @@
+### 2023-12-20 / 5.0.0
+
+- chore: Updated dependencies.
+- chore: Fixed CI script.
+- chore: Changed TypeScript version.
+
 ### 2023-10-23 / 4.6.0
 
 - chore: Updated dependencies and toolchain.
