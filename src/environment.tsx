@@ -7,6 +7,7 @@ export const onServer = typeof window === 'undefined'
 export function renderHTML(
   headComponent: JSX.Element,
   bodyComponent: JSX.Element | string,
+  bodyClasses: string | undefined,
   lang: string = 'en'
 ): string {
   if (typeof bodyComponent !== 'string') {
@@ -18,7 +19,7 @@ export function renderHTML(
     renderToStaticMarkup(
       <html lang={lang}>
         {headComponent}
-        <body dangerouslySetInnerHTML={{ __html: bodyComponent }} />
+        <body className={bodyClasses} dangerouslySetInnerHTML={{ __html: bodyComponent }} />
       </html>
     )
   )
