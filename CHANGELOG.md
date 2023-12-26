@@ -1,3 +1,7 @@
+### 2023-12-26 / 6.0.0
+
+- feat!: Support classes in renderHTML.
+
 ### 2023-12-20 / 5.0.0
 
 - chore: Updated dependencies.
