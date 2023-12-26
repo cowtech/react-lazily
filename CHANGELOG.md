@@ -1,3 +1,7 @@
+### 2023-12-26 / 6.1.0
+
+- feat: Support no classes in icons definition.
+
 ### 2023-12-26 / 6.0.0
 
 - feat!: Support classes in renderHTML.
