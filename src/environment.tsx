@@ -7,7 +7,7 @@ export const onServer = typeof window === 'undefined'
 export function renderHTML(
   headComponent: JSX.Element,
   bodyComponent: JSX.Element | string,
-  bodyClasses: string | undefined,
+  bodyClasses: string | undefined = undefined,
   lang: string = 'en'
 ): string {
   if (typeof bodyComponent !== 'string') {
