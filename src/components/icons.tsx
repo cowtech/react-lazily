@@ -1,5 +1,7 @@
 export interface IconsDefinitionsProps {
   definitions: string
+  additionalStyle?: string
+  skipDefaultStyles?: boolean
 }
 
 export interface IconProps {
@@ -10,11 +12,16 @@ export interface IconProps {
 }
 
 const iconStyle = 'inline-block align-middle w-1em h-1em stroke-0 stroke-current fill-current'
+const iconDefinitionStyle = 'absolute hidden w-0 h-0'
 
-export function IconsDefinitions({ definitions }: IconsDefinitionsProps): JSX.Element {
+export function IconsDefinitions({
+  definitions,
+  skipDefaultStyles,
+  additionalStyle
+}: IconsDefinitionsProps): JSX.Element {
   return (
     <svg
-      className="absolute hidden w-0 h-0"
+      className={[!skipDefaultStyles ? iconDefinitionStyle : false, additionalStyle].filter(Boolean).join(' ').trim()}
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
