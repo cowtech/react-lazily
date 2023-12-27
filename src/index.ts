@@ -1,4 +1,5 @@
 export * from './components/browse-happy.js'
+export * from './components/classes-resolver.js'
 export * from './components/icons.js'
 export * from './components/new-version-checker.js'
 export * from './components/ribbon.js'
