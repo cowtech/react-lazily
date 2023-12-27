@@ -1,3 +1,8 @@
+### 2023-12-27 / 9.0.0
+
+- feat!: Changed CSS Classes resolver type.
+- feat!: Changed CSS Classes resolver type.
+
 ### 2023-12-27 / 7.1.2
 
 - fix: Added missing import.
