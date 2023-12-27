@@ -1,3 +1,7 @@
+### 2023-12-27 / 7.1.0
+
+- feat: Added CSS resolver context.
+
 ### 2023-12-27 / 7.0.0
 
 - feat!: Sanitize CSS class handling.
