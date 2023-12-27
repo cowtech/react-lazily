@@ -1,10 +1,11 @@
 import { createPortal } from 'react-dom'
 import { onServer } from '../environment.js'
-import { cleanCSSClasses } from '../utils/string.js'
+import { cleanCSSClasses, sanitizeClassName } from '../utils/string.js'
 
 export interface BrowseHappyProps {
   message?: string
-  additionalStyle?: string
+  className?: string
+  skipDefaultClassName?: boolean
 }
 
 const browseHappyStyle = cleanCSSClasses(`
@@ -15,17 +16,19 @@ const browseHappyStyle = cleanCSSClasses(`
   pr-[calc(1rem_+_env(safe-area-inset-right))]
 `)
 
-export function BrowseHappy({ message, additionalStyle }: BrowseHappyProps): JSX.Element | null {
+const browseHappyLinkStyle = cleanCSSClasses('font-bold text-amber-500 hover:text-amber-200')
+
+export function BrowseHappy({ message, className, skipDefaultClassName }: BrowseHappyProps): JSX.Element | null {
   message = message ?? 'Your browser is obsolete. For the best browsing experience, update it for free by visiting'
 
   const contents = (
-    <div id="rl-browse-happy" className={[browseHappyStyle, additionalStyle].filter(Boolean).join(' ')}>
+    <div id="rl-browse-happy" className={sanitizeClassName(!skipDefaultClassName && browseHappyStyle, className)}>
       <span>{message}&nbsp;</span>
       <a
         href="https://browsehappy.com/"
         target="_blank"
         rel="noopener noreferrer"
-        className="font-bold text-amber-500  hover:text-amber-200"
+        className={sanitizeClassName(!skipDefaultClassName && browseHappyLinkStyle)}
       >
         BrowseHappy
       </a>

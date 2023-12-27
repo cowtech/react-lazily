@@ -1,17 +1,18 @@
 import { useCallback, useEffect, useRef, type MouseEvent } from 'react'
 import { createPortal } from 'react-dom'
 import { onServer } from '../environment.js'
-import { cleanCSSClasses } from '../utils/string.js'
+import { cleanCSSClasses, sanitizeClassName } from '../utils/string.js'
 import { Icon } from './icons.js'
 
 export interface TopAnchorProps {
   duration?: number
   backgroundColor?: string
   foregroundColor?: string
-  additionalStyle?: string
+  className?: string
+  skipDefaultClassName?: boolean
 }
 
-const topAnchorBaseStyle = cleanCSSClasses(`
+const topAnchorStyle = cleanCSSClasses(`
   fixed hidden items-center justify-center
   w-$rl-top-anchor-size h-$rl-top-anchor-size bottom-2rem right-2rem p-1rem z-101 
   rounded-5px opacity-0 opacity-50 transition-opacity ease-linear duration-200
@@ -66,7 +67,8 @@ export function TopAnchor({
   duration,
   backgroundColor,
   foregroundColor,
-  additionalStyle
+  className,
+  skipDefaultClassName
 }: TopAnchorProps): JSX.Element {
   const element = useRef<HTMLAnchorElement>(null)
 
@@ -100,16 +102,22 @@ export function TopAnchor({
     hover:opacity-100 hover:text-${foregroundColor ?? 'white'}
   `)
 
+  const topAnchorIconStyle = cleanCSSClasses(`font-size-1_5em text-${foregroundColor ?? 'white'}`)
+
   const contents = (
     <a
       ref={element}
       id="rl-top-anchor"
-      className={[topAnchorBaseStyle, colorStyle, additionalStyle].filter(Boolean).join(' ')}
+      className={sanitizeClassName(
+        !skipDefaultClassName && topAnchorStyle,
+        !skipDefaultClassName && colorStyle,
+        className
+      )}
       onClick={handleScrollToTop}
       href="#top"
       title="Top"
     >
-      <Icon name="arrow-up" additionalStyle={`font-size-1_5em text-${foregroundColor ?? 'white'}`} />
+      <Icon name="arrow-up" className={sanitizeClassName(!skipDefaultClassName && topAnchorIconStyle)} />
     </a>
   )
 

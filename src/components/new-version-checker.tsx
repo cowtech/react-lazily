@@ -1,6 +1,6 @@
 import { createPortal } from 'react-dom'
 import { onServer } from '../environment.js'
-import { cleanCSSClasses } from '../utils/string.js'
+import { cleanCSSClasses, sanitizeClassName } from '../utils/string.js'
 
 const newVersionCheckerStyle = cleanCSSClasses(`
   fixed hidden text-center w-full bottom-0 left-0 z-100 bg-green-900 text-white 
@@ -10,20 +10,31 @@ const newVersionCheckerStyle = cleanCSSClasses(`
   pr-[calc(1rem_+_env(safe-area-inset-right))]
 `)
 
+const newVersionCheckerLinkStyle = cleanCSSClasses('font-bold text-amber-500 hover:text-amber-200')
+
 export interface NewVersionCheckerProps {
   message?: string
-  additionalStyle?: string
+  className?: string
+  skipDefaultClassName?: boolean
   action?: string
 }
 
-export function NewVersionChecker({ message, additionalStyle, action }: NewVersionCheckerProps): JSX.Element | null {
+export function NewVersionChecker({
+  message,
+  className,
+  skipDefaultClassName,
+  action
+}: NewVersionCheckerProps): JSX.Element | null {
   message = message ?? 'There is a shiny new version.'
   action = action ?? 'Update now!'
 
   const contents = (
-    <div id="rl-new-version-checker" className={[newVersionCheckerStyle, additionalStyle].filter(Boolean).join(' ')}>
+    <div
+      id="rl-new-version-checker"
+      className={sanitizeClassName(!skipDefaultClassName && newVersionCheckerStyle, className)}
+    >
       <span>{message}&nbsp;</span>
-      <a href="#" className="font-bold text-amber-500 hover:text-amber-200">
+      <a href="#" className={sanitizeClassName(!skipDefaultClassName && newVersionCheckerLinkStyle)}>
         {action}
       </a>
     </div>
