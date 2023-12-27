@@ -1,3 +1,7 @@
+### 2023-12-27 / 7.1.2
+
+- fix: Added missing import.
+
 ### 2023-12-27 / 7.1.1
 
 - fix: Fixed import.
