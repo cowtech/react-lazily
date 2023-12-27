@@ -1,6 +1,8 @@
+import { useContext } from 'react'
 import { createPortal } from 'react-dom'
 import { onServer } from '../environment.js'
-import { cleanCSSClasses, sanitizeClassName } from '../utils/string.js'
+import { cleanCSSClasses } from '../utils/string.js'
+import { CSSClassesResolverContext, type CSSClassesResolverContextType } from './classes-resolver.jsx'
 
 export interface BrowseHappyProps {
   message?: string
@@ -19,16 +21,18 @@ const browseHappyStyle = cleanCSSClasses(`
 const browseHappyLinkStyle = cleanCSSClasses('font-bold text-amber-500 hover:text-amber-200')
 
 export function BrowseHappy({ message, className, skipDefaultClassName }: BrowseHappyProps): JSX.Element | null {
+  const [resolveClasses] = useContext<CSSClassesResolverContextType>(CSSClassesResolverContext)
+
   message = message ?? 'Your browser is obsolete. For the best browsing experience, update it for free by visiting'
 
   const contents = (
-    <div id="rl-browse-happy" className={sanitizeClassName(!skipDefaultClassName && browseHappyStyle, className)}>
+    <div id="rl-browse-happy" className={resolveClasses(!skipDefaultClassName && browseHappyStyle, className)}>
       <span>{message}&nbsp;</span>
       <a
         href="https://browsehappy.com/"
         target="_blank"
         rel="noopener noreferrer"
-        className={sanitizeClassName(!skipDefaultClassName && browseHappyLinkStyle)}
+        className={resolveClasses(!skipDefaultClassName && browseHappyLinkStyle)}
       >
         BrowseHappy
       </a>

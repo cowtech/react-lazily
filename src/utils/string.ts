@@ -1,4 +1,4 @@
-type CSSClassToken = string | false | undefined | null
+export type CSSClassToken = string | false | undefined | null
 
 export function titleCase(input: string): string {
   return input.toLowerCase().replace(/(?:^[a-z])|(?:\s[a-z])/, t => t.toUpperCase())

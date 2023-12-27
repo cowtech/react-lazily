@@ -1,4 +1,6 @@
-import { cleanCSSClasses, sanitizeClassName } from '../utils/string.js'
+import { useContext } from 'react'
+import { cleanCSSClasses } from '../utils/string.js'
+import { CSSClassesResolverContext, type CSSClassesResolverContextType } from './classes-resolver.jsx'
 
 export interface SpinnerProps {
   size?: number
@@ -10,6 +12,8 @@ export interface SpinnerProps {
 }
 
 export function Spinner({ size, stroke, color, text, className, skipDefaultClassName }: SpinnerProps): JSX.Element {
+  const [resolveClasses] = useContext<CSSClassesResolverContextType>(CSSClassesResolverContext)
+
   if (!size) {
     size = 66
   }
@@ -29,7 +33,7 @@ export function Spinner({ size, stroke, color, text, className, skipDefaultClass
   `)
 
   return (
-    <main className={sanitizeClassName(!skipDefaultClassName && spinnerStyle, className)}>
+    <main className={resolveClasses(!skipDefaultClassName && spinnerStyle, className)}>
       <svg viewBox={`0 0 ${size} ${size}`} className={`w-${rem} h-${rem}`}>
         <circle
           fill="none"
@@ -38,7 +42,7 @@ export function Spinner({ size, stroke, color, text, className, skipDefaultClass
           cx={size / 2}
           cy={size / 2}
           r={(size - stroke) / 2}
-          className={sanitizeClassName(!skipDefaultClassName && circleStyle)}
+          className={resolveClasses(!skipDefaultClassName && circleStyle)}
         />
       </svg>
       {text && <h3>{text}</h3>}

@@ -1,6 +1,8 @@
+import { useContext } from 'react'
 import { createPortal } from 'react-dom'
 import { onServer } from '../environment.js'
-import { cleanCSSClasses, sanitizeClassName } from '../utils/string.js'
+import { cleanCSSClasses } from '../utils/string.js'
+import { CSSClassesResolverContext, type CSSClassesResolverContextType } from './classes-resolver.jsx'
 
 const newVersionCheckerStyle = cleanCSSClasses(`
   fixed hidden text-center w-full bottom-0 left-0 z-100 bg-green-900 text-white 
@@ -25,16 +27,18 @@ export function NewVersionChecker({
   skipDefaultClassName,
   action
 }: NewVersionCheckerProps): JSX.Element | null {
+  const [resolveClasses] = useContext<CSSClassesResolverContextType>(CSSClassesResolverContext)
+
   message = message ?? 'There is a shiny new version.'
   action = action ?? 'Update now!'
 
   const contents = (
     <div
       id="rl-new-version-checker"
-      className={sanitizeClassName(!skipDefaultClassName && newVersionCheckerStyle, className)}
+      className={resolveClasses(!skipDefaultClassName && newVersionCheckerStyle, className)}
     >
       <span>{message}&nbsp;</span>
-      <a href="#" className={sanitizeClassName(!skipDefaultClassName && newVersionCheckerLinkStyle)}>
+      <a href="#" className={resolveClasses(!skipDefaultClassName && newVersionCheckerLinkStyle)}>
         {action}
       </a>
     </div>

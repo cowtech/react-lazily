@@ -1,7 +1,8 @@
-import { type ReactNode } from 'react'
+import { useContext, type ReactNode } from 'react'
 import { createPortal } from 'react-dom'
 import { onServer } from '../environment.js'
-import { cleanCSSClasses, sanitizeClassName } from '../utils/string.js'
+import { cleanCSSClasses } from '../utils/string.js'
+import { CSSClassesResolverContext, type CSSClassesResolverContextType } from './classes-resolver.jsx'
 
 export interface RibbonProps {
   position?: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right'
@@ -28,11 +29,13 @@ const madeInItalyLinkStyle = cleanCSSClasses(
 )
 
 export function Ribbon({ position, className, skipDefaultClassName, children }: RibbonProps): JSX.Element {
+  const [resolveClasses] = useContext<CSSClassesResolverContextType>(CSSClassesResolverContext)
+
   const positionStyle = ribbonPositionsStyles[position!] ?? ribbonPositionsStyles['top-right']
 
   const contents = (
     <div
-      className={sanitizeClassName(
+      className={resolveClasses(
         !skipDefaultClassName && ribbonStyle,
         !skipDefaultClassName && positionStyle,
         className
@@ -46,14 +49,16 @@ export function Ribbon({ position, className, skipDefaultClassName, children }: 
 }
 
 export function MadeInItaly({ position, skipDefaultClassName, className }: Omit<RibbonProps, 'children'>): JSX.Element {
+  const [resolveClasses] = useContext<CSSClassesResolverContextType>(CSSClassesResolverContext)
+
   return (
     <Ribbon
       skipDefaultClassName={skipDefaultClassName}
-      className={sanitizeClassName(!skipDefaultClassName && madeInItalyStyle, className)}
+      className={resolveClasses(!skipDefaultClassName && madeInItalyStyle, className)}
       position={position}
     >
       <a
-        className={sanitizeClassName(!skipDefaultClassName && madeInItalyLinkStyle)}
+        className={resolveClasses(!skipDefaultClassName && madeInItalyLinkStyle)}
         href="http://www.italia.it"
         target="_blank"
         rel="noopener noreferrer"

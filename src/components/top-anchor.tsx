@@ -1,7 +1,8 @@
-import { useCallback, useEffect, useRef, type MouseEvent } from 'react'
+import { useCallback, useContext, useEffect, useRef, type MouseEvent } from 'react'
 import { createPortal } from 'react-dom'
 import { onServer } from '../environment.js'
-import { cleanCSSClasses, sanitizeClassName } from '../utils/string.js'
+import { cleanCSSClasses } from '../utils/string.js'
+import { CSSClassesResolverContext, type CSSClassesResolverContextType } from './classes-resolver.jsx'
 import { Icon } from './icons.js'
 
 export interface TopAnchorProps {
@@ -70,6 +71,7 @@ export function TopAnchor({
   className,
   skipDefaultClassName
 }: TopAnchorProps): JSX.Element {
+  const [resolveClasses] = useContext<CSSClassesResolverContextType>(CSSClassesResolverContext)
   const element = useRef<HTMLAnchorElement>(null)
 
   const handleScroll = useCallback(() => {
@@ -108,7 +110,7 @@ export function TopAnchor({
     <a
       ref={element}
       id="rl-top-anchor"
-      className={sanitizeClassName(
+      className={resolveClasses(
         !skipDefaultClassName && topAnchorStyle,
         !skipDefaultClassName && colorStyle,
         className
@@ -117,7 +119,7 @@ export function TopAnchor({
       href="#top"
       title="Top"
     >
-      <Icon name="arrow-up" className={sanitizeClassName(!skipDefaultClassName && topAnchorIconStyle)} />
+      <Icon name="arrow-up" className={resolveClasses(!skipDefaultClassName && topAnchorIconStyle)} />
     </a>
   )
 
