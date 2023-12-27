@@ -2,7 +2,7 @@ import { useContext } from 'react'
 import { createPortal } from 'react-dom'
 import { onServer } from '../environment.js'
 import { cleanCSSClasses } from '../utils/string.js'
-import { CSSClassesResolverContext, type CSSClassesResolverContextType } from './classes-resolver.js'
+import { CSSClassesResolverContext } from './classes-resolver.js'
 
 export interface BrowseHappyProps {
   message?: string
@@ -21,7 +21,7 @@ const browseHappyStyle = cleanCSSClasses(`
 const browseHappyLinkStyle = cleanCSSClasses('font-bold text-amber-500 hover:text-amber-200')
 
 export function BrowseHappy({ message, className, skipDefaultClassName }: BrowseHappyProps): JSX.Element | null {
-  const [resolveClasses] = useContext<CSSClassesResolverContextType>(CSSClassesResolverContext)
+  const resolveClasses = useContext(CSSClassesResolverContext)
 
   message = message ?? 'Your browser is obsolete. For the best browsing experience, update it for free by visiting'
 

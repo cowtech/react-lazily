@@ -2,7 +2,7 @@ import { useContext, type ReactNode } from 'react'
 import { createPortal } from 'react-dom'
 import { onServer } from '../environment.js'
 import { cleanCSSClasses } from '../utils/string.js'
-import { CSSClassesResolverContext, type CSSClassesResolverContextType } from './classes-resolver.js'
+import { CSSClassesResolverContext } from './classes-resolver.js'
 
 export interface RibbonProps {
   position?: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right'
@@ -29,7 +29,7 @@ const madeInItalyLinkStyle = cleanCSSClasses(
 )
 
 export function Ribbon({ position, className, skipDefaultClassName, children }: RibbonProps): JSX.Element {
-  const [resolveClasses] = useContext<CSSClassesResolverContextType>(CSSClassesResolverContext)
+  const resolveClasses = useContext(CSSClassesResolverContext)
 
   const positionStyle = ribbonPositionsStyles[position!] ?? ribbonPositionsStyles['top-right']
 
@@ -49,7 +49,7 @@ export function Ribbon({ position, className, skipDefaultClassName, children }: 
 }
 
 export function MadeInItaly({ position, skipDefaultClassName, className }: Omit<RibbonProps, 'children'>): JSX.Element {
-  const [resolveClasses] = useContext<CSSClassesResolverContextType>(CSSClassesResolverContext)
+  const resolveClasses = useContext(CSSClassesResolverContext)
 
   return (
     <Ribbon

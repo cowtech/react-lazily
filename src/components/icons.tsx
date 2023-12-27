@@ -1,6 +1,6 @@
 import { useContext } from 'react'
 import { cleanCSSClasses } from '../utils/string.js'
-import { CSSClassesResolverContext, type CSSClassesResolverContextType } from './classes-resolver.js'
+import { CSSClassesResolverContext } from './classes-resolver.js'
 
 export interface IconsDefinitionsProps {
   definitions: string
@@ -19,7 +19,7 @@ const iconStyle = cleanCSSClasses('inline-block align-middle w-1em h-1em stroke-
 const iconDefinitionStyle = cleanCSSClasses('absolute hidden w-0 h-0')
 
 export function IconsDefinitions({ definitions, skipDefaultClassName, className }: IconsDefinitionsProps): JSX.Element {
-  const [resolveClasses] = useContext<CSSClassesResolverContextType>(CSSClassesResolverContext)
+  const resolveClasses = useContext(CSSClassesResolverContext)
 
   return (
     <svg
@@ -34,7 +34,7 @@ export function IconsDefinitions({ definitions, skipDefaultClassName, className 
 }
 
 export function Icon({ name, className, skipDefaultClassName, onClick }: IconProps): JSX.Element | null {
-  const [resolveClasses] = useContext<CSSClassesResolverContextType>(CSSClassesResolverContext)
+  const resolveClasses = useContext(CSSClassesResolverContext)
 
   return (
     <svg className={resolveClasses(!skipDefaultClassName && iconStyle, className)} onClick={onClick}>

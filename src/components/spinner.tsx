@@ -1,6 +1,6 @@
 import { useContext } from 'react'
 import { cleanCSSClasses } from '../utils/string.js'
-import { CSSClassesResolverContext, type CSSClassesResolverContextType } from './classes-resolver.js'
+import { CSSClassesResolverContext } from './classes-resolver.js'
 
 export interface SpinnerProps {
   size?: number
@@ -12,7 +12,7 @@ export interface SpinnerProps {
 }
 
 export function Spinner({ size, stroke, color, text, className, skipDefaultClassName }: SpinnerProps): JSX.Element {
-  const [resolveClasses] = useContext<CSSClassesResolverContextType>(CSSClassesResolverContext)
+  const resolveClasses = useContext(CSSClassesResolverContext)
 
   if (!size) {
     size = 66

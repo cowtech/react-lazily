@@ -2,7 +2,7 @@ import { useCallback, useContext, useEffect, useRef, type MouseEvent } from 'rea
 import { createPortal } from 'react-dom'
 import { onServer } from '../environment.js'
 import { cleanCSSClasses } from '../utils/string.js'
-import { CSSClassesResolverContext, type CSSClassesResolverContextType } from './classes-resolver.js'
+import { CSSClassesResolverContext } from './classes-resolver.js'
 import { Icon } from './icons.js'
 
 export interface TopAnchorProps {
@@ -71,7 +71,7 @@ export function TopAnchor({
   className,
   skipDefaultClassName
 }: TopAnchorProps): JSX.Element {
-  const [resolveClasses] = useContext<CSSClassesResolverContextType>(CSSClassesResolverContext)
+  const resolveClasses = useContext(CSSClassesResolverContext)
   const element = useRef<HTMLAnchorElement>(null)
 
   const handleScroll = useCallback(() => {
