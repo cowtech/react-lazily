@@ -1,3 +1,7 @@
+### 2023-12-27 / 7.0.0
+
+- feat!: Sanitize CSS class handling.
+
 ### 2023-12-26 / 6.1.1
 
 - fix: Fixed type.
