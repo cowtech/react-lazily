@@ -1,6 +1,6 @@
 import { useContext } from 'react'
 import { cleanCSSClasses } from '../utils/string.js'
-import { CSSClassesResolverContext, type CSSClassesResolverContextType } from './classes-resolver.jsx'
+import { CSSClassesResolverContext, type CSSClassesResolverContextType } from './classes-resolver.js'
 
 export interface SpinnerProps {
   size?: number

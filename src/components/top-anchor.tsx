@@ -2,7 +2,7 @@ import { useCallback, useContext, useEffect, useRef, type MouseEvent } from 'rea
 import { createPortal } from 'react-dom'
 import { onServer } from '../environment.js'
 import { cleanCSSClasses } from '../utils/string.js'
-import { CSSClassesResolverContext, type CSSClassesResolverContextType } from './classes-resolver.jsx'
+import { CSSClassesResolverContext, type CSSClassesResolverContextType } from './classes-resolver.js'
 import { Icon } from './icons.js'
 
 export interface TopAnchorProps {

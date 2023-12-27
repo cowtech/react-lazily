@@ -2,7 +2,7 @@ import { useContext } from 'react'
 import { createPortal } from 'react-dom'
 import { onServer } from '../environment.js'
 import { cleanCSSClasses } from '../utils/string.js'
-import { CSSClassesResolverContext, type CSSClassesResolverContextType } from './classes-resolver.jsx'
+import { CSSClassesResolverContext, type CSSClassesResolverContextType } from './classes-resolver.js'
 
 const newVersionCheckerStyle = cleanCSSClasses(`
   fixed hidden text-center w-full bottom-0 left-0 z-100 bg-green-900 text-white 
