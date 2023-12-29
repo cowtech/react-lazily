@@ -1,3 +1,8 @@
+### 2023-12-29 / 9.1.0
+
+- feat: Updated peer dependencies.
+- chore: Removed leftover.
+
 ### 2023-12-27 / 9.0.0
 
 - feat!: Changed CSS Classes resolver type.
