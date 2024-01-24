@@ -1,3 +1,7 @@
+### 2024-01-24 / 9.1.1
+
+- chore: Updated TypeScript configuration.
+
 ### 2023-12-29 / 9.1.0
 
 - feat: Updated peer dependencies.
