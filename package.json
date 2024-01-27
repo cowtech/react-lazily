@@ -28,8 +28,8 @@
   "exports": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
-    "dev": "swc --delete-dir-on-start -w -d dist src",
-    "build": "swc --delete-dir-on-start -d dist src",
+    "dev": "swc --strip-leading-paths --delete-dir-on-start -w -d dist src",
+    "build": "swc --strip-leading-paths --delete-dir-on-start -d dist src",
     "postbuild": "concurrently npm:lint npm:typecheck && cat src/utils/sitemap.d.ts.tpl >> dist/index.d.ts && cp -a src/assets dist",
     "format": "prettier -w src",
     "lint": "eslint --cache --ext .js,.jsx,.ts,.tsx src",
