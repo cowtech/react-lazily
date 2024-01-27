@@ -1,3 +1,7 @@
+### 2024-01-27 / 9.1.3
+
+- chore: Fixed build.
+
 ### 2024-01-27 / 9.1.2
 
 - chore: Updated dependencies.
