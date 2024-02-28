@@ -1,3 +1,7 @@
+### 2024-02-28 / 9.1.5
+
+- chore: Added end of development notice.
+
 ### 2024-02-07 / 9.1.4
 
 - chore: Updated dependencies.
