@@ -1,5 +1,7 @@
 # @cowtech/react-lazily
 
+## END OF DEVELOPMENT NOTICE - This package has been discontinued
+
 [![Version](https://img.shields.io/npm/v/@cowtech/react-lazily.svg)](https://npm.im/@cowtech/react-lazily)
 [![Dependencies](https://img.shields.io/librariesio/release/npm/@cowtech/react-lazily)](https://libraries.io/npm/@cowtech%2Freact-lazily)
 
